@@ -186,7 +186,8 @@ function MapCanvas({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }
 
     ;(loader as unknown as { load: () => Promise<void> }).load().then(() => {
       if (cancelled || !divRef.current) return
-      const g = (window as unknown as { google: { maps: typeof google } }).google.maps
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const g = (window as any).google.maps
 
       const bounds = new g.LatLngBounds()
       const pathCoords = positions.map(({ coords }) => {

@@ -8,7 +8,8 @@
       "Bash(curl -s http://localhost:5173/)",
       "Bash(pkill -f \"vite --port 5173\")",
       "WebFetch(domain:wavefastexpress.com)",
-      "Bash(yarn tsc *)"
+      "Bash(yarn tsc *)",
+      "Bash(yarn build *)"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"
