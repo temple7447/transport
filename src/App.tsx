@@ -13,6 +13,11 @@ import ContactPage from './pages/ContactPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFoundPage from './pages/NotFoundPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import TermsOfServicePage from './pages/TermsOfServicePage'
+import CookiePolicyPage from './pages/CookiePolicyPage'
+import ShippingPolicyPage from './pages/ShippingPolicyPage'
+import InsuranceTermsPage from './pages/InsuranceTermsPage'
 import { getToken } from './lib/api'
 
 function ScrollToTop() {
@@ -54,6 +59,11 @@ export default function App() {
           <Route path="/track" element={<TrackPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/legal/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/legal/terms" element={<TermsOfServicePage />} />
+          <Route path="/legal/cookies" element={<CookiePolicyPage />} />
+          <Route path="/legal/shipping" element={<ShippingPolicyPage />} />
+          <Route path="/legal/insurance" element={<InsuranceTermsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

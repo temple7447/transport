@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import Reveal from './Reveal'
 
 const REVIEWS = [
   {
@@ -101,12 +102,10 @@ export default function Testimonials() {
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           {visible.map((rev, i) => (
+            <Reveal key={`${rev.name}-${animKey}-${i}`} direction={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} delay={0.05 + i * 0.1}>
             <div
-              key={`${rev.name}-${animKey}-${i}`}
-              className={`bg-white rounded-2xl p-7 shadow-sm border border-slate-100
-                transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-yellow-100
-                ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
-              style={inView ? { animationDelay: `${0.25 + i * 0.1}s` } : {}}
+              className="bg-white rounded-2xl p-7 shadow-sm border border-slate-100
+                transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-yellow-100 h-full"
             >
               <div className="flex gap-1 mb-4">
                 {Array(rev.rating).fill(0).map((_, s) => (
@@ -126,6 +125,7 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
 

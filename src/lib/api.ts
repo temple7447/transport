@@ -110,12 +110,12 @@ async function request<T>(
 // ── API surface ────────────────────────────────────────────────────────────
 export const api = {
   // Auth
-  login: (login: string, password: string) => {
+  login: (email: string, password: string) => {
     const secret = (import.meta.env.VITE_ADMIN_SECRET as string | undefined) ?? ''
     return request<{ token: string }>(
       'POST',
       '/api/auth/login',
-      { login, password },
+      { email, password },
       secret ? { 'x-admin-secret': secret } : undefined,
     )
   },

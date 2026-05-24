@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { api, setToken } from '../lib/api'
 
 export default function AdminLoginPage() {
-  const [form, setForm] = useState({ login: '', password: '' })
+  const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
@@ -16,7 +16,7 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError('')
     try {
-      const { token } = await api.login(form.login, form.password)
+      const { token } = await api.login(form.email, form.password)
       setToken(token)
       navigate('/admin')
     } catch (err) {

@@ -1,13 +1,40 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
+import Reveal from './Reveal'
 
 const YEAR = new Date().getFullYear()
 
-const LINKS = {
-  Company: ['About Us', 'Careers', 'Press & Media', 'Blog', 'Sustainability'],
-  Services: ['Express Delivery', 'Air Freight', 'Sea Freight', 'Road Transport', 'Warehousing', 'Customs Clearance'],
-  Support: ['Help Center', 'Track Shipment', 'Live Chat', 'Contact Sales', 'System Status'],
-  Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Shipping Policy', 'Insurance Terms'],
+const LINKS: Record<string, { label: string; href: string }[]> = {
+  Company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Careers', href: '#' },
+    { label: 'Press & Media', href: '#' },
+    { label: 'Blog', href: '#' },
+    { label: 'Sustainability', href: '#' },
+  ],
+  Services: [
+    { label: 'Express Delivery', href: '/services' },
+    { label: 'Air Freight', href: '/services' },
+    { label: 'Sea Freight', href: '/services' },
+    { label: 'Road Transport', href: '/services' },
+    { label: 'Warehousing', href: '/services' },
+    { label: 'Customs Clearance', href: '/services' },
+  ],
+  Support: [
+    { label: 'Help Center', href: '#' },
+    { label: 'Track Shipment', href: '/track' },
+    { label: 'Live Chat', href: '#' },
+    { label: 'Contact Sales', href: '/contact' },
+    { label: 'System Status', href: '#' },
+  ],
+  Legal: [
+    { label: 'Privacy Policy', href: '/legal/privacy' },
+    { label: 'Terms of Service', href: '/legal/terms' },
+    { label: 'Cookie Policy', href: '/legal/cookies' },
+    { label: 'Shipping Policy', href: '/legal/shipping' },
+    { label: 'Insurance Terms', href: '/legal/insurance' },
+  ],
 }
 
 const SOCIALS = [
@@ -76,7 +103,7 @@ export default function Footer() {
         {/* Top grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
           {/* Brand col (spans 2) */}
-          <div className="lg:col-span-2">
+          <Reveal direction="left" className="lg:col-span-2">
             <a href="/" className="flex items-center gap-3 mb-4">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#F5C100' }}>
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
@@ -113,26 +140,27 @@ export default function Footer() {
               <p className="flex items-center gap-2"><svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M2.25 6.338c0 .768.107 1.51.303 2.21 1.14 4.075 4.833 7.77 8.908 8.907.7.196 1.443.303 2.21.303 2.074 0 4.012-.594 5.644-1.625M2.25 6.338C2.25 4.517 3.663 3 5.406 3h1.125c.337 0 .662.088.948.254L9.374 4.46a1.125 1.125 0 01.414 1.512L8.73 7.67a.75.75 0 00-.05.544l.052.213c.398 1.625 1.455 3.178 2.73 4.504 1.325 1.275 2.879 2.332 4.504 2.73l.213.052a.75.75 0 00.544-.05l1.696-1.057a1.125 1.125 0 011.512.414l1.207 1.9c.167.287.255.61.255.949v1.125c0 1.742-1.516 3.156-3.338 3.156"/></svg>+1 (512) 678-5033</p>
               <p className="flex items-center gap-2"><svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>hello@quicksenddelivery.com</p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Link columns */}
-          {Object.entries(LINKS).map(([section, items]) => (
-            <div key={section}>
+          {Object.entries(LINKS).map(([section, items], colIdx) => (
+            <Reveal key={section} direction="up" delay={0.1 + colIdx * 0.08}>
               <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">{section}</h4>
               <ul className="space-y-2.5">
                 {items.map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-white/45 text-sm hover:text-white transition-colors hover:translate-x-0.5 inline-block transition-transform duration-150">
-                      {item}
-                    </a>
+                  <li key={item.label}>
+                    <Link to={item.href} className="text-white/45 text-sm hover:text-white hover:translate-x-0.5 inline-block transition-all duration-150">
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Newsletter */}
+        <Reveal direction="up" delay={0.05}>
         <div className="border border-white/10 rounded-2xl p-6 mb-10 bg-white/[0.03]">
           {subState === 'sent' ? (
             <div className="flex items-center gap-3">
@@ -170,8 +198,10 @@ export default function Footer() {
             </div>
           )}
         </div>
+        </Reveal>
 
         {/* Bottom bar */}
+        <Reveal direction="up" delay={0.1}>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-sm">© {YEAR} Quick Send Delivery Ltd. All rights reserved.</p>
           <div className="flex gap-5 text-white/30 text-xs">
@@ -180,6 +210,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
+        </Reveal>
       </div>
     </footer>
   )

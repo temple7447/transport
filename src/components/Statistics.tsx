@@ -32,7 +32,7 @@ function StatItem({ stat, active }: { stat: typeof STATS[0]; active: boolean }) 
   return (
     <div className="text-center group">
       <div className="mb-3 flex justify-center">{stat.icon}</div>
-      <div className={`text-5xl md:text-6xl font-black text-white mb-2 transition-all duration-300 ${active ? 'animate-countUp' : 'opacity-0'}`}>
+      <div className={`text-4xl md:text-5xl font-black text-white mb-2 transition-all duration-300 break-all leading-none ${active ? 'animate-countUp' : 'opacity-0'}`}>
         {value}{stat.suffix}
       </div>
       <div className="text-white font-semibold text-lg mb-1">{stat.label}</div>
@@ -71,6 +71,27 @@ export default function Statistics() {
       <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(245,193,0,0.12)' }} />
       <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl" style={{ background: 'rgba(204,21,0,0.10)' }} />
+      {/* Floating glow particles */}
+      {[
+        { left: '15%', top: '20%', delay: '0s',   size: 6, color: 'rgba(245,193,0,0.6)' },
+        { left: '70%', top: '60%', delay: '1.2s', size: 4, color: 'rgba(96,165,250,0.5)' },
+        { left: '45%', top: '80%', delay: '2.4s', size: 5, color: 'rgba(167,139,250,0.5)' },
+        { left: '85%', top: '25%', delay: '0.8s', size: 3, color: 'rgba(74,222,128,0.6)' },
+        { left: '30%', top: '50%', delay: '1.8s', size: 4, color: 'rgba(245,193,0,0.4)' },
+      ].map((p, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: p.left, top: p.top,
+            width: p.size, height: p.size,
+            background: p.color,
+            filter: `blur(${p.size / 2}px)`,
+            animation: `heroParticle ${2.5 + i * 0.4}s ease-in-out infinite`,
+            animationDelay: p.delay,
+          }}
+        />
+      ))}
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-14">
@@ -85,7 +106,7 @@ export default function Statistics() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {STATS.map(stat => (
             <StatItem key={stat.label} stat={stat} active={active} />
           ))}

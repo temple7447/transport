@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { api } from '../lib/api'
+import Reveal from './Reveal'
 
 const ROUTES = [
   { label: 'Standard (5–7 days)',  days: '5–7',   rate: 1,    key: 'standard'  },
@@ -43,7 +44,7 @@ export default function QuoteCalculator() {
   return (
     <section id="pricing" className="py-24 bg-slate-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-14">
+        <Reveal direction="up" className="text-center mb-14">
           <span className="section-label">Instant Quote</span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-800 mt-4 mb-4">
             Calculate Shipping Cost
@@ -51,9 +52,9 @@ export default function QuoteCalculator() {
           <p className="text-slate-500 text-lg max-w-xl mx-auto">
             Get an instant price estimate for your shipment — no account needed.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <Reveal direction="up" delay={0.15} className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
           <div className="grid lg:grid-cols-5">
             {/* Form */}
             <div className="lg:col-span-3 p-8 md:p-10">
@@ -188,7 +189,7 @@ export default function QuoteCalculator() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

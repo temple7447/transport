@@ -79,6 +79,22 @@ export default function HowItWorks() {
               transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.3s',
             }}
           />
+          {/* Animated package traveling along the line */}
+          {inView && (
+            <div
+              className="hidden lg:flex absolute z-10 items-center justify-center w-7 h-7 rounded-full bg-yellow-400 shadow-lg"
+              style={{
+                top: '6px',
+                left: '12.5%',
+                animation: 'travelLine 3.2s cubic-bezier(0.4,0,0.6,1) 1.4s forwards',
+                boxShadow: '0 0 14px rgba(245,193,0,0.7)',
+              }}
+            >
+              <svg className="w-3.5 h-3.5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>
+                <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/>
+              </svg>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {STEPS.map((step, i) => (

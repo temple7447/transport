@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const TEAM = [
   { name: 'Emeka Okafor', role: 'CEO & Founder', img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: '20+ years in global logistics. Former VP at a Big 3 courier.' },
   { name: 'Adeola Bright', role: 'Chief Operations Officer', img: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Built logistics operations across 14 African countries.' },
-  { name: 'David Mensah', role: 'CTO', img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Ex-Amazon logistics tech lead. Obsessed with real-time systems.' },
+  { name: 'David Mensah', role: 'CTO', img: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Ex-Amazon logistics tech lead. Obsessed with real-time systems.' },
   { name: 'Sophie Laurent', role: 'Head of Global Partnerships', img: 'https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Built our carrier network to 300+ global partners in 3 years.' },
   { name: 'Kwame Asante', role: 'Head of Customs & Compliance', img: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Licensed customs broker in 40+ countries. Former UNCTAD advisor.' },
   { name: 'Priya Sharma', role: 'VP of Customer Success', img: 'https://images.pexels.com/photos/3756681/pexels-photo-3756681.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: 'Led support teams for 15K+ business clients across 120 countries.' },
@@ -138,7 +138,7 @@ export default function AboutPage() {
             {TEAM.map(member => (
               <div key={member.name} className="card-hover bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
                 <div className="h-56 overflow-hidden">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-bold text-slate-800 text-lg">{member.name}</h3>

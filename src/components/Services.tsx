@@ -1,71 +1,117 @@
-import { useScrollReveal } from '../hooks/useScrollReveal'
 import { IcoBolt, IcoPlane, IcoShip, IcoTruck, IcoWarehouse, IcoShieldCheck } from '../lib/icons'
+import Reveal from './Reveal'
 
 const SERVICES = [
   {
-    icon: <IcoBolt className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoBolt className="w-7 h-7 text-white" />,
     title: 'Express Delivery',
-    desc: 'Same-day and next-day delivery for urgent shipments. Guaranteed on-time performance with real-time updates.',
-    color: 'text-yellow-600',
     badge: 'Most Popular',
-    img: 'https://images.pexels.com/photos/4246019/pexels-photo-4246019.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-yellow-500/80 to-red-600/80',
+    badgeColor: 'bg-yellow-100 text-yellow-800',
+    headline: 'Same-Day & Next-Day Delivery',
+    desc: 'When speed is everything, our Express service guarantees your package arrives the same day (domestic) or next business day (international). Real-time GPS tracking every step of the way.',
+    features: [
+      'Same-day pickup within 2 hours',
+      'Next-day international delivery',
+      'SMS + email notifications',
+      'Proof of delivery photo',
+      'Up to 70 kg per parcel',
+    ],
+    price: '$12',
+    bg: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
   },
   {
-    icon: <IcoPlane className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoPlane className="w-7 h-7 text-white" />,
     title: 'Air Freight',
-    desc: 'Fast international air cargo solutions with access to 500+ airports worldwide. Ideal for high-value goods.',
-    color: 'text-blue-600',
-    badge: null,
-    img: 'https://images.pexels.com/photos/747679/pexels-photo-747679.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-blue-600/80 to-cyan-500/80',
+    badge: 'Fast International',
+    badgeColor: 'bg-blue-100 text-blue-700',
+    headline: 'Global Air Cargo in 2–4 Days',
+    desc: 'Access 500+ airports worldwide with our dedicated air freight network. Ideal for high-value, time-sensitive cargo. We handle all documentation and customs clearance.',
+    features: [
+      '500+ airports served',
+      '2–4 day international transit',
+      'Customs documentation included',
+      'Dangerous goods certified',
+      'Temperature-controlled options',
+    ],
+    price: '$45',
+    bg: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
   },
   {
-    icon: <IcoShip className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoShip className="w-7 h-7 text-white" />,
     title: 'Sea Freight',
-    desc: 'Cost-effective ocean freight for large shipments. FCL and LCL options to 300+ ports globally.',
-    color: 'text-cyan-600',
     badge: 'Best Value',
-    img: 'https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-cyan-700/80 to-blue-500/80',
+    badgeColor: 'bg-cyan-100 text-cyan-700',
+    headline: 'Cost-Effective Ocean Freight',
+    desc: 'Move large volumes across the globe affordably. FCL and LCL options with door-to-port or door-to-door delivery to 300+ ports worldwide.',
+    features: [
+      'FCL & LCL options',
+      '300+ ports covered',
+      'Full container tracking',
+      'Refrigerated cargo support',
+      'On-board bill of lading',
+    ],
+    price: '$180',
+    bg: 'linear-gradient(135deg, #0e7490 0%, #3b82f6 100%)',
   },
   {
-    icon: <IcoTruck className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoTruck className="w-7 h-7 text-white" />,
     title: 'Road Transport',
-    desc: 'Reliable ground logistics across continents with a fleet of 2,000+ vehicles. Door-to-door service.',
-    color: 'text-green-600',
-    badge: null,
-    img: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-green-600/80 to-emerald-500/80',
+    badge: 'Door-to-Door',
+    badgeColor: 'bg-green-100 text-green-700',
+    headline: 'Reliable Ground Logistics',
+    desc: 'Our fleet of 2,000+ vehicles covers major road corridors across continents. Perfect for domestic and cross-border deliveries with real-time fleet visibility.',
+    features: [
+      '2,000+ vehicle fleet',
+      'Cross-border clearance',
+      'Live fleet tracking',
+      'Fragile goods handling',
+      'Flexible pickup windows',
+    ],
+    price: '$8',
+    bg: 'linear-gradient(135deg, #16a34a 0%, #10b981 100%)',
   },
   {
-    icon: <IcoWarehouse className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoWarehouse className="w-7 h-7 text-white" />,
     title: 'Warehousing',
-    desc: 'Secure, climate-controlled storage facilities in 50+ strategic locations. Inventory management included.',
-    color: 'text-purple-600',
-    badge: null,
-    img: 'https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-purple-700/80 to-indigo-500/80',
+    badge: 'Fulfillment Ready',
+    badgeColor: 'bg-purple-100 text-purple-700',
+    headline: 'Smart Storage & Fulfillment',
+    desc: 'Climate-controlled warehouses in 50+ strategic locations. Inventory management, pick-and-pack, and same-day order fulfillment for e-commerce businesses.',
+    features: [
+      '50+ global warehouse locations',
+      'Climate-controlled storage',
+      'Pick, pack & ship service',
+      'Real-time inventory dashboard',
+      'Returns processing',
+    ],
+    price: '$0.40/day',
+    bg: 'linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)',
   },
   {
-    icon: <IcoShieldCheck className="w-8 h-8 text-white drop-shadow" />,
+    icon: <IcoShieldCheck className="w-7 h-7 text-white" />,
     title: 'Customs Clearance',
-    desc: 'Expert customs brokerage with automated documentation. Fast, compliant clearance in any country.',
-    color: 'text-rose-500',
-    badge: null,
-    img: 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=600&h=320&fit=crop',
-    overlay: 'from-rose-600/80 to-pink-500/80',
+    badge: 'AEO Certified',
+    badgeColor: 'bg-rose-100 text-rose-700',
+    headline: 'Hassle-Free Customs Brokerage',
+    desc: 'Our certified customs experts handle all documentation, duties, and compliance requirements so your shipments clear borders without delays — in any country.',
+    features: [
+      'Licensed customs brokers',
+      'Automated HS code classification',
+      'Duty & tax pre-calculation',
+      'CITES & special permit handling',
+      'Same-day clearance for express cargo',
+    ],
+    price: 'From $35',
+    bg: 'linear-gradient(135deg, #e11d48 0%, #f97316 100%)',
   },
 ]
 
 export default function Services() {
-  const [ref, inView] = useScrollReveal()
-
   return (
-    <section id="services" className="py-16 sm:py-24 bg-white overflow-hidden">
-      <div ref={ref} className="container mx-auto px-4 sm:px-6">
+    <section id="services" className="py-16 sm:py-24 bg-slate-50 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
 
-        <div className={`text-center mb-10 sm:mb-14 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}>
+        <Reveal direction="up" className="text-center mb-10 sm:mb-14">
           <span className="section-label">What We Offer</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-800 mt-4 mb-4">
             End-to-End Logistics Services
@@ -73,69 +119,57 @@ export default function Services() {
           <p className="text-slate-500 text-base sm:text-lg max-w-xl mx-auto">
             From single parcels to enterprise supply chains — we have the solution for every shipping need.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="space-y-6">
           {SERVICES.map((svc, i) => (
-            <div
-              key={svc.title}
-              className={`group relative bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm cursor-pointer
-                transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-transparent
-                ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
-              style={inView ? { animationDelay: `${0.08 + i * 0.09}s` } : {}}
-            >
-              {/* Photo header with gradient overlay */}
-              <div className="relative h-40 sm:h-44 overflow-hidden">
-                <img
-                  src={svc.img}
-                  alt={svc.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className={`absolute inset-0 bg-linear-to-br ${svc.overlay}`} />
+            <Reveal key={svc.title} direction={i % 2 === 0 ? 'left' : 'right'} delay={0.05}>
+              <div className={`flex flex-col md:flex-row ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''} bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300`}>
 
-                {/* Overlaid icon + badge */}
-                <div className="absolute inset-0 p-4 flex items-end justify-between">
-                  <span>{svc.icon}</span>
+                {/* Image / colour panel */}
+                <div className="md:w-2/5 min-h-56 md:min-h-0 relative flex flex-col justify-end p-6 md:p-8" style={{ background: svc.bg }}>
+                  <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+                      {svc.icon}
+                    </div>
+                    <h3 className="text-white font-black text-xl">{svc.title}</h3>
+                  </div>
+                </div>
+
+                {/* Content panel */}
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
                   {svc.badge && (
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm border border-white/30">
+                    <span className={`inline-flex self-start text-xs font-bold px-3 py-1 rounded-full mb-3 ${svc.badgeColor}`}>
                       {svc.badge}
                     </span>
                   )}
+                  <h4 className="text-xl md:text-2xl font-black text-slate-800 mb-2">{svc.headline}</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-5">{svc.desc}</p>
+
+                  <ul className="space-y-2 mb-6">
+                    {svc.features.map(f => (
+                      <li key={f} className="flex items-center gap-2.5 text-sm text-slate-600">
+                        <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex gap-3">
+                    <button className="btn-primary py-3! px-6! text-sm!">Get Quote</button>
+                    <button className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all">
+                      Learn More
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="p-5 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-2 group-hover:text-slate-900 transition-colors">
-                  {svc.title}
-                </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-4">{svc.desc}</p>
-                <a
-                  href="#"
-                  className={`text-sm font-semibold ${svc.color} flex items-center gap-1.5 transition-all duration-300 group-hover:gap-3`}
-                >
-                  Learn More
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <div
-          className={`mt-10 sm:mt-12 text-center ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
-          style={inView ? { animationDelay: '0.65s' } : {}}
-        >
-          <button className="btn-primary bg-slate-800! hover:bg-slate-700! shadow-none!">
-            View All Services
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
-        </div>
       </div>
     </section>
   )
