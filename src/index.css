@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #071426;
+  --color-navy-800: #0f2444;
+  --color-navy-700: #163166;
+  --color-brand-yellow: #F5C100;
+  --color-brand-yellow-dark: #D4A800;
+  --color-brand-red: #CC1500;
+  --color-brand-red-dark: #A81200;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #fafaf9; }
+::-webkit-scrollbar-thumb { background: #F5C100; border-radius: 3px; }
+
+/* ── Custom utilities ─────────────────────────────────────── */
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #F5C100, #CC1500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(204, 21, 0, 0.08);
+    color: #CC1500;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .btn-primary {
+    background: #F5C100;
+    color: #0f0900;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background: #D4A800;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 193, 0, 0.4);
+  }
+
+  .btn-outline-white {
+    background: transparent;
+    color: white;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .btn-outline-white:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-float-delay { animation: float 4s ease-in-out infinite 1.5s; }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  .animate-fadeInUp { animation: fadeInUp 0.6s ease both; }
+  .animate-countUp { animation: countUp 0.5s ease both; }
+
+  /* ── Scroll-reveal animations ──────────────────────────── */
+  .animate-reveal-up    { animation: revealUp    0.72s cubic-bezier(0.16,1,0.3,1) both; }
+  .animate-reveal-left  { animation: revealLeft  0.72s cubic-bezier(0.16,1,0.3,1) both; }
+  .animate-reveal-right { animation: revealRight 0.72s cubic-bezier(0.16,1,0.3,1) both; }
+  .animate-reveal-scale { animation: revealScale 0.72s cubic-bezier(0.16,1,0.3,1) both; }
+  .animate-fade-in      { animation: fadeIn      0.45s ease both; }
+  .animate-glow-pulse   { animation: glowPulse   2.5s  ease-in-out infinite; }
+  .animate-icon-bounce  { animation: iconBounce  3.2s  ease-in-out infinite; }
+
+  /* ── Shimmer gradient text ────────────────────────────── */
+  .gradient-text-shimmer {
+    background: linear-gradient(135deg, #F5C100 0%, #CC1500 35%, #F5C100 65%, #CC1500 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* ── Enhanced button glow ─────────────────────────────── */
+  .btn-primary:focus-visible { outline: 3px solid #F5C100; outline-offset: 3px; }
+  .btn-primary:active { transform: translateY(0) scale(0.97); }
+}
+
+/* ── Keyframes ────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(52px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+@keyframes shimmer {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 300% center; }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 24px rgba(245,193,0,0.4); }
+  50%       { box-shadow: 0 0 52px rgba(245,193,0,0.8); }
+}
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0);   }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+@keyframes slowZoom {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.1);  }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
