@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
-import { GoogleMap, useJsApiLoader, Polyline, Marker, InfoWindow } from '@react-google-maps/api'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { Loader } from '@googlemaps/js-api-loader'
 import { api } from '../lib/api'
 import type { PublicShipment } from '../lib/api'
 
@@ -148,106 +148,105 @@ function getCityCoords(city: string): [number, number] | null {
 /* ─── Google Maps config ─────────────────────────────────────── */
 const GMAPS_KEY = (import.meta.env.VITE_GOOGLE_MAPS_KEY as string | undefined) ?? ''
 
-const MAP_STYLES: google.maps.MapTypeStyle[] = [
-  { elementType: 'geometry',                                            stylers: [{ color: '#eef2f7' }] },
-  { elementType: 'labels.icon',                                         stylers: [{ visibility: 'off' }] },
-  { elementType: 'labels.text.fill',                                    stylers: [{ color: '#8899aa' }] },
-  { elementType: 'labels.text.stroke',                                  stylers: [{ color: '#f5f7fa' }] },
+const MAP_STYLES = [
+  { elementType: 'geometry',                                               stylers: [{ color: '#eef2f7' }] },
+  { elementType: 'labels.icon',                                            stylers: [{ visibility: 'off' }] },
+  { elementType: 'labels.text.fill',                                       stylers: [{ color: '#8899aa' }] },
+  { elementType: 'labels.text.stroke',                                     stylers: [{ color: '#f5f7fa' }] },
   { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#c4d0de', visibility: 'on' }] },
-  { featureType: 'administrative.country', elementType: 'labels.text.fill', stylers: [{ color: '#8899aa' }] },
-  { featureType: 'landscape',              elementType: 'geometry',     stylers: [{ color: '#eef2f7' }] },
-  { featureType: 'poi',                                                  stylers: [{ visibility: 'off' }] },
-  { featureType: 'road',                                                 stylers: [{ visibility: 'off' }] },
-  { featureType: 'transit',                                              stylers: [{ visibility: 'off' }] },
-  { featureType: 'water',                  elementType: 'geometry',     stylers: [{ color: '#b8cfe0' }] },
+  { featureType: 'administrative.country', elementType: 'labels.text.fill',stylers: [{ color: '#8899aa' }] },
+  { featureType: 'landscape',              elementType: 'geometry',        stylers: [{ color: '#eef2f7' }] },
+  { featureType: 'poi',                                                     stylers: [{ visibility: 'off' }] },
+  { featureType: 'road',                                                    stylers: [{ visibility: 'off' }] },
+  { featureType: 'transit',                                                 stylers: [{ visibility: 'off' }] },
+  { featureType: 'water',                  elementType: 'geometry',        stylers: [{ color: '#b8cfe0' }] },
 ]
+
+let _loader: Loader | null = null
+function getLoader() {
+  if (!_loader && GMAPS_KEY) {
+    _loader = new Loader({ apiKey: GMAPS_KEY, version: 'weekly' })
+  }
+  return _loader
+}
 
 type StopEntry = { coords: [number, number]; stop: { city: string; country: string; flag: string; done: boolean; active: boolean; date: string } }
 type CfgEntry  = { label: string; color: string; bg: string; light: string; dot: string }
 
-/* ─── Inner map content (rendered only after API loads) ─────── */
-function MapContent({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }) {
-  const mapRef = useRef<google.maps.Map | null>(null)
-  const [openIdx, setOpenIdx] = useState<number | null>(null)
+/* ─── Imperative map canvas ──────────────────────────────────── */
+function MapCanvas({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }) {
+  const divRef = useRef<HTMLDivElement>(null)
 
-  const onLoad = useCallback((map: google.maps.Map) => {
-    mapRef.current = map
-    const bounds = new window.google.maps.LatLngBounds()
-    positions.forEach(({ coords }) => bounds.extend({ lat: coords[0], lng: coords[1] }))
-    map.fitBounds(bounds, 60)
-  }, [positions])
+  useEffect(() => {
+    const loader = getLoader()
+    if (!loader || !divRef.current || positions.length < 2) return
 
-  const pathCoords = positions.map(({ coords }) => ({ lat: coords[0], lng: coords[1] }))
-  const dashSymbol: google.maps.Symbol = {
-    path: 'M 0,-1 0,1',
-    strokeOpacity: 1,
-    scale: 3,
-  }
+    let cancelled = false
 
-  return (
-    <GoogleMap
-      mapContainerStyle={{ height: '100%', width: '100%' }}
-      zoom={3}
-      onLoad={onLoad}
-      options={{
+    loader.load().then(() => {
+      if (cancelled || !divRef.current) return
+      const g = window.google.maps
+
+      const bounds = new g.LatLngBounds()
+      const pathCoords = positions.map(({ coords }) => {
+        const ll = { lat: coords[0], lng: coords[1] }
+        bounds.extend(ll)
+        return ll
+      })
+
+      const map = new g.Map(divRef.current, {
         styles: MAP_STYLES,
         disableDefaultUI: true,
-        gestureHandling: 'cooperative',
         zoomControl: true,
-      }}
-    >
-      {/* Dashed route line */}
-      <Polyline
-        path={pathCoords}
-        options={{
-          strokeColor: cfg.color,
-          strokeOpacity: 0,
-          icons: [{ icon: dashSymbol, offset: '0', repeat: '18px' }],
-        }}
-      />
+        gestureHandling: 'cooperative',
+      })
+      map.fitBounds(bounds, 60)
 
-      {/* Stop markers */}
-      {positions.map(({ coords, stop }, i) => (
-        <Marker
-          key={`${stop.city}-${i}`}
-          position={{ lat: coords[0], lng: coords[1] }}
-          zIndex={stop.active ? 20 : i + 1}
-          icon={{
-            path: window.google.maps.SymbolPath.CIRCLE,
+      // Dashed route line
+      new g.Polyline({
+        path: pathCoords,
+        map,
+        strokeColor: cfg.color,
+        strokeOpacity: 0,
+        icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 3 }, offset: '0', repeat: '18px' }],
+      })
+
+      // Markers + info windows
+      positions.forEach(({ coords, stop }) => {
+        const marker = new g.Marker({
+          position: { lat: coords[0], lng: coords[1] },
+          map,
+          zIndex: stop.active ? 20 : 1,
+          icon: {
+            path: g.SymbolPath.CIRCLE,
             fillColor: stop.done || stop.active ? cfg.color : '#94a3b8',
             fillOpacity: 1,
             strokeColor: 'white',
             strokeWeight: 2.5,
             scale: stop.active ? 11 : 7,
-          }}
-          onClick={() => setOpenIdx(openIdx === i ? null : i)}
-        >
-          {openIdx === i && (
-            <InfoWindow onCloseClick={() => setOpenIdx(null)}>
-              <div style={{ minWidth: 130, fontFamily: 'inherit' }}>
-                <p style={{ fontWeight: 700, fontSize: 13, margin: 0 }}>
-                  {stop.flag} {stop.city}
-                </p>
-                <p style={{ color: '#64748b', fontSize: 11, margin: '3px 0 0' }}>
-                  {stop.country} · {stop.date}
-                </p>
-                {stop.active && (
-                  <p style={{ color: cfg.color, fontWeight: 700, fontSize: 11, margin: '5px 0 0' }}>
-                    ● Current location
-                  </p>
-                )}
-                {stop.done && !stop.active && (
-                  <p style={{ color: '#16a34a', fontSize: 11, margin: '5px 0 0' }}>
-                    ✓ Checkpoint passed
-                  </p>
-                )}
-              </div>
-            </InfoWindow>
-          )}
-        </Marker>
-      ))}
-    </GoogleMap>
-  )
+          },
+        })
+
+        const info = new g.InfoWindow({
+          content: `<div style="font-family:system-ui,sans-serif;min-width:130px;padding:2px 0">
+            <p style="font-weight:700;font-size:13px;margin:0">${stop.flag} ${stop.city}</p>
+            <p style="color:#64748b;font-size:11px;margin:4px 0 0">${stop.country} · ${stop.date}</p>
+            ${stop.active ? `<p style="color:${cfg.color};font-weight:700;font-size:11px;margin:6px 0 0">● Current location</p>` : ''}
+            ${stop.done && !stop.active ? `<p style="color:#16a34a;font-size:11px;margin:6px 0 0">✓ Checkpoint passed</p>` : ''}
+          </div>`,
+        })
+
+        marker.addListener('click', () => info.open({ map, anchor: marker }))
+      })
+    }).catch(err => {
+      if (!cancelled) console.error('[Google Maps]', err)
+    })
+
+    return () => { cancelled = true }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return <div ref={divRef} style={{ height: '100%', width: '100%' }} />
 }
 
 /* ─── Mock shipment data ────────────────────────────────────── */
@@ -346,12 +345,10 @@ const SHIPMENTS: Record<string, {
 
 const SAMPLE_NUMBERS = Object.keys(SHIPMENTS)
 
-/* ─── Route Visualizer with Google Maps ─────────────────────── */
+/* ─── Route Visualizer ───────────────────────────────────────── */
 function RouteVisualizer({ ship }: { ship: typeof SHIPMENTS[string] }) {
   const [progress, setProgress] = useState(0)
   const cfg = STATUS_CFG[ship.status]
-
-  const { isLoaded, loadError } = useJsApiLoader({ googleMapsApiKey: GMAPS_KEY })
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -391,16 +388,10 @@ function RouteVisualizer({ ship }: { ship: typeof SHIPMENTS[string] }) {
         {!GMAPS_KEY ? (
           <div className="h-full bg-slate-50 flex flex-col items-center justify-center gap-2 text-slate-400 text-sm">
             <svg className="w-8 h-8 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-            <p>Add <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">VITE_GOOGLE_MAPS_KEY</code> to <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">.env</code> to enable map</p>
+            <p>Add <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">VITE_GOOGLE_MAPS_KEY</code> to <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">.env</code></p>
           </div>
-        ) : loadError ? (
-          <div className="h-full bg-slate-50 flex items-center justify-center text-rose-400 text-sm">
-            Failed to load Google Maps — check your API key
-          </div>
-        ) : !isLoaded ? (
-          <div className="h-full bg-slate-100 animate-pulse" />
         ) : positions.length >= 2 ? (
-          <MapContent positions={positions} cfg={cfg} />
+          <MapCanvas key={ship.trackingNum} positions={positions} cfg={cfg} />
         ) : (
           <div className="h-full bg-slate-50 flex items-center justify-center text-slate-400 text-sm">
             Route map unavailable for this shipment

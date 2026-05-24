@@ -13,7 +13,11 @@ import ContactPage from './pages/ContactPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminShipmentDetail from './pages/AdminShipmentDetail'
+import FreightPage from './pages/FreightPage'
+import MoversPage from './pages/MoversPage'
+import CustomsPage from './pages/CustomsPage'
 import NotFoundPage from './pages/NotFoundPage'
+import LiveChat from './components/LiveChat'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
 import CookiePolicyPage from './pages/CookiePolicyPage'
@@ -34,6 +38,7 @@ function PublicLayout() {
       <Navbar />
       <Outlet />
       <Footer />
+      <LiveChat />
     </>
   )
 }
@@ -62,6 +67,9 @@ export default function App() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/freight"  element={<FreightPage />} />
+          <Route path="/movers"   element={<MoversPage />} />
+          <Route path="/customs"  element={<CustomsPage />} />
           <Route path="/track" element={<TrackPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

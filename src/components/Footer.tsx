@@ -15,11 +15,11 @@ const LINKS: Record<string, { label: string; href: string }[]> = {
   ],
   Services: [
     { label: 'Express Delivery', href: '/services' },
-    { label: 'Air Freight', href: '/services' },
-    { label: 'Sea Freight', href: '/services' },
-    { label: 'Road Transport', href: '/services' },
+    { label: 'Air & Ocean Freight', href: '/freight' },
+    { label: 'Road Freight', href: '/freight' },
+    { label: 'Home & Office Movers', href: '/movers' },
+    { label: 'Customs Clearance', href: '/customs' },
     { label: 'Warehousing', href: '/services' },
-    { label: 'Customs Clearance', href: '/services' },
   ],
   Support: [
     { label: 'Help Center', href: '#' },

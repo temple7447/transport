@@ -3,7 +3,12 @@
     "allow": [
       "Bash(ls /Users/temple/Documents/Rachead/transport/ && ls /Users/temple/Documents/Rachead/ 2>/dev/null)",
       "Read(//Users/temple/Documents/Rachead/**)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(node -e \"const lib = require\\('/Users/temple/Documents/Rachead/transport/node_modules/@react-google-maps/api'\\); console.log\\(Object.keys\\(lib\\).filter\\(k => ['GoogleMap','Marker','Polyline','InfoWindow','useJsApiLoader'].includes\\(k\\)\\)\\)\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(pkill -f \"vite --port 5173\")",
+      "WebFetch(domain:wavefastexpress.com)",
+      "Bash(yarn tsc *)"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"
