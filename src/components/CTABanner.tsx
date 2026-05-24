@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function CTABanner() {
@@ -48,17 +49,17 @@ export default function CTABanner() {
           className={`flex flex-wrap items-center justify-center gap-4 mb-12 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
           style={inView ? { animationDelay: '0.3s' } : {}}
         >
-          <button className="bg-white font-black px-10 py-5 rounded-xl text-base flex items-center gap-2
+          <Link to="/contact" className="bg-white font-black px-10 py-5 rounded-xl text-base flex items-center gap-2
             transition-all duration-200 hover:-translate-y-1.5 hover:shadow-2xl hover:bg-yellow-50 active:scale-95"
-            style={{ color: '#CC1500' }}>
+            style={{ color: '#CC1500', textDecoration: 'none' }}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 10V7"/>
             </svg>
             Start Shipping Free
-          </button>
-          <button className="btn-outline-white py-5! px-10! border-white/50!">
+          </Link>
+          <Link to="/contact" className="btn-outline-white py-5! px-10! border-white/50!" style={{ textDecoration: 'none' }}>
             Talk to Sales
-          </button>
+          </Link>
         </div>
 
         {/* Trust signals */}

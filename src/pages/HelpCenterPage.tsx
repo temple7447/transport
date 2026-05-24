@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const CATEGORIES = [
   {
@@ -51,6 +51,13 @@ const FAQS = [
 
 export default function HelpCenterPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [search, setSearch] = useState('')
+  const faqRef = useRef<HTMLDivElement>(null)
+
+  const filteredFAQs = FAQS.filter(
+    f => f.q.toLowerCase().includes(search.toLowerCase()) || f.a.toLowerCase().includes(search.toLowerCase())
+  )
+  const searchCount = search ? filteredFAQs.length : FAQS.length
 
   return (
     <main style={{ paddingTop: 98 }}>
@@ -58,7 +65,7 @@ export default function HelpCenterPage() {
       {/* Hero + search */}
       <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '64px 0 56px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(74,222,128,0.12)', border: '1px solid rgba(74,222,128,0.3)', color: '#4ade80' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
             Help Center
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
@@ -70,15 +77,24 @@ export default function HelpCenterPage() {
           <div className="max-w-xl mx-auto flex gap-3">
             <input
               type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
               placeholder="Search for answers… e.g. track shipment, customs, refund"
               className="flex-1 rounded-xl px-5 py-3.5 text-sm outline-none"
               style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white' }}
             />
-            <button className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-bold shrink-0" style={{ background: '#F5C100', color: '#071426' }}>
+            <button
+              onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-bold shrink-0"
+              style={{ background: '#F5C100', color: '#071426' }}
+            >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
               Search
             </button>
           </div>
+          {search && (
+            <p className="text-white/50 text-sm mt-4">{searchCount} result{searchCount !== 1 ? 's' : ''} found</p>
+          )}
         </div>
       </section>
 
@@ -102,11 +118,13 @@ export default function HelpCenterPage() {
       </section>
 
       {/* FAQ accordion */}
-      <section className="py-16" style={{ background: 'white' }}>
+      <section ref={faqRef} className="py-16" style={{ background: 'white' }}>
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="font-black text-slate-900 mb-8" style={{ fontSize: 'clamp(24px,3vw,36px)', letterSpacing: '-0.5px' }}>Frequently Asked Questions</h2>
           <div className="space-y-3">
-            {FAQS.map((faq, i) => (
+            {filteredFAQs.length === 0 ? (
+              <p className="text-slate-500 text-sm text-center py-8">No results found. Try a different search term or <Link to="/contact" className="text-[#CC1500] font-semibold">contact support</Link>.</p>
+            ) : filteredFAQs.map((faq, i) => (
               <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}

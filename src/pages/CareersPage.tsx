@@ -25,9 +25,9 @@ export default function CareersPage() {
     <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '80px 0 64px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#071426 0%,#0f2444 60%,#163166 100%)', padding: '80px 0 64px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.4)', color: '#ff7a6a' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.4)', color: '#CC1500' }}>
             We're Hiring
           </span>
           <h1 className="font-black text-white mb-4" style={{ fontSize: 'clamp(36px,5vw,64px)', lineHeight: 1.05, letterSpacing: '-1.5px' }}>
@@ -45,7 +45,7 @@ export default function CareersPage() {
       </section>
 
       {/* Stats */}
-      <section style={{ background: '#0a1628', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: '#071426', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {[{ val: '200+', label: 'Team Members' }, { val: '18', label: 'Countries' }, { val: '4.8★', label: 'Glassdoor Rating' }, { val: '94%', label: 'Retention Rate' }].map((s, i) => (
             <div key={i} className="py-8 text-center" style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>

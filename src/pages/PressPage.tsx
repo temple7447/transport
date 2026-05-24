@@ -40,7 +40,7 @@ export default function PressPage() {
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '64px 0 48px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(96,165,250,0.12)', border: '1px solid rgba(96,165,250,0.3)', color: '#60a5fa' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
             Newsroom
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
@@ -60,14 +60,14 @@ export default function PressPage() {
             <p className="text-slate-500 text-sm">Contact our communications team for interviews, quotes, and assets.</p>
             <a href="mailto:press@quicksenddelivery.com" className="text-sm font-semibold mt-1 inline-block" style={{ color: '#CC1500', textDecoration: 'none' }}>press@quicksenddelivery.com</a>
           </div>
-          <a
-            href="#"
-            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all shrink-0"
-            style={{ background: '#071426', color: 'white', textDecoration: 'none' }}
+          <button
+            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all shrink-0 opacity-60 cursor-not-allowed"
+            style={{ background: '#071426', color: 'white' }}
+            disabled
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Download Media Kit
-          </a>
+          </button>
         </div>
       </section>
 
@@ -81,7 +81,7 @@ export default function PressPage() {
                 <p className="text-xs font-semibold text-slate-400 mb-2">{r.date}</p>
                 <h3 className="font-bold text-slate-800 mb-2 leading-snug group-hover:text-[#CC1500] transition-colors">{r.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{r.excerpt}</p>
-                <span className="flex items-center gap-1 text-sm font-semibold mt-3" style={{ color: '#CC1500' }}>
+                <span className="flex items-center gap-1 text-sm font-semibold mt-3 opacity-50 cursor-default" style={{ color: '#CC1500' }}>
                   Read Full Release
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                 </span>
@@ -113,12 +113,12 @@ export default function PressPage() {
           <p className="text-slate-500 mb-8 max-w-lg">Use our official logo, colours, and brand guidelines when writing about Quick Send Delivery.</p>
           <div className="grid sm:grid-cols-3 gap-4 max-w-2xl">
             {['Logo Pack (SVG/PNG)', 'Brand Guidelines PDF', 'Product Screenshots'].map(item => (
-              <a key={item} href="#" className="flex items-center gap-3 p-4 border border-slate-100 rounded-xl hover:border-slate-300 transition-colors group" style={{ textDecoration: 'none' }}>
+              <div key={item} className="flex items-center gap-3 p-4 border border-slate-100 rounded-xl opacity-60 cursor-default">
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(204,21,0,0.07)' }}>
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#CC1500" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 </div>
-                <span className="text-sm font-semibold text-slate-700 group-hover:text-[#CC1500] transition-colors">{item}</span>
-              </a>
+                <span className="text-sm font-semibold text-slate-500">{item}</span>
+              </div>
             ))}
           </div>
         </div>

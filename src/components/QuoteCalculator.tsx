@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
 import Reveal from './Reveal'
 
@@ -181,9 +182,9 @@ export default function QuoteCalculator() {
                     ))}
                   </div>
 
-                  <button className="btn-primary w-full justify-center mt-5">
+                  <Link to="/contact" className="btn-primary w-full justify-center mt-5" style={{ textDecoration: 'none' }}>
                     Book This Shipment
-                  </button>
+                  </Link>
                 </div>
               )}
               </div>

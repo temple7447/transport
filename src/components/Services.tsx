@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IcoBolt, IcoPlane, IcoShip, IcoTruck, IcoWarehouse, IcoShieldCheck } from '../lib/icons'
 import Reveal from './Reveal'
 
@@ -17,13 +18,14 @@ const SERVICES = [
       'Up to 70 kg per parcel',
     ],
     price: '$12',
-    bg: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
+    to: '/services',
+    bg: 'linear-gradient(135deg, #F5C100 0%, #CC1500 100%)',
   },
   {
     icon: <IcoPlane className="w-7 h-7 text-white" />,
     title: 'Air Freight',
     badge: 'Fast International',
-    badgeColor: 'bg-blue-100 text-blue-700',
+    badgeColor: 'bg-yellow-100 text-yellow-800',
     headline: 'Global Air Cargo in 2–4 Days',
     desc: 'Access 500+ airports worldwide with our dedicated air freight network. Ideal for high-value, time-sensitive cargo. We handle all documentation and customs clearance.',
     features: [
@@ -34,13 +36,14 @@ const SERVICES = [
       'Temperature-controlled options',
     ],
     price: '$45',
-    bg: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)',
+    to: '/freight#air',
+    bg: 'linear-gradient(135deg, #CC1500 0%, #F5C100 100%)',
   },
   {
     icon: <IcoShip className="w-7 h-7 text-white" />,
     title: 'Sea Freight',
     badge: 'Best Value',
-    badgeColor: 'bg-cyan-100 text-cyan-700',
+    badgeColor: 'bg-yellow-100 text-yellow-800',
     headline: 'Cost-Effective Ocean Freight',
     desc: 'Move large volumes across the globe affordably. FCL and LCL options with door-to-port or door-to-door delivery to 300+ ports worldwide.',
     features: [
@@ -51,13 +54,14 @@ const SERVICES = [
       'On-board bill of lading',
     ],
     price: '$180',
-    bg: 'linear-gradient(135deg, #0e7490 0%, #3b82f6 100%)',
+    to: '/freight#ocean',
+    bg: 'linear-gradient(135deg, #071426 0%, #0f2444 100%)',
   },
   {
     icon: <IcoTruck className="w-7 h-7 text-white" />,
     title: 'Road Transport',
     badge: 'Door-to-Door',
-    badgeColor: 'bg-green-100 text-green-700',
+    badgeColor: 'bg-yellow-100 text-yellow-800',
     headline: 'Reliable Ground Logistics',
     desc: 'Our fleet of 2,000+ vehicles covers major road corridors across continents. Perfect for domestic and cross-border deliveries with real-time fleet visibility.',
     features: [
@@ -68,13 +72,14 @@ const SERVICES = [
       'Flexible pickup windows',
     ],
     price: '$8',
-    bg: 'linear-gradient(135deg, #16a34a 0%, #10b981 100%)',
+    to: '/freight#road',
+    bg: 'linear-gradient(135deg, #CC1500 0%, #071426 100%)',
   },
   {
     icon: <IcoWarehouse className="w-7 h-7 text-white" />,
     title: 'Warehousing',
     badge: 'Fulfillment Ready',
-    badgeColor: 'bg-purple-100 text-purple-700',
+    badgeColor: 'bg-red-100 text-red-700',
     headline: 'Smart Storage & Fulfillment',
     desc: 'Climate-controlled warehouses in 50+ strategic locations. Inventory management, pick-and-pack, and same-day order fulfillment for e-commerce businesses.',
     features: [
@@ -85,13 +90,14 @@ const SERVICES = [
       'Returns processing',
     ],
     price: '$0.40/day',
-    bg: 'linear-gradient(135deg, #7c3aed 0%, #6366f1 100%)',
+    to: '/services#warehouse',
+    bg: 'linear-gradient(135deg, #0f2444 0%, #163166 100%)',
   },
   {
     icon: <IcoShieldCheck className="w-7 h-7 text-white" />,
     title: 'Customs Clearance',
     badge: 'AEO Certified',
-    badgeColor: 'bg-rose-100 text-rose-700',
+    badgeColor: 'bg-red-100 text-red-700',
     headline: 'Hassle-Free Customs Brokerage',
     desc: 'Our certified customs experts handle all documentation, duties, and compliance requirements so your shipments clear borders without delays — in any country.',
     features: [
@@ -102,7 +108,8 @@ const SERVICES = [
       'Same-day clearance for express cargo',
     ],
     price: 'From $35',
-    bg: 'linear-gradient(135deg, #e11d48 0%, #f97316 100%)',
+    to: '/customs',
+    bg: 'linear-gradient(135deg, #F5C100 0%, #CC1500 100%)',
   },
 ]
 
@@ -159,10 +166,10 @@ export default function Services() {
                   </ul>
 
                   <div className="flex gap-3">
-                    <button className="btn-primary py-3! px-6! text-sm!">Get Quote</button>
-                    <button className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all">
+                    <Link to="/contact" className="btn-primary py-3! px-6! text-sm!" style={{ textDecoration: 'none' }}>Get Quote</Link>
+                    <Link to={svc.to} className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all" style={{ textDecoration: 'none' }}>
                       Learn More
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

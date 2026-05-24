@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const STEPS = [
@@ -10,8 +11,8 @@ const STEPS = [
     ),
     title: 'Create Shipment',
     desc: 'Enter package details, pickup and delivery addresses. Get an instant quote in seconds.',
-    color: 'bg-blue-600',
-    glow: 'rgba(37,99,235,0.35)',
+    color: 'bg-yellow-400',
+    glow: 'rgba(245,193,0,0.4)',
   },
   {
     num: '02',
@@ -35,8 +36,8 @@ const STEPS = [
     ),
     title: 'Live Tracking',
     desc: 'Track your package in real-time via app, SMS, or email. Know exactly where it is, always.',
-    color: 'bg-purple-600',
-    glow: 'rgba(124,58,237,0.35)',
+    color: 'bg-red-600',
+    glow: 'rgba(204,21,0,0.35)',
   },
   {
     num: '04',
@@ -47,8 +48,8 @@ const STEPS = [
     ),
     title: 'Delivered!',
     desc: 'Package safely delivered with proof of delivery photo, digital signature, and instant notification.',
-    color: 'bg-green-600',
-    glow: 'rgba(22,163,74,0.35)',
+    color: 'bg-yellow-400',
+    glow: 'rgba(245,193,0,0.4)',
   },
 ]
 
@@ -125,12 +126,12 @@ export default function HowItWorks() {
 
         <div className={`mt-14 text-center ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
              style={inView ? { animationDelay: '0.75s' } : {}}>
-          <button className="btn-primary py-4! px-10!">
+          <Link to="/contact" className="btn-primary py-4! px-10!" style={{ textDecoration: 'none' }}>
             Start Shipping Now
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -6,7 +6,6 @@ import HowItWorks from '../components/HowItWorks'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Statistics from '../components/Statistics'
 import Testimonials from '../components/Testimonials'
-import IndustriesSection from '../components/IndustriesSection'
 import BusinessSection from '../components/BusinessSection'
 import BlogSection from '../components/BlogSection'
 import FAQ from '../components/FAQ'
@@ -23,7 +22,6 @@ export default function HomePage() {
       <WhyChooseUs />
       <Statistics />
       <Testimonials />
-      <IndustriesSection />
       <BusinessSection />
       <BlogSection />
       <FAQ />

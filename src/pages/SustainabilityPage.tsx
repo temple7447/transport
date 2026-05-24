@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const PILLARS = [
   {
     icon: <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M12 3v1m0 16v1M4.22 4.22l.707.707m12.728 12.728l.707.707M3 12h1m16 0h1M4.22 19.778l.707-.707m12.728-12.728l.707-.707M9 12a3 3 0 116 0 3 3 0 01-6 0z"/></svg>,
@@ -133,9 +135,9 @@ export default function SustainabilityPage() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Ship Green With Us</h2>
           <p className="mb-6 max-w-md mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>Every shipment you make through Quick Send contributes to our carbon offset programme at no extra cost.</p>
-          <a href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#34d399', color: '#052010', textDecoration: 'none' }}>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#34d399', color: '#052010', textDecoration: 'none' }}>
             Get Started
-          </a>
+          </Link>
         </div>
       </section>
     </main>

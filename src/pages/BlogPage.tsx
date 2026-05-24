@@ -55,8 +55,8 @@ const POSTS = [
 const CATEGORIES = ['All', 'Industry News', 'Tips & Guides', 'Company News']
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Industry News': '#3b82f6',
-  'Tips & Guides': '#10b981',
+  'Industry News': '#CC1500',
+  'Tips & Guides': '#F5C100',
   'Company News':  '#CC1500',
 }
 
@@ -99,10 +99,10 @@ export default function BlogPage() {
               <p className="text-slate-500 leading-relaxed mb-6 text-sm">{featured.excerpt}</p>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-slate-400">{featured.author} · {featured.date} · {featured.readTime}</div>
-                <Link to="/blog" className="flex items-center gap-1 text-sm font-bold transition-colors" style={{ color: '#CC1500', textDecoration: 'none' }}>
+                <span className="flex items-center gap-1 text-sm font-bold opacity-50 cursor-default" style={{ color: '#CC1500' }}>
                   Read More
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
-                </Link>
+                </span>
               </div>
             </div>
           </div>

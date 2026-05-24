@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function PrivacyPolicyPage() {
   return (
     <main className="bg-white min-h-screen">
@@ -50,7 +52,7 @@ export default function PrivacyPolicyPage() {
             </Block>
 
             <Block title="6. Cookies">
-              We use essential cookies (required for the platform to function), performance cookies (anonymised analytics), and, with your consent, marketing cookies. See our <a href="/legal/cookies" className="text-red-600 hover:underline">Cookie Policy</a> for full details.
+              We use essential cookies (required for the platform to function), performance cookies (anonymised analytics), and, with your consent, marketing cookies. See our <Link to="/legal/cookies" className="text-red-600 hover:underline">Cookie Policy</Link> for full details.
             </Block>
 
             <Block title="7. Data Retention">

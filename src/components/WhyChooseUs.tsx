@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const FEATURES = [
@@ -20,7 +21,7 @@ const FEATURES = [
     ),
     title: 'Real-Time GPS Tracking',
     desc: 'Monitor your shipment on a live map down to the last mile. Updates every 30 seconds.',
-    color: 'bg-blue-600',
+    color: 'bg-red-600',
   },
   {
     icon: (
@@ -30,7 +31,7 @@ const FEATURES = [
     ),
     title: 'Full Insurance Coverage',
     desc: 'Every shipment is insured up to $10,000. File a claim online and get paid within 48 hours.',
-    color: 'bg-green-600',
+    color: 'bg-yellow-400',
   },
   {
     icon: (
@@ -40,7 +41,7 @@ const FEATURES = [
     ),
     title: '24/7 Live Support',
     desc: 'Dedicated support agents available around the clock via live chat, phone, or WhatsApp.',
-    color: 'bg-purple-600',
+    color: 'bg-red-600',
   },
   {
     icon: (
@@ -50,7 +51,7 @@ const FEATURES = [
     ),
     title: '120+ Countries',
     desc: 'Seamless international shipping with local expertise, customs clearance, and last-mile coverage.',
-    color: 'bg-cyan-600',
+    color: 'bg-yellow-400',
   },
   {
     icon: (
@@ -60,7 +61,7 @@ const FEATURES = [
     ),
     title: 'Transparent Pricing',
     desc: 'No hidden fees, no surprises. See the full cost breakdown before you confirm any shipment.',
-    color: 'bg-rose-500',
+    color: 'bg-red-600',
   },
 ]
 
@@ -83,32 +84,15 @@ export default function WhyChooseUs() {
               Built with cutting-edge technology and backed by a global network of partners.
             </p>
 
-            <div className="space-y-4">
-              {['No contracts or commitments', 'Ships from 1kg to 20,000kg', 'API integration for e-commerce', 'Dedicated account manager for businesses'].map((item, i) => (
-                <div
-                  key={item}
-                  className={`flex items-center gap-3 ${inView ? 'animate-reveal-left' : 'opacity-0'}`}
-                  style={inView ? { animationDelay: `${0.18 + i * 0.08}s` } : {}}
-                >
-                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                    <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-slate-700 font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-
             <div
-              className={`flex gap-4 mt-10 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
+              className={`flex gap-4 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
               style={inView ? { animationDelay: '0.55s' } : {}}
             >
-              <button className="btn-primary">Get Started Free</button>
-              <button className="flex items-center gap-2 text-slate-700 font-semibold hover:text-blue-700 transition-colors">
+              <Link to="/contact" className="btn-primary" style={{ textDecoration: 'none' }}>Get Started Free</Link>
+              <Link to="/about" className="flex items-center gap-2 text-slate-700 font-semibold hover:text-blue-700 transition-colors" style={{ textDecoration: 'none' }}>
                 <span className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center transition-transform duration-300 hover:scale-110">▶</span>
                 Watch Demo
-              </button>
+              </Link>
             </div>
           </div>
 

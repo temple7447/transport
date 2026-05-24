@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const FEATURES = [
@@ -57,15 +58,15 @@ export default function BusinessSection() {
               className={`flex flex-wrap gap-4 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
               style={inView ? { animationDelay: '0.75s' } : {}}
             >
-              <button className="btn-primary py-4! px-8! shadow-2xl" style={{ boxShadow: '0 25px 50px rgba(245,193,0,0.2)' }}>
+              <Link to="/contact" className="btn-primary py-4! px-8! shadow-2xl" style={{ boxShadow: '0 25px 50px rgba(245,193,0,0.2)', textDecoration: 'none' }}>
                 Talk to Sales
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
-              </button>
-              <button className="btn-outline-white py-4! px-8!">
+              </Link>
+              <Link to="/contact" className="btn-outline-white py-4! px-8!" style={{ textDecoration: 'none' }}>
                 View API Docs
-              </button>
+              </Link>
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import type { JSX } from 'react'
+import { Link } from 'react-router-dom'
 import { Loader } from '@googlemaps/js-api-loader'
 import { api } from '../lib/api'
 import type { PublicShipment } from '../lib/api'
@@ -857,9 +858,9 @@ export default function TrackPage() {
             <p className="text-slate-400 text-sm mb-8">Double-check for typos, or try one of the demo numbers above. Your tracking number can be found in your shipping confirmation email.</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <button onClick={() => { setTrackStatus('idle'); setInput('') }} className="btn-primary">Try Again</button>
-              <a href="/contact" className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-white transition-colors">
+              <Link to="/contact" className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-white transition-colors" style={{ textDecoration: 'none' }}>
                 Contact Support
-              </a>
+              </Link>
             </div>
           </div>
         )}

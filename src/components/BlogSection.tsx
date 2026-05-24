@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const POSTS = [
@@ -51,15 +52,16 @@ export default function BlogSection() {
               Shipping Insights & News
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            to="/blog"
             className="hidden sm:flex items-center gap-2 text-blue-700 font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-200 shrink-0"
+            style={{ textDecoration: 'none' }}
           >
             View All Articles
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </Link>
         </div>
 
         {/* Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
@@ -130,12 +132,12 @@ export default function BlogSection() {
         {/* Mobile CTA */}
         <div className={`mt-8 text-center sm:hidden ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
              style={inView ? { animationDelay: '0.4s' } : {}}>
-          <a href="#" className="btn-primary bg-slate-800! hover:bg-slate-700! shadow-none! inline-flex">
+          <Link to="/blog" className="btn-primary bg-slate-800! hover:bg-slate-700! shadow-none! inline-flex" style={{ textDecoration: 'none' }}>
             View All Articles
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

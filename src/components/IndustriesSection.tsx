@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const INDUSTRIES = [
   { icon: '🏭', name: 'Manufacturing', desc: 'Raw materials, machinery parts, and finished goods — on schedule for your production line.' },
   { icon: '🛍️', name: 'Retail & E-commerce', desc: 'Fast last-mile delivery and returns management for online and brick-and-mortar retailers.' },
@@ -46,9 +48,9 @@ export default function IndustriesSection() {
         {/* Bottom note */}
         <p className="text-center text-slate-400 text-sm mt-10">
           Don't see your industry?{' '}
-          <a href="/contact" className="text-slate-600 font-semibold hover:text-[#CC1500] transition-colors">
+          <Link to="/contact" className="text-slate-600 font-semibold hover:text-[#CC1500] transition-colors">
             Talk to our team →
-          </a>
+          </Link>
         </p>
       </div>
     </section>
