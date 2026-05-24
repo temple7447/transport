@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { api, clearToken, type AdminShipment, type ShipStatus, type ShipEvent, type Subscriber } from '../lib/api'
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
@@ -7,12 +7,15 @@ type AdminTab = 'overview' | 'shipments' | 'create' | 'track' | 'subscribers'
 
 /* ─── Status config ──────────────────────────────────────────────────────── */
 const STATUS_CFG: Record<ShipStatus, { label: string; color: string; bg: string }> = {
-  processing:       { label: 'Processing',       color: '#7c3aed', bg: '#f5f3ff' },
-  in_transit:       { label: 'In Transit',        color: '#2563eb', bg: '#eff6ff' },
-  out_for_delivery: { label: 'Out for Delivery',  color: '#CC1500', bg: '#fff5f5' },
-  delivered:        { label: 'Delivered',          color: '#16a34a', bg: '#f0fdf4' },
-  customs_hold:     { label: 'Customs Hold',       color: '#b45309', bg: '#fffbeb' },
-  delayed:          { label: 'Delayed',            color: '#dc2626', bg: '#fef2f2' },
+  pending:          { label: 'Pending',           color: '#64748b', bg: '#f1f5f9' },
+  confirmed:        { label: 'Confirmed',          color: '#7c3aed', bg: '#f5f3ff' },
+  picked_up:        { label: 'Picked Up',          color: '#0891b2', bg: '#ecfeff' },
+  in_transit:       { label: 'In Transit',         color: '#2563eb', bg: '#eff6ff' },
+  out_for_delivery: { label: 'Out for Delivery',   color: '#CC1500', bg: '#fff5f5' },
+  delivered:        { label: 'Delivered',           color: '#16a34a', bg: '#f0fdf4' },
+  failed:           { label: 'Failed',              color: '#dc2626', bg: '#fef2f2' },
+  cancelled:        { label: 'Cancelled',           color: '#94a3b8', bg: '#f8fafc' },
+  returned:         { label: 'Returned',            color: '#b45309', bg: '#fffbeb' },
 }
 
 
@@ -45,10 +48,10 @@ function StatusBadge({ status }: { status: ShipStatus }) {
 /* ─── Overview Tab ───────────────────────────────────────────────────────── */
 function OverviewTab({ shipments, onNavigate }: { shipments: AdminShipment[]; onNavigate: (t: AdminTab) => void }) {
   const total      = shipments.length
-  const inTransit  = shipments.filter(s => s.status === 'in_transit').length
+  const inTransit  = shipments.filter(s => ['picked_up','in_transit','out_for_delivery'].includes(s.status)).length
   const delivered  = shipments.filter(s => s.status === 'delivered').length
-  const issues     = shipments.filter(s => s.status === 'customs_hold' || s.status === 'delayed').length
-  const processing = shipments.filter(s => s.status === 'processing').length
+  const issues     = shipments.filter(s => ['failed','returned','cancelled'].includes(s.status)).length
+  const processing = shipments.filter(s => ['pending','confirmed'].includes(s.status)).length
 
   const recent = [...shipments].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 6)
 
@@ -141,16 +144,18 @@ function OverviewTab({ shipments, onNavigate }: { shipments: AdminShipment[]; on
             <tbody>
               {recent.map((s, i) => (
                 <tr key={s.id} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
-                  <td className="px-5 py-3 font-mono text-xs font-bold text-slate-700 whitespace-nowrap">{s.id}</td>
+                  <td className="px-5 py-3 font-mono text-xs font-bold text-slate-700 whitespace-nowrap">{s.trackingNumber || s.id.slice(-8)}</td>
                   <td className="px-5 py-3 text-xs">
                     <span className="font-medium text-slate-800">{s.sender.name}</span>
                     <span className="text-slate-400 mx-1">→</span>
                     <span className="font-medium text-slate-800">{s.recipient.name}</span>
                     <span className="text-slate-400 ml-1">({s.recipient.city})</span>
                   </td>
-                  <td className="px-5 py-3 text-xs text-slate-500 whitespace-nowrap">{s.service}</td>
+                  <td className="px-5 py-3 text-xs text-slate-500 capitalize whitespace-nowrap">{s.service}</td>
                   <td className="px-5 py-3"><StatusBadge status={s.status} /></td>
-                  <td className="px-5 py-3 text-xs text-slate-400 whitespace-nowrap">{s.eta}</td>
+                  <td className="px-5 py-3 text-xs text-slate-400 whitespace-nowrap">
+                    {s.eta ? new Date(s.eta).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -161,16 +166,44 @@ function OverviewTab({ shipments, onNavigate }: { shipments: AdminShipment[]; on
   )
 }
 
+/* ─── Shared form constants ──────────────────────────────────────────────── */
+const SERVICES = [
+  { label: 'Standard',  value: 'standard'  },
+  { label: 'Express',   value: 'express'   },
+  { label: 'Overnight', value: 'overnight' },
+  { label: 'Same Day',  value: 'same_day'  },
+]
+
+const EMPTY_FORM = {
+  senderName: '', senderPhone: '', senderEmail: '', senderStreet: '', senderCity: '', senderState: '', senderCountry: '', senderPostal: '',
+  recipientName: '', recipientPhone: '', recipientEmail: '', recipientStreet: '', recipientCity: '', recipientState: '', recipientCountry: '', recipientPostal: '',
+  service: 'standard', weight: '', dimLength: '', dimWidth: '', dimHeight: '',
+  contents: '', declaredValue: '', eta: '', notes: '',
+}
+
 /* ─── Shipments Tab ──────────────────────────────────────────────────────── */
+type EditForm = typeof EMPTY_FORM & { status: ShipStatus }
+
 function ShipmentsTab({
-  shipments, onUpdate, onDelete,
-}: { shipments: AdminShipment[]; onUpdate: (id: string, status: ShipStatus, note?: string) => Promise<void>; onDelete: (id: string) => Promise<void> }) {
+  shipments, onUpdate, onDelete, onEdit,
+}: {
+  shipments: AdminShipment[]
+  onUpdate: (id: string, status: ShipStatus, note?: string) => Promise<void>
+  onDelete: (id: string) => Promise<void>
+  onEdit: (id: string, body: unknown) => Promise<void>
+}) {
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState('all')
   const [selected, setSelected] = useState<AdminShipment | null>(null)
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [newStatus, setNewStatus] = useState<ShipStatus>('in_transit')
   const [eventNote, setEventNote] = useState('')
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editId, setEditId] = useState<string | null>(null)
+  const [editForm, setEditForm] = useState<EditForm>({ ...EMPTY_FORM, status: 'pending' })
+  const [editSubmitting, setEditSubmitting] = useState(false)
+  const [editError, setEditError] = useState('')
 
   const filtered = shipments.filter(s => {
     const q = search.toLowerCase()
@@ -186,6 +219,55 @@ function ShipmentsTab({
     setSelected(s)
     setNewStatus(s.status)
     setShowUpdateModal(true)
+  }
+
+  const openEdit = (s: AdminShipment) => {
+    setEditId(s.id)
+    setEditForm({
+      senderName: s.sender.name, senderPhone: s.sender.phone || '', senderEmail: s.sender.email || '',
+      senderStreet: s.sender.street || '', senderCity: s.sender.city || '', senderState: s.sender.state || '',
+      senderCountry: s.sender.country || '', senderPostal: s.sender.postalCode || '',
+      recipientName: s.recipient.name, recipientPhone: s.recipient.phone || '', recipientEmail: s.recipient.email || '',
+      recipientStreet: s.recipient.street || '', recipientCity: s.recipient.city || '', recipientState: s.recipient.state || '',
+      recipientCountry: s.recipient.country || '', recipientPostal: s.recipient.postalCode || '',
+      service: s.service, weight: String(s.weight),
+      dimLength: s.dimensions?.length != null ? String(s.dimensions.length) : '',
+      dimWidth:  s.dimensions?.width  != null ? String(s.dimensions.width)  : '',
+      dimHeight: s.dimensions?.height != null ? String(s.dimensions.height) : '',
+      contents: s.contents, declaredValue: String(s.declaredValue || ''),
+      eta: s.eta ? new Date(s.eta).toISOString().split('T')[0] : '',
+      notes: s.notes || '', status: s.status,
+    })
+    setEditError('')
+    setShowEditModal(true)
+  }
+
+  const setEF = (k: string, v: string) => setEditForm(f => ({ ...f, [k]: v }))
+
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editId) return
+    setEditSubmitting(true)
+    setEditError('')
+    try {
+      await onEdit(editId, {
+        sender:    { name: editForm.senderName,    phone: editForm.senderPhone,    email: editForm.senderEmail,    street: editForm.senderStreet,    city: editForm.senderCity,    state: editForm.senderState,    country: editForm.senderCountry,    postalCode: editForm.senderPostal },
+        recipient: { name: editForm.recipientName, phone: editForm.recipientPhone, email: editForm.recipientEmail, street: editForm.recipientStreet, city: editForm.recipientCity, state: editForm.recipientState, country: editForm.recipientCountry, postalCode: editForm.recipientPostal },
+        service: editForm.service,
+        weight: parseFloat(editForm.weight) || 0,
+        dimensions: { length: parseFloat(editForm.dimLength) || undefined, width: parseFloat(editForm.dimWidth) || undefined, height: parseFloat(editForm.dimHeight) || undefined },
+        contents: editForm.contents,
+        declaredValue: parseFloat(editForm.declaredValue) || 0,
+        status: editForm.status,
+        eta: editForm.eta ? new Date(editForm.eta).toISOString() : '',
+        notes: editForm.notes,
+      })
+      setShowEditModal(false)
+    } catch (err) {
+      setEditError((err as Error).message || 'Update failed. Please try again.')
+    } finally {
+      setEditSubmitting(false)
+    }
   }
 
   const handleUpdateStatus = async () => {
@@ -231,37 +313,68 @@ function ShipmentsTab({
       {/* Table */}
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-100">
-                {['Tracking ID', 'Sender', 'Recipient', 'Service', 'Weight', 'Status', 'ETA', 'Actions'].map(h => (
+                {['From → To', 'Service · Weight', 'Status', 'ETA', 'Actions'].map(h => (
                   <th key={h} className="text-left px-4 py-3 text-slate-500 font-semibold text-xs uppercase whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
-                <tr><td colSpan={8} className="text-center py-14 text-slate-400 text-sm">No shipments found</td></tr>
+                <tr><td colSpan={5} className="text-center py-14 text-slate-400 text-sm">No shipments found</td></tr>
               ) : filtered.map((s, i) => (
                 <tr key={s.id} className={`transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'} hover:bg-yellow-50/20`}>
-                  <td className="px-4 py-3 font-mono text-xs font-bold text-slate-700 whitespace-nowrap">{s.id}</td>
-                  <td className="px-4 py-3 whitespace-nowrap">
-                    <p className="text-slate-800 font-medium text-xs">{s.sender.name}</p>
-                    <p className="text-slate-400 text-xs">{s.sender.city}, {s.sender.country}</p>
+                  {/* From → To */}
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <div>
+                        <p className="text-slate-800 font-semibold text-xs">{s.sender.name}</p>
+                        <p className="text-slate-400 text-xs">{s.sender.city}, {s.sender.country}</p>
+                      </div>
+                      <svg className="w-3.5 h-3.5 text-slate-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                      <div>
+                        <p className="text-slate-800 font-semibold text-xs">{s.recipient.name}</p>
+                        <p className="text-slate-400 text-xs">{s.recipient.city}, {s.recipient.country}</p>
+                      </div>
+                    </div>
+                    <p className="text-[10px] font-mono text-slate-300 mt-1">{s.trackingNumber || s.id.slice(-8)}</p>
                   </td>
+                  {/* Service · Weight */}
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <p className="text-slate-800 font-medium text-xs">{s.recipient.name}</p>
-                    <p className="text-slate-400 text-xs">{s.recipient.city}, {s.recipient.country}</p>
+                    <p className="text-xs text-slate-700 capitalize font-medium">{s.service}</p>
+                    <p className="text-xs text-slate-400">{s.weight} kg</p>
                   </td>
-                  <td className="px-4 py-3 text-xs text-slate-500 max-w-[140px]">{s.service}</td>
-                  <td className="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">{s.weight}</td>
+                  {/* Status */}
                   <td className="px-4 py-3 whitespace-nowrap"><StatusBadge status={s.status} /></td>
-                  <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap">{s.eta}</td>
+                  {/* ETA */}
+                  <td className="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">
+                    {s.eta ? new Date(s.eta).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                  </td>
+                  {/* Actions — icon buttons */}
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <div className="flex gap-1.5">
-                      <button onClick={() => setSelected(s)} className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors">View</button>
-                      <button onClick={() => openUpdate(s)} className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-yellow-50 text-yellow-700 hover:bg-yellow-100 transition-colors">Update</button>
-                      <button onClick={() => { if (window.confirm(`Delete shipment ${s.id}?`)) onDelete(s.id) }} className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-red-50 text-red-600 hover:bg-red-100 transition-colors">Delete</button>
+                    <div className="flex gap-1">
+                      {/* View */}
+                      <button onClick={() => navigate(`/admin/shipments/${s.id}`)} title="View details"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                      </button>
+                      {/* Edit */}
+                      <button onClick={() => openEdit(s)} title="Edit shipment"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center bg-green-50 text-green-600 hover:bg-green-100 transition-colors">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125"/></svg>
+                      </button>
+                      {/* Update status */}
+                      <button onClick={() => openUpdate(s)} title="Update status"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center bg-yellow-50 text-yellow-600 hover:bg-yellow-100 transition-colors">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                      </button>
+                      {/* Delete */}
+                      <button onClick={() => { if (window.confirm(`Delete ${s.trackingNumber}?`)) onDelete(s.id) }} title="Delete"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -278,7 +391,7 @@ function ShipmentsTab({
           <div className="w-full max-w-md bg-white shadow-2xl overflow-y-auto flex flex-col">
             <div className="sticky top-0 bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between z-10">
               <div>
-                <p className="text-xs font-mono text-slate-400">{selected.id}</p>
+                <p className="text-xs font-mono text-slate-400">{selected.trackingNumber || selected.id}</p>
                 <h3 className="font-black text-slate-800 text-lg">Shipment Details</h3>
               </div>
               <button onClick={() => setSelected(null)} className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
@@ -291,7 +404,9 @@ function ShipmentsTab({
             <div className="p-6 space-y-5 flex-1">
               <div className="flex items-center justify-between">
                 <StatusBadge status={selected.status} />
-                <span className="text-xs text-slate-400 font-medium">ETA: {selected.eta}</span>
+                <span className="text-xs text-slate-400 font-medium">
+                  ETA: {selected.eta ? new Date(selected.eta).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                </span>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -299,14 +414,14 @@ function ShipmentsTab({
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-2">From</p>
                   <p className="font-bold text-slate-800 text-sm">{selected.sender.name}</p>
                   <p className="text-slate-500 text-xs mt-0.5">{selected.sender.phone}</p>
-                  <p className="text-slate-500 text-xs">{selected.sender.address}</p>
+                  {selected.sender.street && <p className="text-slate-500 text-xs">{selected.sender.street}</p>}
                   <p className="text-slate-500 text-xs">{selected.sender.city}, {selected.sender.country}</p>
                 </div>
                 <div className="bg-slate-50 rounded-xl p-4">
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-2">To</p>
                   <p className="font-bold text-slate-800 text-sm">{selected.recipient.name}</p>
                   <p className="text-slate-500 text-xs mt-0.5">{selected.recipient.phone}</p>
-                  <p className="text-slate-500 text-xs">{selected.recipient.address}</p>
+                  {selected.recipient.street && <p className="text-slate-500 text-xs">{selected.recipient.street}</p>}
                   <p className="text-slate-500 text-xs">{selected.recipient.city}, {selected.recipient.country}</p>
                 </div>
               </div>
@@ -316,11 +431,11 @@ function ShipmentsTab({
                 <div className="grid grid-cols-2 gap-y-2 text-xs">
                   {[
                     ['Service', selected.service],
-                    ['Weight', selected.weight],
-                    ['Dimensions', selected.dimensions],
+                    ['Weight', selected.weight ? `${selected.weight} kg` : ''],
+                    ['Dimensions', selected.dimensions ? [selected.dimensions.length, selected.dimensions.width, selected.dimensions.height].filter(Boolean).join(' × ') + ' cm' : ''],
                     ['Contents', selected.contents],
-                    ['Declared Value', selected.value],
-                    ['Created', selected.createdAt],
+                    ['Declared Value', selected.declaredValue ? `$${selected.declaredValue}` : ''],
+                    ['Created', selected.createdAt ? new Date(selected.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''],
                   ].map(([k, v]) => (
                     <><span key={k + 'k'} className="text-slate-400">{k}</span><span key={k + 'v'} className="text-slate-800 font-medium">{v || '—'}</span></>
                   ))}
@@ -345,11 +460,17 @@ function ShipmentsTab({
                 </div>
               </div>
 
-              <button onClick={() => openUpdate(selected)}
-                className="w-full py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90"
-                style={{ background: '#F5C100', color: '#0f0900' }}>
-                Update Status
-              </button>
+              <div className="flex gap-3">
+                <button onClick={() => openEdit(selected)}
+                  className="flex-1 py-3 rounded-xl font-bold text-sm border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors">
+                  Edit Details
+                </button>
+                <button onClick={() => openUpdate(selected)}
+                  className="flex-1 py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90"
+                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  Update Status
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -391,19 +512,138 @@ function ShipmentsTab({
           </div>
         </div>
       )}
+
+      {/* Edit shipment modal */}
+      {showEditModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowEditModal(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between z-10">
+              <div>
+                <h3 className="font-black text-slate-800 text-lg">Edit Shipment</h3>
+                <p className="text-xs font-mono text-slate-400">{editId}</p>
+              </div>
+              <button onClick={() => setShowEditModal(false)} className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                <svg className="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <form onSubmit={handleEditSubmit} className="p-6 space-y-5">
+              {editError && (
+                <div className="p-3 rounded-xl text-sm flex items-center gap-2 bg-red-50 text-red-600 border border-red-100">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  {editError}
+                </div>
+              )}
+
+              {/* Sender + Recipient */}
+              <div className="grid md:grid-cols-2 gap-5">
+                {[
+                  { title: 'Sender', color: '#F5C100', textColor: '#0f0900', letter: 'S', fields: [
+                    { k: 'senderName', label: 'Full Name *', ph: 'John Smith' },
+                    { k: 'senderPhone', label: 'Phone', ph: '+234 800 000 0000' },
+                    { k: 'senderEmail', label: 'Email', ph: 'john@example.com' },
+                    { k: 'senderStreet', label: 'Street Address', ph: '14 Allen Avenue' },
+                    { k: 'senderCity', label: 'City *', ph: 'Lagos' },
+                    { k: 'senderState', label: 'State / Province', ph: 'Lagos State' },
+                    { k: 'senderCountry', label: 'Country *', ph: 'Nigeria' },
+                    { k: 'senderPostal', label: 'Postal Code', ph: '100001' },
+                  ]},
+                  { title: 'Recipient', color: '#CC1500', textColor: 'white', letter: 'R', fields: [
+                    { k: 'recipientName', label: 'Full Name *', ph: 'Jane Doe' },
+                    { k: 'recipientPhone', label: 'Phone', ph: '+44 20 7946 0100' },
+                    { k: 'recipientEmail', label: 'Email', ph: 'jane@example.com' },
+                    { k: 'recipientStreet', label: 'Street Address', ph: '47 Baker Street' },
+                    { k: 'recipientCity', label: 'City *', ph: 'London' },
+                    { k: 'recipientState', label: 'State / Province', ph: 'England' },
+                    { k: 'recipientCountry', label: 'Country *', ph: 'United Kingdom' },
+                    { k: 'recipientPostal', label: 'Postal Code', ph: 'NW1 6XE' },
+                  ]},
+                ].map(party => (
+                  <div key={party.title} className="bg-slate-50 rounded-2xl p-5">
+                    <h4 className="font-bold text-slate-700 mb-3 flex items-center gap-2 text-sm">
+                      <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black" style={{ background: party.color, color: party.textColor }}>{party.letter}</span>
+                      {party.title}
+                    </h4>
+                    <div className="space-y-2.5">
+                      {party.fields.map(f => (
+                        <div key={f.k}>
+                          <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide block mb-1">{f.label}</label>
+                          <input type="text" value={(editForm as Record<string,string>)[f.k]} onChange={e => setEF(f.k, e.target.value)} placeholder={f.ph}
+                            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-yellow-400 bg-white" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Shipment details */}
+              <div className="bg-slate-50 rounded-2xl p-5">
+                <h4 className="font-bold text-slate-700 mb-3 text-sm">Shipment Details</h4>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {[
+                    { k: 'contents', label: 'Contents *', ph: 'Electronics, Clothing…', type: 'text' },
+                    { k: 'weight', label: 'Weight (kg) *', ph: '3.5', type: 'number' },
+                    { k: 'declaredValue', label: 'Declared Value (USD)', ph: '500', type: 'number' },
+                    { k: 'eta', label: 'Expected ETA', ph: '', type: 'date' },
+                    { k: 'notes', label: 'Notes', ph: 'Fragile, keep upright…', type: 'text' },
+                  ].map(f => (
+                    <div key={f.k}>
+                      <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide block mb-1">{f.label}</label>
+                      <input type={f.type} value={(editForm as Record<string,string>)[f.k]} onChange={e => setEF(f.k, e.target.value)} placeholder={f.ph}
+                        className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-yellow-400 bg-white" />
+                    </div>
+                  ))}
+                  <div>
+                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide block mb-1">Service *</label>
+                    <select value={editForm.service} onChange={e => setEF('service', e.target.value)}
+                      className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-yellow-400 bg-white">
+                      {SERVICES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide block mb-1">Status</label>
+                    <select value={editForm.status} onChange={e => setEF('status', e.target.value)}
+                      className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-yellow-400 bg-white">
+                      {Object.entries(STATUS_CFG).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+                    </select>
+                  </div>
+                  <div className="sm:col-span-2 lg:col-span-3">
+                    <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide block mb-1">Dimensions (cm) — L × W × H</label>
+                    <div className="flex gap-2">
+                      {[['dimLength','Length'],['dimWidth','Width'],['dimHeight','Height']].map(([k,ph]) => (
+                        <input key={k} type="number" min="0" step="0.1" value={(editForm as Record<string,string>)[k]} onChange={e => setEF(k, e.target.value)} placeholder={ph}
+                          className="flex-1 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-yellow-400 bg-white" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <button type="button" onClick={() => setShowEditModal(false)}
+                  className="flex-1 py-3 rounded-xl font-semibold text-sm border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors">
+                  Cancel
+                </button>
+                <button type="submit" disabled={editSubmitting}
+                  className="flex-1 py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
+                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  {editSubmitting
+                    ? <><span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0f0900', animation: 'spin 1s linear infinite' }} /> Saving…</>
+                    : 'Save Changes'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
 
 /* ─── Create Tab ─────────────────────────────────────────────────────────── */
-const SERVICES = ['International Air Express', 'Air Freight', 'Sea Freight', 'Road Transport', 'Express Delivery']
-
-const EMPTY_FORM = {
-  senderName: '', senderPhone: '', senderAddress: '', senderCity: '', senderCountry: '',
-  recipientName: '', recipientPhone: '', recipientAddress: '', recipientCity: '', recipientCountry: '',
-  service: SERVICES[0], weight: '', dimensions: '', contents: '', value: '', eta: '',
-}
-
 function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | 'createdAt' | 'events'>) => Promise<string> }) {
   const [form, setForm] = useState(EMPTY_FORM)
   const [success, setSuccess] = useState<string | null>(null)
@@ -422,12 +662,17 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
     setError('')
     try {
       const id = await onCreate({
-        sender: { name: form.senderName, phone: form.senderPhone, address: form.senderAddress, city: form.senderCity, country: form.senderCountry },
-        recipient: { name: form.recipientName, phone: form.recipientPhone, address: form.recipientAddress, city: form.recipientCity, country: form.recipientCountry },
-        service: form.service, weight: form.weight, dimensions: form.dimensions,
-        contents: form.contents, value: form.value,
-        status: 'processing', eta: form.eta || 'TBD',
-      })
+        sender:    { name: form.senderName,    phone: form.senderPhone,    email: form.senderEmail,    street: form.senderStreet,    city: form.senderCity,    state: form.senderState,    country: form.senderCountry,    postalCode: form.senderPostal },
+        recipient: { name: form.recipientName, phone: form.recipientPhone, email: form.recipientEmail, street: form.recipientStreet, city: form.recipientCity, state: form.recipientState, country: form.recipientCountry, postalCode: form.recipientPostal },
+        service: form.service,
+        weight: parseFloat(form.weight) || 0,
+        dimensions: { length: parseFloat(form.dimLength) || undefined, width: parseFloat(form.dimWidth) || undefined, height: parseFloat(form.dimHeight) || undefined },
+        contents: form.contents,
+        declaredValue: parseFloat(form.declaredValue) || 0,
+        status: 'pending',
+        eta: form.eta ? new Date(form.eta).toISOString() : '',
+        notes: form.notes,
+      } as unknown as Omit<AdminShipment, 'id' | 'createdAt' | 'events'>)
       setSuccess(id)
       setForm(EMPTY_FORM)
     } catch (err) {
@@ -460,18 +705,24 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
   const labelCls = 'text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-1.5'
 
   const senderFields = [
-    { key: 'senderName',    label: 'Full Name *',    ph: 'John Smith' },
-    { key: 'senderPhone',   label: 'Phone',           ph: '+234 800 123 4567' },
-    { key: 'senderAddress', label: 'Street Address',  ph: '14 Allen Avenue' },
-    { key: 'senderCity',    label: 'City *',           ph: 'Lagos' },
-    { key: 'senderCountry', label: 'Country *',        ph: 'Nigeria' },
+    { key: 'senderName',    label: 'Full Name *',     ph: 'John Smith' },
+    { key: 'senderPhone',   label: 'Phone',            ph: '+234 800 123 4567' },
+    { key: 'senderEmail',   label: 'Email',            ph: 'john@example.com' },
+    { key: 'senderStreet',  label: 'Street Address',   ph: '14 Allen Avenue' },
+    { key: 'senderCity',    label: 'City *',            ph: 'Lagos' },
+    { key: 'senderState',   label: 'State / Province', ph: 'Lagos State' },
+    { key: 'senderCountry', label: 'Country *',         ph: 'Nigeria' },
+    { key: 'senderPostal',  label: 'Postal Code',       ph: '100001' },
   ]
   const recipientFields = [
-    { key: 'recipientName',    label: 'Full Name *',   ph: 'Jane Doe' },
-    { key: 'recipientPhone',   label: 'Phone',          ph: '+44 20 7946 0100' },
-    { key: 'recipientAddress', label: 'Street Address', ph: '47 Baker Street' },
-    { key: 'recipientCity',    label: 'City *',          ph: 'London' },
-    { key: 'recipientCountry', label: 'Country *',       ph: 'United Kingdom' },
+    { key: 'recipientName',    label: 'Full Name *',     ph: 'Jane Doe' },
+    { key: 'recipientPhone',   label: 'Phone',            ph: '+44 20 7946 0100' },
+    { key: 'recipientEmail',   label: 'Email',            ph: 'jane@example.com' },
+    { key: 'recipientStreet',  label: 'Street Address',   ph: '47 Baker Street' },
+    { key: 'recipientCity',    label: 'City *',            ph: 'London' },
+    { key: 'recipientState',   label: 'State / Province', ph: 'England' },
+    { key: 'recipientCountry', label: 'Country *',         ph: 'United Kingdom' },
+    { key: 'recipientPostal',  label: 'Postal Code',       ph: 'NW1 6XE' },
   ]
 
   return (
@@ -534,28 +785,36 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
             <div>
               <label className={labelCls}>Service *</label>
               <select value={form.service} onChange={e => set('service', e.target.value)} className={inputCls + ' bg-white'}>
-                {SERVICES.map(s => <option key={s}>{s}</option>)}
+                {SERVICES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
               </select>
             </div>
             <div>
-              <label className={labelCls}>Weight *</label>
-              <input type="text" value={form.weight} onChange={e => set('weight', e.target.value)} placeholder="3.5 kg" className={inputCls} />
-            </div>
-            <div>
-              <label className={labelCls}>Dimensions</label>
-              <input type="text" value={form.dimensions} onChange={e => set('dimensions', e.target.value)} placeholder="40×30×20 cm" className={inputCls} />
+              <label className={labelCls}>Weight (kg) *</label>
+              <input type="number" min="0.01" step="0.01" value={form.weight} onChange={e => set('weight', e.target.value)} placeholder="3.5" className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Contents *</label>
               <input type="text" value={form.contents} onChange={e => set('contents', e.target.value)} placeholder="Electronics, Clothing…" className={inputCls} />
             </div>
             <div>
-              <label className={labelCls}>Declared Value</label>
-              <input type="text" value={form.value} onChange={e => set('value', e.target.value)} placeholder="$500" className={inputCls} />
+              <label className={labelCls}>Declared Value (USD)</label>
+              <input type="number" min="0" step="0.01" value={form.declaredValue} onChange={e => set('declaredValue', e.target.value)} placeholder="500" className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Expected ETA</label>
-              <input type="text" value={form.eta} onChange={e => set('eta', e.target.value)} placeholder="Jun 1, 2026" className={inputCls} />
+              <input type="date" value={form.eta} onChange={e => set('eta', e.target.value)} className={inputCls} />
+            </div>
+            <div>
+              <label className={labelCls}>Notes</label>
+              <input type="text" value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="Fragile, keep upright…" className={inputCls} />
+            </div>
+            <div className="sm:col-span-2 lg:col-span-3">
+              <label className={labelCls}>Dimensions (cm) — L × W × H</label>
+              <div className="flex gap-3">
+                {[['dimLength','Length'],['dimWidth','Width'],['dimHeight','Height']].map(([k,ph]) => (
+                  <input key={k} type="number" min="0" step="0.1" value={(form as Record<string,string>)[k]} onChange={e => set(k, e.target.value)} placeholder={ph} className={inputCls} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -836,9 +1095,20 @@ const NAV_ITEMS: { key: AdminTab; label: string; icon: JSX.Element }[] = [
   { key: 'subscribers',  label: 'Subscribers',       icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg> },
 ]
 
+const TAB_PATHS: Record<AdminTab, string> = {
+  overview:    '/admin',
+  shipments:   '/admin/shipments',
+  create:      '/admin/create',
+  track:       '/admin/track',
+  subscribers: '/admin/subscribers',
+}
+
 export default function AdminDashboard() {
-  const navigate = useNavigate()
-  const [tab, setTab] = useState<AdminTab>('overview')
+  const navigate   = useNavigate()
+  const { pathname } = useLocation()
+  const tab: AdminTab = (Object.entries(TAB_PATHS).find(([, p]) => p === pathname)?.[0] as AdminTab) ?? 'overview'
+  const goTab = (t: AdminTab) => navigate(TAB_PATHS[t])
+
   const [shipments, setShipments] = useState<AdminShipment[]>([])
   const [loadingShipments, setLoadingShipments] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -876,6 +1146,11 @@ export default function AdminDashboard() {
   const handleDelete = async (id: string) => {
     await api.deleteShipment(id)
     setShipments(prev => prev.filter(s => s.id !== id))
+  }
+
+  const handleEdit = async (id: string, body: unknown) => {
+    const updated = await api.updateShipment(id, body)
+    setShipments(prev => prev.map(s => s.id === id ? updated : s))
   }
 
   const TAB_TITLES: Record<AdminTab, string> = {
@@ -918,7 +1193,7 @@ export default function AdminDashboard() {
             return (
               <button
                 key={item.key}
-                onClick={() => { setTab(item.key); setSidebarOpen(false) }}
+                onClick={() => { goTab(item.key); setSidebarOpen(false) }}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all text-left"
                 style={{
                   background: active ? 'rgba(245,193,0,0.15)' : 'transparent',
@@ -999,8 +1274,8 @@ export default function AdminDashboard() {
               </div>
             ) : (
               <>
-                {tab === 'overview'     && <OverviewTab     shipments={shipments} onNavigate={setTab} />}
-                {tab === 'shipments'   && <ShipmentsTab   shipments={shipments} onUpdate={handleUpdate} onDelete={handleDelete} />}
+                {tab === 'overview'     && <OverviewTab     shipments={shipments} onNavigate={goTab} />}
+                {tab === 'shipments'   && <ShipmentsTab   shipments={shipments} onUpdate={handleUpdate} onDelete={handleDelete} onEdit={handleEdit} />}
                 {tab === 'create'      && <CreateTab      onCreate={handleCreate} />}
                 {tab === 'track'       && <TrackTab       shipments={shipments}  onUpdate={handleUpdate} />}
                 {tab === 'subscribers' && <SubscribersTab />}

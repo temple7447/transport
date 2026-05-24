@@ -12,6 +12,7 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import AdminLoginPage from './pages/AdminLoginPage'
 import AdminDashboard from './pages/AdminDashboard'
+import AdminShipmentDetail from './pages/AdminShipmentDetail'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
@@ -49,7 +50,12 @@ export default function App() {
         {/* Admin — no Navbar/Footer */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route element={<AdminGuard />}>
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin"              element={<AdminDashboard />} />
+          <Route path="/admin/shipments"    element={<AdminDashboard />} />
+          <Route path="/admin/create"       element={<AdminDashboard />} />
+          <Route path="/admin/track"        element={<AdminDashboard />} />
+          <Route path="/admin/subscribers"  element={<AdminDashboard />} />
+          <Route path="/admin/shipments/:id" element={<AdminShipmentDetail />} />
         </Route>
 
         {/* Public — with Navbar/Footer */}

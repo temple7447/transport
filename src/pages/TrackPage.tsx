@@ -1,17 +1,28 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { GoogleMap, useJsApiLoader, Polyline, Marker, InfoWindow } from '@react-google-maps/api'
 import { api } from '../lib/api'
+import type { PublicShipment } from '../lib/api'
 
 /* ─── Types ────────────────────────────────────────────────── */
-type ShipStatus = 'in_transit' | 'out_for_delivery' | 'delivered' | 'processing' | 'customs_hold' | 'delayed'
-type Tab = 'overview' | 'timeline' | 'details' | 'notifications'
+type ShipStatus =
+  | 'pending' | 'confirmed' | 'picked_up'
+  | 'in_transit' | 'out_for_delivery' | 'delivered'
+  | 'failed' | 'cancelled' | 'returned'
+  | 'customs_hold' | 'delayed'  // demo shipments only
+type Tab = 'overview' | 'timeline' | 'details'
 type TrackStatus = 'idle' | 'loading' | 'found' | 'notfound'
 
 /* ─── Status config ─────────────────────────────────────────── */
 const STATUS_CFG: Record<ShipStatus, { label: string; color: string; bg: string; light: string; dot: string }> = {
-  in_transit:       { label: 'In Transit',        color: '#2563eb', bg: 'linear-gradient(135deg,#1d4ed8,#3b82f6)', light: '#eff6ff', dot: '#2563eb' },
-  out_for_delivery: { label: 'Out for Delivery',  color: '#CC1500', bg: 'linear-gradient(135deg,#CC1500,#ef4444)', light: '#fff5f5', dot: '#CC1500' },
+  pending:          { label: 'Pending',            color: '#64748b', bg: 'linear-gradient(135deg,#475569,#64748b)', light: '#f8fafc', dot: '#64748b' },
+  confirmed:        { label: 'Confirmed',          color: '#7c3aed', bg: 'linear-gradient(135deg,#6d28d9,#8b5cf6)', light: '#f5f3ff', dot: '#7c3aed' },
+  picked_up:        { label: 'Picked Up',          color: '#0891b2', bg: 'linear-gradient(135deg,#0e7490,#0891b2)', light: '#ecfeff', dot: '#0891b2' },
+  in_transit:       { label: 'In Transit',         color: '#2563eb', bg: 'linear-gradient(135deg,#1d4ed8,#3b82f6)', light: '#eff6ff', dot: '#2563eb' },
+  out_for_delivery: { label: 'Out for Delivery',   color: '#CC1500', bg: 'linear-gradient(135deg,#CC1500,#ef4444)', light: '#fff5f5', dot: '#CC1500' },
   delivered:        { label: 'Delivered',          color: '#16a34a', bg: 'linear-gradient(135deg,#15803d,#22c55e)', light: '#f0fdf4', dot: '#16a34a' },
-  processing:       { label: 'Processing',         color: '#7c3aed', bg: 'linear-gradient(135deg,#6d28d9,#8b5cf6)', light: '#f5f3ff', dot: '#7c3aed' },
+  failed:           { label: 'Failed',             color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', light: '#fef2f2', dot: '#ef4444' },
+  cancelled:        { label: 'Cancelled',          color: '#64748b', bg: 'linear-gradient(135deg,#475569,#64748b)', light: '#f8fafc', dot: '#94a3b8' },
+  returned:         { label: 'Returned',           color: '#b45309', bg: 'linear-gradient(135deg,#b45309,#d97706)', light: '#fffbeb', dot: '#f59e0b' },
   customs_hold:     { label: 'Customs Hold',       color: '#b45309', bg: 'linear-gradient(135deg,#b45309,#f59e0b)', light: '#fffbeb', dot: '#f59e0b' },
   delayed:          { label: 'Delayed',            color: '#dc2626', bg: 'linear-gradient(135deg,#dc2626,#ef4444)', light: '#fef2f2', dot: '#ef4444' },
 }
@@ -24,6 +35,219 @@ const EVT_ICONS: Record<string, JSX.Element> = {
   customs:  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>,
   truck:    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1V8h3l3 3v4l1 1h-1m-6 0h-3"/></svg>,
   delivered:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>,
+}
+
+/* ─── City coordinates lookup ───────────────────────────────── */
+const CITY_COORDS: Record<string, [number, number]> = {
+  'Lagos': [6.5244, 3.3792],
+  'Abuja': [9.0765, 7.3986],
+  'Kano': [12.0022, 8.592],
+  'Port Harcourt': [4.8156, 7.0498],
+  'Accra': [5.6037, -0.187],
+  'Kumasi': [6.6885, -1.6244],
+  'Aflao Border': [6.117, 1.1915],
+  'Lomé': [6.1375, 1.2123],
+  'Cotonou': [6.3654, 2.4183],
+  'Nairobi': [-1.2921, 36.8219],
+  'Mombasa': [-4.0435, 39.6682],
+  'Dar es Salaam': [-6.7924, 39.2083],
+  'Kampala': [0.3476, 32.5825],
+  'Addis Ababa': [9.03, 38.74],
+  'Johannesburg': [-26.2041, 28.0473],
+  'Cape Town': [-33.9249, 18.4241],
+  'Durban': [-29.8587, 31.0218],
+  'Cairo': [30.0444, 31.2357],
+  'Casablanca': [33.5731, -7.5898],
+  'Tunis': [36.8065, 10.1815],
+  'Dakar': [14.7167, -17.4677],
+  'Abidjan': [5.3544, -4.0],
+  'Kinshasa': [-4.4419, 15.2663],
+  'Luanda': [-8.8368, 13.2343],
+  'London': [51.5074, -0.1278],
+  'Paris': [48.8566, 2.3522],
+  'Frankfurt': [50.1109, 8.6821],
+  'Amsterdam': [52.3676, 4.9041],
+  'Berlin': [52.52, 13.405],
+  'Madrid': [40.4168, -3.7038],
+  'Rome': [41.9028, 12.4964],
+  'Zurich': [47.3769, 8.5417],
+  'Brussels': [50.8503, 4.3517],
+  'Vienna': [48.2082, 16.3738],
+  'Warsaw': [52.2297, 21.0122],
+  'Stockholm': [59.3293, 18.0686],
+  'Oslo': [59.9139, 10.7522],
+  'Copenhagen': [55.6761, 12.5683],
+  'Helsinki': [60.1699, 24.9384],
+  'Dubai': [25.2048, 55.2708],
+  'Abu Dhabi': [24.4539, 54.3773],
+  'Doha': [25.2854, 51.531],
+  'Riyadh': [24.7136, 46.6753],
+  'Jeddah': [21.4858, 39.1925],
+  'Kuwait City': [29.3759, 47.9774],
+  'Muscat': [23.5859, 58.4059],
+  'Istanbul': [41.0082, 28.9784],
+  'Ankara': [39.9334, 32.8597],
+  'Tel Aviv': [32.0853, 34.7818],
+  'Beirut': [33.8938, 35.5018],
+  'Mumbai': [19.076, 72.8777],
+  'Delhi': [28.6139, 77.209],
+  'Bangalore': [12.9716, 77.5946],
+  'Chennai': [13.0827, 80.2707],
+  'Kolkata': [22.5726, 88.3639],
+  'Karachi': [24.8607, 67.0011],
+  'Lahore': [31.5204, 74.3587],
+  'Dhaka': [23.8103, 90.4125],
+  'Colombo': [6.9271, 79.8612],
+  'Singapore': [1.3521, 103.8198],
+  'Kuala Lumpur': [3.139, 101.6869],
+  'Bangkok': [13.7563, 100.5018],
+  'Jakarta': [-6.2088, 106.8456],
+  'Manila': [14.5995, 120.9842],
+  'Ho Chi Minh City': [10.8231, 106.6297],
+  'Hanoi': [21.0285, 105.8542],
+  'Yangon': [16.8661, 96.1951],
+  'Tokyo': [35.6762, 139.6503],
+  'Osaka': [34.6937, 135.5023],
+  'Seoul': [37.5665, 126.978],
+  'Busan': [35.1796, 129.0756],
+  'Beijing': [39.9042, 116.4074],
+  'Shanghai': [31.2304, 121.4737],
+  'Guangzhou': [23.1291, 113.2644],
+  'Shenzhen': [22.5431, 114.0579],
+  'Hong Kong': [22.3193, 114.1694],
+  'Taipei': [25.033, 121.5654],
+  'Sydney': [-33.8688, 151.2093],
+  'Melbourne': [-37.8136, 144.9631],
+  'Brisbane': [-27.4698, 153.0251],
+  'Auckland': [-36.8485, 174.7633],
+  'New York': [40.7128, -74.006],
+  'Los Angeles': [34.0522, -118.2437],
+  'Chicago': [41.8781, -87.6298],
+  'Miami': [25.7617, -80.1918],
+  'Houston': [29.7604, -95.3698],
+  'Toronto': [43.6532, -79.3832],
+  'Montreal': [45.5017, -73.5673],
+  'Vancouver': [49.2827, -123.1207],
+  'Mexico City': [19.4326, -99.1332],
+  'São Paulo': [-23.5505, -46.6333],
+  'Buenos Aires': [-34.6037, -58.3816],
+  'Lima': [-12.0464, -77.0428],
+  'Bogotá': [4.711, -74.0721],
+  'Santiago': [-33.4489, -70.6693],
+}
+
+function getCityCoords(city: string): [number, number] | null {
+  if (CITY_COORDS[city]) return CITY_COORDS[city]
+  const key = Object.keys(CITY_COORDS).find(k =>
+    city.toLowerCase().startsWith(k.toLowerCase()) ||
+    k.toLowerCase().startsWith(city.toLowerCase())
+  )
+  return key ? CITY_COORDS[key] : null
+}
+
+/* ─── Google Maps config ─────────────────────────────────────── */
+const GMAPS_KEY = (import.meta.env.VITE_GOOGLE_MAPS_KEY as string | undefined) ?? ''
+
+const MAP_STYLES: google.maps.MapTypeStyle[] = [
+  { elementType: 'geometry',                                            stylers: [{ color: '#eef2f7' }] },
+  { elementType: 'labels.icon',                                         stylers: [{ visibility: 'off' }] },
+  { elementType: 'labels.text.fill',                                    stylers: [{ color: '#8899aa' }] },
+  { elementType: 'labels.text.stroke',                                  stylers: [{ color: '#f5f7fa' }] },
+  { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#c4d0de', visibility: 'on' }] },
+  { featureType: 'administrative.country', elementType: 'labels.text.fill', stylers: [{ color: '#8899aa' }] },
+  { featureType: 'landscape',              elementType: 'geometry',     stylers: [{ color: '#eef2f7' }] },
+  { featureType: 'poi',                                                  stylers: [{ visibility: 'off' }] },
+  { featureType: 'road',                                                 stylers: [{ visibility: 'off' }] },
+  { featureType: 'transit',                                              stylers: [{ visibility: 'off' }] },
+  { featureType: 'water',                  elementType: 'geometry',     stylers: [{ color: '#b8cfe0' }] },
+]
+
+type StopEntry = { coords: [number, number]; stop: { city: string; country: string; flag: string; done: boolean; active: boolean; date: string } }
+type CfgEntry  = { label: string; color: string; bg: string; light: string; dot: string }
+
+/* ─── Inner map content (rendered only after API loads) ─────── */
+function MapContent({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }) {
+  const mapRef = useRef<google.maps.Map | null>(null)
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
+
+  const onLoad = useCallback((map: google.maps.Map) => {
+    mapRef.current = map
+    const bounds = new window.google.maps.LatLngBounds()
+    positions.forEach(({ coords }) => bounds.extend({ lat: coords[0], lng: coords[1] }))
+    map.fitBounds(bounds, 60)
+  }, [positions])
+
+  const pathCoords = positions.map(({ coords }) => ({ lat: coords[0], lng: coords[1] }))
+  const dashSymbol: google.maps.Symbol = {
+    path: 'M 0,-1 0,1',
+    strokeOpacity: 1,
+    scale: 3,
+  }
+
+  return (
+    <GoogleMap
+      mapContainerStyle={{ height: '100%', width: '100%' }}
+      zoom={3}
+      onLoad={onLoad}
+      options={{
+        styles: MAP_STYLES,
+        disableDefaultUI: true,
+        gestureHandling: 'cooperative',
+        zoomControl: true,
+      }}
+    >
+      {/* Dashed route line */}
+      <Polyline
+        path={pathCoords}
+        options={{
+          strokeColor: cfg.color,
+          strokeOpacity: 0,
+          icons: [{ icon: dashSymbol, offset: '0', repeat: '18px' }],
+        }}
+      />
+
+      {/* Stop markers */}
+      {positions.map(({ coords, stop }, i) => (
+        <Marker
+          key={`${stop.city}-${i}`}
+          position={{ lat: coords[0], lng: coords[1] }}
+          zIndex={stop.active ? 20 : i + 1}
+          icon={{
+            path: window.google.maps.SymbolPath.CIRCLE,
+            fillColor: stop.done || stop.active ? cfg.color : '#94a3b8',
+            fillOpacity: 1,
+            strokeColor: 'white',
+            strokeWeight: 2.5,
+            scale: stop.active ? 11 : 7,
+          }}
+          onClick={() => setOpenIdx(openIdx === i ? null : i)}
+        >
+          {openIdx === i && (
+            <InfoWindow onCloseClick={() => setOpenIdx(null)}>
+              <div style={{ minWidth: 130, fontFamily: 'inherit' }}>
+                <p style={{ fontWeight: 700, fontSize: 13, margin: 0 }}>
+                  {stop.flag} {stop.city}
+                </p>
+                <p style={{ color: '#64748b', fontSize: 11, margin: '3px 0 0' }}>
+                  {stop.country} · {stop.date}
+                </p>
+                {stop.active && (
+                  <p style={{ color: cfg.color, fontWeight: 700, fontSize: 11, margin: '5px 0 0' }}>
+                    ● Current location
+                  </p>
+                )}
+                {stop.done && !stop.active && (
+                  <p style={{ color: '#16a34a', fontSize: 11, margin: '5px 0 0' }}>
+                    ✓ Checkpoint passed
+                  </p>
+                )}
+              </div>
+            </InfoWindow>
+          )}
+        </Marker>
+      ))}
+    </GoogleMap>
+  )
 }
 
 /* ─── Mock shipment data ────────────────────────────────────── */
@@ -122,10 +346,12 @@ const SHIPMENTS: Record<string, {
 
 const SAMPLE_NUMBERS = Object.keys(SHIPMENTS)
 
-/* ─── Animated Route Visualizer ────────────────────────────── */
+/* ─── Route Visualizer with Google Maps ─────────────────────── */
 function RouteVisualizer({ ship }: { ship: typeof SHIPMENTS[string] }) {
   const [progress, setProgress] = useState(0)
   const cfg = STATUS_CFG[ship.status]
+
+  const { isLoaded, loadError } = useJsApiLoader({ googleMapsApiKey: GMAPS_KEY })
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -140,68 +366,49 @@ function RouteVisualizer({ ship }: { ship: typeof SHIPMENTS[string] }) {
     return () => clearTimeout(t)
   }, [ship.progress])
 
+  const positions = useMemo<StopEntry[]>(
+    () =>
+      ship.route
+        .map(stop => {
+          const coords = getCityCoords(stop.city)
+          return coords ? { coords, stop } : null
+        })
+        .filter((x): x is StopEntry => x !== null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [ship.trackingNum],
+  )
+
   return (
     <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
       <div className="px-7 py-5 border-b border-slate-100 flex items-center justify-between">
         <h3 className="font-black text-slate-800 text-lg">Shipment Route</h3>
-        <span className="text-sm text-slate-400">{ship.route.filter(r => r.done).length} of {ship.route.length} checkpoints reached</span>
+        <span className="text-sm text-slate-400">
+          {ship.route.filter(r => r.done).length} of {ship.route.length} checkpoints reached
+        </span>
       </div>
 
-      {/* Route map image */}
-      <div className="relative h-52 overflow-hidden">
-        <img
-          src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop"
-          alt="Route map"
-          className="w-full h-full object-cover"
-          style={{ filter: 'grayscale(60%) brightness(0.8) contrast(1.1)' }}
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,20,38,0.5), rgba(7,20,38,0.2))' }} />
-
-        {/* Animated dashed route line overlay */}
-        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-          <defs>
-            <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto">
-              <polygon points="0 0, 6 2, 0 4" fill={cfg.color} opacity="0.8" />
-            </marker>
-          </defs>
-          <path
-            d={`M ${100 / ship.route.length / 2}% 60% Q 50% 30% ${100 - 100 / ship.route.length / 2}% 60%`}
-            fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="6 4"
-          />
-          <path
-            d={`M ${100 / ship.route.length / 2}% 60% Q 50% 30% ${100 - 100 / ship.route.length / 2}% 60%`}
-            fill="none" stroke={cfg.color} strokeWidth="2.5" strokeDasharray="6 4"
-            style={{ strokeDashoffset: `${(100 - progress) * 3}`, transition: 'stroke-dashoffset 0.05s linear' }}
-            markerEnd="url(#arrowhead)"
-          />
-        </svg>
-
-        {/* City dots */}
-        <div className="absolute inset-0 flex items-center px-8 gap-0">
-          {ship.route.map((stop, i) => {
-            const left = `${(i / (ship.route.length - 1)) * 100}%`
-            return (
-              <div
-                key={stop.city}
-                className="absolute flex flex-col items-center gap-1"
-                style={{ left, top: '40%', transform: 'translate(-50%, -50%)' }}
-              >
-                <div
-                  className="w-4 h-4 rounded-full border-2 border-white shadow-lg"
-                  style={{ background: stop.done ? cfg.color : stop.active ? cfg.color : '#475569', boxShadow: stop.active ? `0 0 0 4px ${cfg.color}33` : undefined }}
-                />
-                <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-center mt-1 shadow-md">
-                  <p className="text-xs font-bold text-slate-800 whitespace-nowrap">{stop.city}</p>
-                  <p className="text-[10px] text-slate-500">{stop.date}</p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+      <div className="h-72">
+        {!GMAPS_KEY ? (
+          <div className="h-full bg-slate-50 flex flex-col items-center justify-center gap-2 text-slate-400 text-sm">
+            <svg className="w-8 h-8 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            <p>Add <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">VITE_GOOGLE_MAPS_KEY</code> to <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">.env</code> to enable map</p>
+          </div>
+        ) : loadError ? (
+          <div className="h-full bg-slate-50 flex items-center justify-center text-rose-400 text-sm">
+            Failed to load Google Maps — check your API key
+          </div>
+        ) : !isLoaded ? (
+          <div className="h-full bg-slate-100 animate-pulse" />
+        ) : positions.length >= 2 ? (
+          <MapContent positions={positions} cfg={cfg} />
+        ) : (
+          <div className="h-full bg-slate-50 flex items-center justify-center text-slate-400 text-sm">
+            Route map unavailable for this shipment
+          </div>
+        )}
       </div>
 
-      {/* Progress bar */}
-      <div className="px-7 py-4">
+      <div className="px-7 py-4 border-t border-slate-100">
         <div className="flex justify-between text-xs text-slate-400 mb-2">
           <span>{ship.origin.city}, {ship.origin.country}</span>
           <span className="font-semibold" style={{ color: cfg.color }}>{progress.toFixed(0)}% complete</span>
@@ -356,111 +563,18 @@ function PackageDetails({ ship }: { ship: typeof SHIPMENTS[string] }) {
   )
 }
 
-/* ─── Notifications Panel ───────────────────────────────────── */
-function NotificationsPanel() {
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [prefs, setPrefs] = useState({ pickup: true, transit: true, outForDelivery: true, delivered: true, delay: true })
-  const [saved, setSaved] = useState(false)
-  const toggle = (k: keyof typeof prefs) => setPrefs(p => ({ ...p, [k]: !p[k] }))
-
-  return (
-    <div className="space-y-5">
-      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
-        <h3 className="font-black text-slate-800 text-lg mb-2">Delivery Notifications</h3>
-        <p className="text-slate-500 text-sm mb-6">Get real-time alerts for every status change.</p>
-
-        <div className="space-y-4 mb-7">
-          <div>
-            <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">Email Address</label>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all" />
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">Mobile Number (SMS)</label>
-            <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
-              placeholder="+1 555 000 0000"
-              className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all" />
-          </div>
-        </div>
-
-        <div className="border-t border-slate-100 pt-5 mb-7">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-4">Alert Preferences</p>
-          <div className="space-y-3">
-            {[
-              { key: 'pickup' as const, label: 'Package Picked Up', desc: 'When courier collects your item' },
-              { key: 'transit' as const, label: 'In Transit Updates', desc: 'Hub arrivals, flights, and sorting' },
-              { key: 'outForDelivery' as const, label: 'Out for Delivery', desc: 'When driver is heading to you' },
-              { key: 'delivered' as const, label: 'Delivered', desc: 'Confirmation with proof of delivery' },
-              { key: 'delay' as const, label: 'Delay Alerts', desc: 'If any unexpected delays occur' },
-            ].map(pref => (
-              <div key={pref.key} className="flex items-center justify-between py-2">
-                <div>
-                  <p className="text-slate-800 text-sm font-semibold">{pref.label}</p>
-                  <p className="text-slate-400 text-xs">{pref.desc}</p>
-                </div>
-                <button
-                  onClick={() => toggle(pref.key)}
-                  className="w-11 h-6 rounded-full transition-all duration-200 relative"
-                  style={{ background: prefs[pref.key] ? '#2563eb' : '#e2e8f0' }}
-                >
-                  <span
-                    className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-200"
-                    style={{ transform: prefs[pref.key] ? 'translateX(20px)' : 'translateX(0)' }}
-                  />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <button
-          onClick={() => { if (email || phone) setSaved(true) }}
-          className="btn-primary w-full justify-center"
-        >
-          {saved
-            ? <span className="flex items-center gap-2 justify-center"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M4.5 12.75l6 6 9-13.5"/></svg>Notifications Saved!</span>
-            : 'Save Notification Preferences'}
-        </button>
-      </div>
-
-      {/* Share tracking */}
-      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
-        <h3 className="font-bold text-slate-800 mb-2">Share Tracking Link</h3>
-        <p className="text-slate-500 text-sm mb-4">Send this link to the recipient so they can follow along.</p>
-        <div className="flex gap-3">
-          <input
-            readOnly
-            value="https://quicksenddelivery.com/track/QSD-2024-987654"
-            className="flex-1 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-600 bg-slate-50 outline-none"
-          />
-          <button
-            className="px-5 py-3 rounded-xl bg-slate-800 text-white text-sm font-semibold hover:bg-slate-700 transition-colors shrink-0"
-            onClick={() => navigator.clipboard?.writeText('https://quicksenddelivery.com/track/QSD-2024-987654')}
-          >
-            Copy
-          </button>
-        </div>
-      </div>
-
-      {/* Report issue */}
-      <div className="bg-rose-50 rounded-3xl border border-rose-100 p-6">
-        <h4 className="font-bold text-rose-800 mb-1">Something Wrong?</h4>
-        <p className="text-rose-600 text-sm mb-4">Report a missing, damaged, or delayed shipment and our team will investigate within 2 hours.</p>
-        <button className="px-5 py-2.5 rounded-xl bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors">
-          Report an Issue
-        </button>
-      </div>
-    </div>
-  )
-}
 
 /* ─── Overview Tab ──────────────────────────────────────────── */
 function OverviewTab({ ship }: { ship: typeof SHIPMENTS[string] }) {
   const cfg = STATUS_CFG[ship.status]
   const steps = ['Order Placed', 'Picked Up', 'In Transit', 'Out for Delivery', 'Delivered']
-  const stepIndex = { processing: 0, in_transit: 2, out_for_delivery: 3, delivered: 4, customs_hold: 2, delayed: 2 }[ship.status] ?? 2
+  const stepIndex = ({
+    pending: 0, confirmed: 0, cancelled: 0,
+    picked_up: 1, failed: 1,
+    in_transit: 2, customs_hold: 2, delayed: 2,
+    out_for_delivery: 3,
+    delivered: 4, returned: 4,
+  } as Record<string, number>)[ship.status] ?? 2
 
   return (
     <div className="space-y-5">
@@ -528,25 +642,29 @@ function OverviewTab({ ship }: { ship: typeof SHIPMENTS[string] }) {
       </div>
 
       {/* Latest event */}
-      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-black text-slate-800 text-lg">Latest Update</h3>
-          <span className="text-xs text-slate-400">{ship.events[0].time} · {ship.events[0].date}</span>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-white"
-            style={{ background: cfg.bg }}>
-            {EVT_ICONS[ship.events[0].type] || EVT_ICONS.sort}
+      {ship.events.length > 0 && (
+        <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-7">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-black text-slate-800 text-lg">Latest Update</h3>
+            <span className="text-xs text-slate-400">{ship.events[0].time} · {ship.events[0].date}</span>
           </div>
-          <div>
-            <p className="font-bold text-slate-800 mb-1">{ship.events[0].location}, {ship.events[0].country}</p>
-            <p className="text-slate-500 text-sm leading-relaxed">{ship.events[0].desc}</p>
-            {ship.events[0].note && (
-              <p className="text-slate-400 text-xs mt-2 italic">{ship.events[0].note}</p>
-            )}
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-white"
+              style={{ background: cfg.bg }}>
+              {EVT_ICONS[ship.events[0].type] || EVT_ICONS.sort}
+            </div>
+            <div>
+              <p className="font-bold text-slate-800 mb-1">
+                {ship.events[0].location}{ship.events[0].country ? `, ${ship.events[0].country}` : ''}
+              </p>
+              <p className="text-slate-500 text-sm leading-relaxed">{ship.events[0].desc}</p>
+              {ship.events[0].note && (
+                <p className="text-slate-400 text-xs mt-2 italic">{ship.events[0].note}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Route visualizer */}
       <RouteVisualizer ship={ship} />
@@ -554,41 +672,57 @@ function OverviewTab({ ship }: { ship: typeof SHIPMENTS[string] }) {
   )
 }
 
-/* ─── Convert admin localStorage shipment to TrackPage format ── */
+/* ─── Convert public API response to TrackPage format ──────── */
 type ShipRecord = typeof SHIPMENTS[string]
 
-function adminToShipRecord(a: {
-  id: string
-  sender: { name: string; phone: string; address: string; city: string; country: string }
-  recipient: { name: string; phone: string; address: string; city: string; country: string }
-  service: string; weight: string; dimensions: string; contents: string; value: string
-  status: ShipStatus; createdAt: string; eta: string
-  events: { time: string; date: string; location: string; desc: string; type: string }[]
-}): ShipRecord {
-  const progressMap: Record<ShipStatus, number> = {
-    processing: 10, in_transit: 50, out_for_delivery: 80, delivered: 100, customs_hold: 40, delayed: 35,
-  }
-  const recipientShort = a.recipient.name.split(' ').map((p, i) => i === 0 ? p : p[0] + '.').join(' ')
+const PROGRESS_MAP: Record<string, number> = {
+  pending: 5, confirmed: 15, picked_up: 25,
+  in_transit: 55, out_for_delivery: 80, delivered: 100,
+  failed: 0, cancelled: 0, returned: 100,
+  customs_hold: 40, delayed: 35,
+}
+
+function fmtDate(iso?: string, opts?: Intl.DateTimeFormatOptions) {
+  if (!iso) return ''
+  return new Date(iso).toLocaleDateString('en-US', opts ?? { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function apiToShipRecord(a: PublicShipment): ShipRecord {
+  const status = a.status as ShipStatus
+  const etaStr = a.status === 'delivered' && a.deliveredAt
+    ? `Delivered ${fmtDate(a.deliveredAt)}`
+    : a.eta ? fmtDate(a.eta, { month: 'long', day: 'numeric', year: 'numeric' }) : 'TBD'
+  const etaFull = a.status === 'delivered' && a.deliveredAt
+    ? `Delivered ${fmtDate(a.deliveredAt, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}`
+    : a.eta ? `Estimated ${fmtDate(a.eta, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}` : 'ETA not set'
+  const createdDate = fmtDate(a.createdAt)
+  const senderCity = a.sender.city || '—'
+  const senderCountry = a.sender.country || '—'
+  const recipientCity = a.recipient.city || '—'
+  const recipientCountry = a.recipient.country || '—'
+
   return {
-    status: a.status,
-    trackingNum: a.id,
+    status,
+    trackingNum: a.trackingNumber,
     service: a.service,
-    weight: a.weight,
-    dimensions: a.dimensions,
-    contents: a.contents,
-    value: a.value,
-    insurance: 'Standard coverage',
-    pieces: 1,
-    origin: { city: a.sender.city, country: a.sender.country, flag: '', date: a.createdAt, hub: `Quick Send ${a.sender.city} Hub` },
-    dest: { city: a.recipient.city, country: a.recipient.country, flag: '', hub: `Quick Send ${a.recipient.city} Delivery Centre`, recipient: recipientShort, address: `${a.recipient.address}, ${a.recipient.city}` },
-    eta: a.eta,
-    etaFull: a.eta,
-    progress: progressMap[a.status] ?? 0,
+    weight: `${a.weight} kg`,
+    dimensions: '—', contents: '—', value: '—',
+    insurance: 'Standard coverage', pieces: 1,
+    origin: { city: senderCity, country: senderCountry, flag: '', date: createdDate, hub: `Quick Send ${senderCity} Hub` },
+    dest: {
+      city: recipientCity, country: recipientCountry, flag: '',
+      hub: `Quick Send ${recipientCity} Delivery Centre`,
+      recipient: a.recipient.name,
+      address: `${recipientCity}, ${recipientCountry}`,
+    },
+    eta: etaStr,
+    etaFull,
+    progress: PROGRESS_MAP[a.status] ?? 30,
     route: [
-      { city: a.sender.city, country: a.sender.country, flag: '', done: true, active: false, date: a.createdAt },
-      { city: a.recipient.city, country: a.recipient.country, flag: '', done: a.status === 'delivered', active: a.status !== 'delivered', date: a.eta },
+      { city: senderCity,    country: senderCountry,    flag: '', done: true,                      active: false,                     date: createdDate },
+      { city: recipientCity, country: recipientCountry, flag: '', done: a.status === 'delivered',  active: a.status !== 'delivered',  date: etaStr },
     ],
-    events: a.events.map(e => ({ ...e, country: '', flag: '' })),
+    events: a.events.map(e => ({ time: e.time || '', date: e.date || '', location: e.location || '', country: '', flag: '', desc: e.desc, type: e.type || 'info' })),
     alerts: [],
   }
 }
@@ -621,7 +755,7 @@ export default function TrackPage() {
     // All other numbers → hit the API
     try {
       const data = await api.track(key)
-      const ship = adminToShipRecord(data)
+      const ship = apiToShipRecord(data)
       setFoundShip(ship)
       setTrackStatus('found')
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200)
@@ -635,7 +769,6 @@ export default function TrackPage() {
     { key: 'overview',      label: 'Overview',        icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg> },
     { key: 'timeline',      label: 'Full Timeline',   icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> },
     { key: 'details',       label: 'Package Details', icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg> },
-    { key: 'notifications', label: 'Notifications',   icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg> },
   ]
 
   return (
@@ -813,7 +946,6 @@ export default function TrackPage() {
               {activeTab === 'overview'      && <OverviewTab ship={ship} />}
               {activeTab === 'timeline'      && <Timeline ship={ship} />}
               {activeTab === 'details'       && <PackageDetails ship={ship} />}
-              {activeTab === 'notifications' && <NotificationsPanel />}
             </div>
 
             {/* Support bar */}

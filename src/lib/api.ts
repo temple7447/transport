@@ -8,14 +8,18 @@ export const clearToken = () => localStorage.removeItem(TOKEN_KEY)
 
 // ── Shared types ───────────────────────────────────────────────────────────
 export type ShipStatus =
-  | 'processing'
+  | 'pending'
+  | 'confirmed'
+  | 'picked_up'
   | 'in_transit'
   | 'out_for_delivery'
   | 'delivered'
-  | 'customs_hold'
-  | 'delayed'
+  | 'failed'
+  | 'cancelled'
+  | 'returned'
 
 export interface ShipEvent {
+  _id?: string
   time: string
   date: string
   location: string
@@ -23,19 +27,38 @@ export interface ShipEvent {
   type: string
 }
 
+export interface ShipParty {
+  name: string
+  phone?: string
+  email?: string
+  street?: string
+  city?: string
+  state?: string
+  country?: string
+  postalCode?: string
+}
+
 export interface AdminShipment {
   id: string
-  sender: { name: string; phone: string; address: string; city: string; country: string }
-  recipient: { name: string; phone: string; address: string; city: string; country: string }
+  trackingNumber: string
+  sender: ShipParty
+  recipient: ShipParty
   service: string
-  weight: string
-  dimensions: string
+  weight: number
+  dimensions: { length?: number; width?: number; height?: number }
   contents: string
-  value: string
+  declaredValue: number
+  price?: number
   status: ShipStatus
   createdAt: string
   eta: string
+  deliveredAt?: string
   events: ShipEvent[]
+  notes?: string
+}
+
+function normalizeShipment(s: Record<string, unknown>): AdminShipment {
+  return { ...(s as unknown as AdminShipment), id: (s._id ?? s.id) as string }
 }
 
 export interface QuoteOption {
@@ -57,6 +80,20 @@ export interface QuoteRequest {
   width: number
   height: number
   service?: string
+}
+
+// Public track response — personal details are masked by the backend
+export interface PublicShipment {
+  trackingNumber: string
+  status: ShipStatus
+  service: string
+  eta?: string
+  deliveredAt?: string
+  createdAt: string
+  sender: { name: string; city?: string; country?: string }
+  recipient: { name: string; city?: string; country?: string; email?: string }
+  weight: number
+  events: ShipEvent[]
 }
 
 export interface ContactRequest {
@@ -127,8 +164,11 @@ export const api = {
     request<{ username: string }>('GET', '/api/auth/me'),
 
   // Public — tracking
-  track: (id: string) =>
-    request<AdminShipment>('GET', `/api/track/${encodeURIComponent(id)}`),
+  track: async (id: string): Promise<PublicShipment> => {
+    const res = await request<unknown>('GET', `/api/track/${encodeURIComponent(id)}`)
+    const r = res as Record<string, unknown>
+    return ((r.data as Record<string, unknown>)?.shipment ?? r) as PublicShipment
+  },
 
   // Public — quote calculator
   quote: (body: QuoteRequest) =>
@@ -146,29 +186,64 @@ export const api = {
     request<{ message: string }>('POST', '/api/subscribe/unsubscribe', { email }),
 
   // Admin — subscribers list (JWT protected)
-  listSubscribers: () =>
-    request<Subscriber[]>('GET', '/api/subscribe'),
+  listSubscribers: async () => {
+    const res = await request<unknown>('GET', '/api/subscribe')
+    const r = res as Record<string, unknown>
+    const arr = (r.data as Record<string, unknown>)?.subscribers ?? r.subscribers ?? r
+    const raw = Array.isArray(arr) ? arr : []
+    return raw.map((s: Record<string, unknown>): Subscriber => ({
+      id:           (s._id ?? s.id) as string,
+      email:        s.email as string,
+      subscribedAt: (s.createdAt ?? s.subscribedAt) as string,
+      active:       (s.isActive ?? s.active) as boolean,
+    }))
+  },
 
   // Admin — shipments (all protected)
-  listShipments: (params?: { status?: string; search?: string }) => {
+  listShipments: async (params?: { status?: string; search?: string }) => {
     const qs = params
       ? new URLSearchParams(params as Record<string, string>).toString()
       : ''
-    return request<AdminShipment[]>('GET', `/api/admin/shipments${qs ? `?${qs}` : ''}`)
+    const res = await request<unknown>('GET', `/api/admin/shipments${qs ? `?${qs}` : ''}`)
+    const r = res as Record<string, unknown>
+    const arr: Record<string, unknown>[] = Array.isArray(r)
+      ? r
+      : Array.isArray((r.data as Record<string, unknown>)?.shipments)
+        ? (r.data as Record<string, unknown>).shipments as Record<string, unknown>[]
+        : Array.isArray(r.shipments) ? r.shipments as Record<string, unknown>[]
+        : Array.isArray(r.data) ? r.data as Record<string, unknown>[]
+        : []
+    return arr.map(normalizeShipment)
   },
 
-  createShipment: (body: Omit<AdminShipment, 'id' | 'createdAt' | 'events'>) =>
-    request<AdminShipment>('POST', '/api/admin/shipments', body),
+  createShipment: async (body: unknown) => {
+    const res = await request<unknown>('POST', '/api/admin/shipments', body)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
 
-  getShipment: (id: string) =>
-    request<AdminShipment>('GET', `/api/admin/shipments/${encodeURIComponent(id)}`),
+  getShipment: async (id: string) => {
+    const res = await request<unknown>('GET', `/api/admin/shipments/${encodeURIComponent(id)}`)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
 
-  updateShipment: (id: string, body: Partial<Pick<AdminShipment, 'status' | 'eta'>>) =>
-    request<AdminShipment>('PATCH', `/api/admin/shipments/${encodeURIComponent(id)}`, body),
+  updateShipment: async (id: string, body: unknown) => {
+    const res = await request<unknown>('PATCH', `/api/admin/shipments/${encodeURIComponent(id)}`, body)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
 
   deleteShipment: (id: string) =>
     request<void>('DELETE', `/api/admin/shipments/${encodeURIComponent(id)}`),
 
-  addEvent: (id: string, event: ShipEvent) =>
-    request<AdminShipment>('POST', `/api/admin/shipments/${encodeURIComponent(id)}/events`, event),
+  addEvent: async (id: string, event: Omit<ShipEvent, '_id'>) => {
+    const res = await request<unknown>('POST', `/api/admin/shipments/${encodeURIComponent(id)}/events`, event)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
 }

@@ -67,14 +67,14 @@ export default function AdminLoginPage() {
           <form onSubmit={submit} className="space-y-4">
             <div>
               <label className="text-xs font-semibold uppercase tracking-wide block mb-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                Username or Email
+                Email Address
               </label>
               <input
                 required
-                type="text"
-                value={form.login}
-                onChange={e => set('login', e.target.value)}
-                placeholder="admin or admin@example.com"
+                type="email"
+                value={form.email}
+                onChange={e => set('email', e.target.value)}
+                placeholder="you@example.com"
                 className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
                 style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
                 onFocus={e => { e.currentTarget.style.border = '1px solid #F5C100'; e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
@@ -136,7 +136,7 @@ export default function AdminLoginPage() {
 
           <div className="mt-6 pt-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
             <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Demo credentials: <span style={{ color: 'rgba(255,255,255,0.45)' }}>admin</span> / <span style={{ color: 'rgba(255,255,255,0.45)' }}>qsd@2026</span>
+              Quick Send Delivery · Admin Portal
             </p>
           </div>
         </div>

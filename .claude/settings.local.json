@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/temple/Documents/Rachead/transport/ && ls /Users/temple/Documents/Rachead/ 2>/dev/null)",
+      "Read(//Users/temple/Documents/Rachead/**)",
+      "Bash(npx vite *)"
+    ],
+    "additionalDirectories": [
+      "/Users/temple/Documents/Rachead/transport-backend/src/routes"
+    ]
+  }
+}
