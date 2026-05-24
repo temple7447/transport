@@ -113,7 +113,7 @@ export default function ServicesPage() {
       <div className="py-20 bg-slate-50">
         <div className="container mx-auto px-6 space-y-8">
           {SERVICES.map((svc, idx) => (
-            <div key={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+            <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
               {/* Image */}
               <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                 <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover" />

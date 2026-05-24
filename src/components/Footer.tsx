@@ -7,26 +7,26 @@ const YEAR = new Date().getFullYear()
 
 const LINKS: Record<string, { label: string; href: string }[]> = {
   Company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Careers', href: '#' },
-    { label: 'Press & Media', href: '#' },
-    { label: 'Blog', href: '#' },
-    { label: 'Sustainability', href: '#' },
+    { label: 'About Us',     href: '/about' },
+    { label: 'Careers',      href: '/careers' },
+    { label: 'Press & Media',href: '/press' },
+    { label: 'Blog',         href: '/blog' },
+    { label: 'Sustainability',href: '/sustainability' },
   ],
   Services: [
-    { label: 'Express Delivery', href: '/services' },
+    { label: 'Express Delivery',   href: '/services' },
     { label: 'Air & Ocean Freight', href: '/freight' },
-    { label: 'Road Freight', href: '/freight' },
-    { label: 'Home & Office Movers', href: '/movers' },
-    { label: 'Customs Clearance', href: '/customs' },
-    { label: 'Warehousing', href: '/services' },
+    { label: 'Road Freight',       href: '/freight' },
+    { label: 'Home & Office Movers',href: '/movers' },
+    { label: 'Customs Clearance',  href: '/customs' },
+    { label: 'Warehousing',        href: '/services' },
   ],
   Support: [
-    { label: 'Help Center', href: '#' },
-    { label: 'Track Shipment', href: '/track' },
-    { label: 'Live Chat', href: '#' },
-    { label: 'Contact Sales', href: '/contact' },
-    { label: 'System Status', href: '#' },
+    { label: 'Help Center',  href: '/help' },
+    { label: 'Track Shipment',href: '/track' },
+    { label: 'Live Chat',    href: '/contact' },
+    { label: 'Contact Sales',href: '/contact' },
+    { label: 'System Status',href: '/help' },
   ],
   Legal: [
     { label: 'Privacy Policy', href: '/legal/privacy' },
@@ -205,8 +205,13 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-sm">© {YEAR} Quick Send Delivery Ltd. All rights reserved.</p>
           <div className="flex gap-5 text-white/30 text-xs">
-            {['Privacy', 'Terms', 'Cookies', 'Sitemap'].map(l => (
-              <a key={l} href="#" className="hover:text-white/60 transition-colors">{l}</a>
+            {[
+              { label: 'Privacy',  href: '/legal/privacy' },
+              { label: 'Terms',    href: '/legal/terms' },
+              { label: 'Cookies',  href: '/legal/cookies' },
+              { label: 'Sitemap',  href: '/' },
+            ].map(l => (
+              <Link key={l.label} to={l.href} className="hover:text-white/60 transition-colors" style={{ textDecoration: 'none' }}>{l.label}</Link>
             ))}
           </div>
         </div>

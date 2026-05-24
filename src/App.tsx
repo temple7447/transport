@@ -23,11 +23,27 @@ import TermsOfServicePage from './pages/TermsOfServicePage'
 import CookiePolicyPage from './pages/CookiePolicyPage'
 import ShippingPolicyPage from './pages/ShippingPolicyPage'
 import InsuranceTermsPage from './pages/InsuranceTermsPage'
+import CareersPage from './pages/CareersPage'
+import BlogPage from './pages/BlogPage'
+import PressPage from './pages/PressPage'
+import HelpCenterPage from './pages/HelpCenterPage'
+import SustainabilityPage from './pages/SustainabilityPage'
 import { getToken } from './lib/api'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    if (hash) {
+      // Give the page a tick to render before scrolling to the anchor
+      const id = hash.replace('#', '')
+      setTimeout(() => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 80)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    }
+  }, [pathname, hash])
   return null
 }
 
@@ -78,6 +94,11 @@ export default function App() {
           <Route path="/legal/cookies" element={<CookiePolicyPage />} />
           <Route path="/legal/shipping" element={<ShippingPolicyPage />} />
           <Route path="/legal/insurance" element={<InsuranceTermsPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/press" element={<PressPage />} />
+          <Route path="/help" element={<HelpCenterPage />} />
+          <Route path="/sustainability" element={<SustainabilityPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

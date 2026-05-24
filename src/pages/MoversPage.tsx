@@ -130,7 +130,7 @@ export default function MoversPage() {
           </div>
           <div className="space-y-8">
             {SERVICES.map((svc, idx) => (
-              <div key={svc.id} className={`bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+              <div key={svc.id} id={svc.id} className={`bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                 <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                   <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover" />
                   <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-70`} />
