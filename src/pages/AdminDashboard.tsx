@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import type { JSX } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { api, clearToken, type AdminShipment, type ShipStatus, type ShipEvent, type Subscriber } from '../lib/api'
 
@@ -211,7 +212,7 @@ function ShipmentsTab({
       s.id.toLowerCase().includes(q) ||
       s.sender.name.toLowerCase().includes(q) ||
       s.recipient.name.toLowerCase().includes(q) ||
-      s.recipient.city.toLowerCase().includes(q)
+      s.recipient.city?.toLowerCase().includes(q)
     return matchSearch && (filterStatus === 'all' || s.status === filterStatus)
   })
 
@@ -927,7 +928,7 @@ function TrackTab({ shipments, onUpdate }: { shipments: AdminShipment[]; onUpdat
           <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-3">Package Details</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-xs">
-              {[['Service', result.service], ['Weight', result.weight], ['Dimensions', result.dimensions || '—'], ['Contents', result.contents], ['Value', result.value || '—'], ['Created', result.createdAt]].map(([k, v]) => (
+              {[['Service', result.service], ['Weight', result.weight], ['Dimensions', result.dimensions || '—'], ['Contents', result.contents], ['Value', result.declaredValue ? String(result.declaredValue) : '—'], ['Created', result.createdAt]].map(([k, v]) => (
                 <div key={k}><span className="text-slate-400 block">{k}</span><span className="text-slate-800 font-semibold">{v}</span></div>
               ))}
             </div>

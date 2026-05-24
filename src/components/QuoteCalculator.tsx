@@ -11,7 +11,7 @@ const ROUTES = [
 
 export default function QuoteCalculator() {
   const [form, setForm] = useState({ from: '', to: '', weight: '', length: '', width: '', height: '', type: '0' })
-  const [quote, setQuote] = useState<null | { price: number; options: typeof ROUTES }>(null)
+  const [quote, setQuote] = useState<null | { price: number; options: Array<{ label: string; days: string; rate: number; key?: string }> }>(null)
   const [loading, setLoading] = useState(false)
 
   const set = (k: string, v: string) => setForm(f => ({ ...f, [k]: v }))

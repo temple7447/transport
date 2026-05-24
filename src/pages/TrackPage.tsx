@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
+import type { JSX } from 'react'
 import { Loader } from '@googlemaps/js-api-loader'
 import { api } from '../lib/api'
 import type { PublicShipment } from '../lib/api'
@@ -183,9 +184,9 @@ function MapCanvas({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }
 
     let cancelled = false
 
-    loader.load().then(() => {
+    ;(loader as unknown as { load: () => Promise<void> }).load().then(() => {
       if (cancelled || !divRef.current) return
-      const g = window.google.maps
+      const g = (window as unknown as { google: { maps: typeof google } }).google.maps
 
       const bounds = new g.LatLngBounds()
       const pathCoords = positions.map(({ coords }) => {
@@ -238,7 +239,7 @@ function MapCanvas({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }
 
         marker.addListener('click', () => info.open({ map, anchor: marker }))
       })
-    }).catch(err => {
+    }).catch((err: unknown) => {
       if (!cancelled) console.error('[Google Maps]', err)
     })
 

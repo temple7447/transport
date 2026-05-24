@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import type { JSX } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { api, type AdminShipment, type ShipStatus, type ShipEvent } from '../lib/api'
 
@@ -22,7 +23,7 @@ function fmtDate(iso?: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-function evtIcon(type: string) {
+function evtIcon(type: string): JSX.Element {
   const m: Record<string, JSX.Element> = {
     pickup:    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>,
     flight:    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>,
