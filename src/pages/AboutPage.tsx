@@ -20,7 +20,7 @@ const TIMELINE = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-[148px]">
       {/* Hero */}
       <div className="relative h-[520px] overflow-hidden flex items-center">
         <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" className="absolute inset-0 w-full h-full object-cover" />

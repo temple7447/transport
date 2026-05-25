@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 type NavChild = { label: string; to: string; desc: string; icon: React.ReactNode }
 type NavItem  = { label: string; to: string; children?: NavChild[] }
@@ -58,8 +58,16 @@ export default function Navbar() {
   const [menuOpen,    setMenuOpen]    = useState(false)
   const [openDesktop, setOpenDesktop] = useState<string | null>(null)
   const [openMobile,  setOpenMobile]  = useState<string | null>(null)
+  const [trackVal,    setTrackVal]    = useState('')
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const location   = useLocation()
+  const navigate   = useNavigate()
+
+  const submitTrack = (e: React.FormEvent) => {
+    e.preventDefault()
+    const q = trackVal.trim()
+    if (q) { navigate(`/track?q=${encodeURIComponent(q)}`); setTrackVal('') }
+  }
 
   const enterDesktop = (label: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
@@ -246,20 +254,20 @@ export default function Navbar() {
                     >
                       <div
                         className="rounded-xl overflow-hidden"
-                        style={{ background: '#0D0840', boxShadow: '0 12px 40px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
+                        style={{ background: 'white', boxShadow: '0 12px 40px rgba(0,0,0,0.15)', border: '1px solid rgba(0,0,0,0.08)' }}
                       >
                         {/* Yellow accent line */}
                         <div style={{ height: 2, background: '#F5C100' }} />
 
                         {/* Header */}
-                        <div className="px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                        <div className="px-4 py-3" style={{ borderBottom: '1px solid rgba(0,0,0,0.07)' }}>
                           <Link
                             to={item.to}
                             className="flex items-center justify-between"
                             style={{ textDecoration: 'none' }}
                           >
-                            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>{item.label}</p>
-                            <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: '#F5C100' }}>
+                            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>{item.label}</p>
+                            <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: '#CC1500' }}>
                               View all
                               <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                             </span>
@@ -274,15 +282,15 @@ export default function Navbar() {
                               to={child.to}
                               className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150"
                               style={{ textDecoration: 'none' }}
-                              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+                              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
                               onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
                             >
                               <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ color: '#F5C100', background: 'rgba(245,193,0,0.1)' }}>
                                 {child.icon}
                               </div>
                               <div className="min-w-0">
-                                <p className="text-sm font-semibold leading-tight" style={{ color: 'rgba(255,255,255,0.85)' }}>{child.label}</p>
-                                <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{child.desc}</p>
+                                <p className="text-sm font-semibold leading-tight" style={{ color: '#1e293b' }}>{child.label}</p>
+                                <p className="text-xs mt-0.5" style={{ color: '#64748b' }}>{child.desc}</p>
                               </div>
                             </Link>
                           ))}
@@ -313,6 +321,63 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
+      {/* ══ Tier 3 — quick tracking bar (desktop only) ══════════ */}
+      <div className="hidden md:block" style={{ background: '#050320', borderBottom: '1px solid rgba(245,193,0,0.12)' }}>
+        <div className="container mx-auto px-6">
+          <form onSubmit={submitTrack} className="flex items-center gap-3 py-2">
+            <div className="flex items-center gap-2 shrink-0">
+              <svg className="w-3.5 h-3.5 shrink-0" style={{ color: 'rgba(245,193,0,0.6)' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+              </svg>
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'rgba(245,193,0,0.6)' }}>Track Shipment</span>
+              <span className="w-px h-4 bg-white/10" />
+            </div>
+            <div className="flex-1 relative max-w-lg">
+              <input
+                type="text"
+                value={trackVal}
+                onChange={e => setTrackVal(e.target.value)}
+                placeholder="Enter tracking number e.g. QSD-2025-123456"
+                className="w-full pl-3 pr-3 rounded-lg text-xs font-medium outline-none transition-all"
+                style={{
+                  height: 32,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: 'white',
+                  caretColor: '#F5C100',
+                }}
+                onFocus={e => { e.currentTarget.style.border = '1px solid rgba(245,193,0,0.45)'; e.currentTarget.style.background = 'rgba(255,255,255,0.09)' }}
+                onBlur={e => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+              />
+            </div>
+            <button
+              type="submit"
+              className="shrink-0 flex items-center gap-1.5 px-4 rounded-lg text-xs font-bold transition-all duration-150"
+              style={{ height: 32, background: '#F5C100', color: '#0D0840' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>
+                <path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+              </svg>
+              Track
+            </button>
+            <div className="hidden lg:flex items-center gap-5 ml-4 shrink-0" style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11 }}>
+              <span>·</span>
+              <span style={{ color: 'rgba(255,255,255,0.35)' }}>Need help?</span>
+              <a href="https://wa.me/15126785033" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 transition-opacity hover:opacity-80" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none', fontSize: 11 }}>
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.853L0 24l6.335-1.51A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.728.889.929-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                </svg>
+                WhatsApp
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
 
       {/* ══ Mobile menu ═══════════════════════════════════════════ */}
       <div
@@ -377,11 +442,11 @@ export default function Navbar() {
                     className="overflow-hidden"
                     style={{ maxHeight: expanded ? `${item.children!.length * 58 + 52}px` : 0, transition: 'max-height 0.28s ease' }}
                   >
-                    <div className="mx-3 mb-2 rounded-xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                    <div className="mx-3 mb-2 rounded-xl overflow-hidden" style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)' }}>
                       <Link
                         to={item.to}
                         className="flex items-center justify-between px-4 py-3 text-xs font-bold tracking-widest uppercase border-b transition-colors"
-                        style={{ color: '#F5C100', textDecoration: 'none', borderColor: 'rgba(255,255,255,0.07)' }}
+                        style={{ color: '#CC1500', textDecoration: 'none', borderColor: 'rgba(0,0,0,0.07)' }}
                       >
                         <span>{item.label} Overview</span>
                         <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
@@ -391,14 +456,14 @@ export default function Navbar() {
                           key={child.label}
                           to={child.to}
                           className="flex items-center gap-3 px-4 py-3 transition-colors"
-                          style={{ textDecoration: 'none', borderTop: idx > 0 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
-                          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+                          style={{ textDecoration: 'none', borderTop: idx > 0 ? '1px solid rgba(0,0,0,0.05)' : 'none' }}
+                          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
                           onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
                         >
-                          <span style={{ color: 'rgba(255,255,255,0.35)' }}>{child.icon}</span>
+                          <span style={{ color: '#CC1500' }}>{child.icon}</span>
                           <div className="min-w-0">
-                            <p className="text-sm font-semibold leading-tight" style={{ color: 'rgba(255,255,255,0.8)' }}>{child.label}</p>
-                            <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.35)' }}>{child.desc}</p>
+                            <p className="text-sm font-semibold leading-tight" style={{ color: '#1e293b' }}>{child.label}</p>
+                            <p className="text-xs mt-0.5 truncate" style={{ color: '#64748b' }}>{child.desc}</p>
                           </div>
                         </Link>
                       ))}

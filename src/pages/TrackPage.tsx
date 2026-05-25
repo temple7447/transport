@@ -766,7 +766,7 @@ export default function TrackPage() {
   ]
 
   return (
-    <div className="pt-20 min-h-screen" style={{ background: '#f0f4f8' }}>
+    <div className="pt-[148px] min-h-screen" style={{ background: '#f0f4f8' }}>
       {/* ── Header ─────────────────────────────────── */}
       <div className="relative py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #071426 0%, #0f2444 60%, #163166 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />

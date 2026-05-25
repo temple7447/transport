@@ -1,6 +1,6 @@
 import Hero from '../components/Hero'
+import HeroTrackBar from '../components/HeroTrackBar'
 import Partners from '../components/Partners'
-import QuoteCalculator from '../components/QuoteCalculator'
 import Services from '../components/Services'
 import HowItWorks from '../components/HowItWorks'
 import Testimonials from '../components/Testimonials'
@@ -10,8 +10,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <HeroTrackBar />
       <Partners />
-      <QuoteCalculator />
       <Services />
       <HowItWorks />
       <Testimonials />

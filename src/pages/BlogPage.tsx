@@ -66,7 +66,7 @@ export default function BlogPage() {
   const filtered  = POSTS.filter(p => !p.featured && (active === 'All' || p.category === active))
 
   return (
-    <main style={{ paddingTop: 98 }}>
+    <main style={{ paddingTop: 148 }}>
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
