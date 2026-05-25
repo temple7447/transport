@@ -10,7 +10,7 @@ import CTABanner from '../components/CTABanner'
 export default function HomePage() {
   return (
     <>
-      <PageMeta title="Fast Reliable Freight & Logistics Worldwide" description="Quick Send delivers parcels, freight, and household moves to 120+ countries. Real-time tracking, same-day express, and door-to-door service." />
+      <PageMeta title="Fast Reliable Freight & Logistics Worldwide" description="Accessiblexpress delivers parcels, freight, and household moves to 120+ countries. Real-time tracking, same-day express, and door-to-door service." />
       <Hero />
       <HeroTrackBar />
       <Partners />

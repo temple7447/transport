@@ -77,7 +77,7 @@ export default function AdminShipmentDetail() {
     try {
       await api.updateShipment(ship.id, { status: newStatus })
       const desc = eventNote.trim() || `Status updated to: ${STATUS_CFG[newStatus].label}`
-      const loc  = eventLoc.trim()  || 'Quick Send Control Centre'
+      const loc  = eventLoc.trim()  || 'Accessiblexpress Control Centre'
       const ev: Omit<ShipEvent, '_id'> = { time: nowTime(), date: todayStr(), location: loc, desc, type: 'sort' }
       const updated = await api.addEvent(ship.id, ev)
       setShip(updated)

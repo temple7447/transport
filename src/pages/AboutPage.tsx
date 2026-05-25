@@ -22,7 +22,7 @@ const TIMELINE = [
 export default function AboutPage() {
   return (
     <div className="pt-20">
-      <PageMeta title="About Quick Send" description="Quick Send is a global logistics company trusted by 50,000+ businesses across 120+ countries. Founded in Lagos, shipping worldwide since 2016." />
+      <PageMeta title="About Accessiblexpress" description="Accessiblexpress is a global logistics company trusted by 50,000+ businesses across 120+ countries. Founded in Lagos, shipping worldwide since 2016." />
       {/* Hero */}
       <div className="relative h-[520px] overflow-hidden flex items-center">
         <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" loading="eager" className="absolute inset-0 w-full h-full object-cover" />
@@ -35,7 +35,7 @@ export default function AboutPage() {
             We're Rewriting the Rules of Global Logistics
           </h1>
           <p className="text-white/60 text-lg max-w-xl leading-relaxed">
-            Born in Lagos. Built for the world. Quick Send Delivery was founded on a simple belief:
+            Born in Lagos. Built for the world. Accessiblexpress was founded on a simple belief:
             shipping should be fast, transparent, and accessible to every business on earth.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function AboutPage() {
                 Logistics Without Limits
               </h2>
               <p className="text-slate-500 text-lg mb-6 leading-relaxed">
-                We started Quick Send Delivery because we experienced first-hand how difficult and opaque
+                We started Accessiblexpress because we experienced first-hand how difficult and opaque
                 shipping could be — especially for businesses in emerging markets.
                 Our mission is to give every business, regardless of size or location,
                 access to world-class logistics infrastructure.

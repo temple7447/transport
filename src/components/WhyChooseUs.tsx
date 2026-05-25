@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text — slides in from left */}
           <div className={inView ? 'animate-reveal-left' : 'opacity-0'}>
-            <span className="section-label">Why Quick Send</span>
+            <span className="section-label">Why Accessiblexpress</span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-800 mt-4 mb-5">
               The Smarter Choice for{' '}
               <span className="gradient-text-shimmer">Global Shipping</span>

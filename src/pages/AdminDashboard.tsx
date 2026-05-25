@@ -851,7 +851,7 @@ function TrackTab({ shipments, onUpdate }: { shipments: AdminShipment[]; onUpdat
   const applyUpdate = async () => {
     if (!result) return
     const desc = eventNote || `Status updated to: ${STATUS_CFG[newStatus].label}`
-    const loc = eventLocation || 'Quick Send Control Centre'
+    const loc = eventLocation || 'Accessiblexpress Control Centre'
     const newEvent: ShipEvent = { time: nowTime(), date: todayStr(), location: loc, desc, type: 'sort' }
     try {
       await onUpdate(result.id, newStatus, eventNote || undefined, eventLocation || undefined)
@@ -1136,7 +1136,7 @@ export default function AdminDashboard() {
   const handleUpdate = async (id: string, status: ShipStatus, note?: string, location?: string) => {
     await api.updateShipment(id, { status })
     const desc = note || `Status updated to: ${STATUS_CFG[status].label}`
-    const loc = location || 'Quick Send Control Centre'
+    const loc = location || 'Accessiblexpress Control Centre'
     const newEvent: ShipEvent = { time: nowTime(), date: todayStr(), location: loc, desc, type: 'sort' }
     await api.addEvent(id, newEvent)
     setShipments(prev => prev.map(s =>
@@ -1181,7 +1181,7 @@ export default function AdminDashboard() {
               </svg>
             </div>
             <div>
-              <p className="font-black text-white text-sm tracking-tight">QUICK SEND</p>
+              <p className="font-black text-white text-sm tracking-tight">ACCESSIBLEXPRESS</p>
               <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin Panel</p>
             </div>
           </div>
@@ -1215,7 +1215,7 @@ export default function AdminDashboard() {
             <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0" style={{ background: '#F5C100', color: '#0f0900' }}>A</div>
             <div>
               <p className="text-white text-xs font-bold">Administrator</p>
-              <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>admin@quicksend</p>
+              <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>admin@accessiblexpress</p>
             </div>
           </div>
           <button onClick={logout}

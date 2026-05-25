@@ -44,9 +44,9 @@ const CATEGORIES = [
 const FAQS = [
   { q: 'How do I track my shipment?', a: 'Visit our Track page and enter your tracking number (format: QSD-XXXX-XXXXXX). You can also track via WhatsApp by sending your tracking number to +1 (512) 678-5033.' },
   { q: 'What does "In Transit" mean?', a: "Your shipment has left the origin facility and is on its way to the destination. You'll receive an update when it arrives at the next hub." },
-  { q: 'How do I get a shipping quote?', a: 'Use our online Quote Calculator on the homepage, or contact our sales team at support@quicksenddelivery.com for custom business rates.' },
+  { q: 'How do I get a shipping quote?', a: 'Use our online Quote Calculator on the homepage, or contact our sales team at support@accessiblexpress.com for custom business rates.' },
   { q: 'What items are prohibited?', a: 'We cannot ship hazardous materials, live animals, currency, illegal substances, or items prohibited by destination country regulations. Contact us for a full list.' },
-  { q: 'What happens if my package is lost?', a: 'All shipments are insured up to $100 by default. You can file a claim within 30 days of the expected delivery date. Visit our Claims page or email claims@quicksenddelivery.com.' },
+  { q: 'What happens if my package is lost?', a: 'All shipments are insured up to $100 by default. You can file a claim within 30 days of the expected delivery date. Visit our Claims page or email claims@accessiblexpress.com.' },
   { q: 'Can I change the delivery address after booking?', a: 'Yes, address changes are possible before the shipment is out for delivery. Contact our support team as soon as possible with your tracking number.' },
 ]
 

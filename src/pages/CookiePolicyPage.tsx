@@ -67,7 +67,7 @@ export default function CookiePolicyPage() {
 
             <Block title="7. Contact">
               For questions about our use of cookies:<br />
-              <a href="mailto:privacy@quicksenddelivery.com" className="text-red-600 hover:underline">privacy@quicksenddelivery.com</a>
+              <a href="mailto:privacy@accessiblexpress.com" className="text-red-600 hover:underline">privacy@accessiblexpress.com</a>
             </Block>
 
           </div>

@@ -29,7 +29,10 @@
       "Bash(sed -i '' 's|alt={svc.title} className=\"absolute inset-0 w-full h-full object-cover\"|alt={svc.title} loading=\"lazy\" className=\"absolute inset-0 w-full h-full object-cover\"|g' src/pages/ServicesPage.tsx)",
       "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/FreightPage.tsx)",
       "Bash(sed -i '' 's|alt={svc.title} className=\"absolute inset-0 w-full h-full object-cover\"|alt={svc.title} loading=\"lazy\" className=\"absolute inset-0 w-full h-full object-cover\"|g' src/pages/FreightPage.tsx)",
-      "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/CustomsPage.tsx)"
+      "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/CustomsPage.tsx)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"

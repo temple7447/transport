@@ -24,7 +24,7 @@ const PERKS = [
 export default function CareersPage() {
   return (
     <main style={{ paddingTop: 98 }}>
-      <PageMeta title="Careers at Quick Send" description="Join our global team. Open roles in operations, technology, and logistics across multiple countries." />
+      <PageMeta title="Careers at Accessiblexpress" description="Join our global team. Open roles in operations, technology, and logistics across multiple countries." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#0D0840 0%,#080530 60%,#18106A 100%)', padding: '80px 0 64px' }}>
@@ -82,7 +82,7 @@ export default function CareersPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="font-black text-slate-900 mb-3" style={{ fontSize: 'clamp(28px,3.5vw,42px)', letterSpacing: '-0.5px' }}>Open Positions</h2>
-            <p className="text-slate-500">Can't find the right role? Send us your CV at <a href="mailto:careers@quicksenddelivery.com" style={{ color: '#CC1500' }}>careers@quicksenddelivery.com</a></p>
+            <p className="text-slate-500">Can't find the right role? Send us your CV at <a href="mailto:careers@accessiblexpress.com" style={{ color: '#CC1500' }}>careers@accessiblexpress.com</a></p>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
             {OPENINGS.map(job => (
@@ -111,7 +111,7 @@ export default function CareersPage() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Don't See Your Role?</h2>
           <p className="text-white/50 mb-6 max-w-md mx-auto">We're always looking for talented people. Drop us your CV and we'll reach out when something opens up.</p>
-          <a href="mailto:careers@quicksenddelivery.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
+          <a href="mailto:careers@accessiblexpress.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
             Send Your CV
           </a>
         </div>

@@ -89,7 +89,7 @@ export default function Navbar() {
               </svg>
             </div>
             <div className="leading-none select-none">
-              <div style={{ fontWeight: 900, fontSize: 13, letterSpacing: '-0.2px', color: 'white', lineHeight: 1.1 }}>QUICK SEND</div>
+              <div style={{ fontWeight: 900, fontSize: 13, letterSpacing: '-0.2px', color: 'white', lineHeight: 1.1 }}>ACCESSIBLEXPRESS</div>
               <div style={{ fontSize: 7.5, fontWeight: 700, letterSpacing: '1.6px', color: 'rgba(255,255,255,0.35)', marginTop: 2 }}>DELIVERY</div>
             </div>
           </Link>
@@ -97,14 +97,14 @@ export default function Navbar() {
           {/* Contact info — hidden on small screens */}
           <div className="hidden md:flex items-center gap-7" style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12.5 }}>
             <a
-              href="mailto:support@quicksenddelivery.com"
+              href="mailto:support@accessiblexpress.com"
               className="flex items-center gap-2 transition-colors hover:text-white"
               style={{ color: 'inherit', textDecoration: 'none' }}
             >
               <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}>
                 <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
               </svg>
-              support@quicksenddelivery.com
+              support@accessiblexpress.com
             </a>
 
             <span className="w-px h-4 bg-white/10" />

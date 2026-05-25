@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
               <circle cx="19" cy="17" r="2.2" fill="white" />
             </svg>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">QUICK SEND</h1>
+          <h1 className="text-2xl font-black text-white tracking-tight">ACCESSIBLEXPRESS</h1>
           <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Admin Control Panel</p>
         </div>
 
@@ -136,7 +136,7 @@ export default function AdminLoginPage() {
 
           <div className="mt-6 pt-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
             <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Quick Send Delivery · Admin Portal
+              Accessiblexpress · Admin Portal
             </p>
           </div>
         </div>

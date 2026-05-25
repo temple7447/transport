@@ -268,7 +268,7 @@ const SHIPMENTS: Record<string, {
     status: 'in_transit', trackingNum: 'QSD-2024-987654', service: 'International Air Express',
     weight: '3.2 kg', dimensions: '42 × 28 × 18 cm', contents: 'Electronics – Laptop Computer',
     value: '$1,250', insurance: '$1,250 (fully insured)', pieces: 1,
-    origin: { city: 'Lagos', country: 'Nigeria', flag: '🇳🇬', date: 'May 13, 2026', hub: 'Quick Send Lagos Export Hub' },
+    origin: { city: 'Lagos', country: 'Nigeria', flag: '🇳🇬', date: 'May 13, 2026', hub: 'Accessiblexpress Lagos Export Hub' },
     dest:   { city: 'London', country: 'United Kingdom', flag: '🇬🇧', hub: 'London Heathrow Cargo Terminal', recipient: 'James W.', address: '47 Baker Street, London W1U 7EJ' },
     eta: 'Tomorrow, May 17', etaFull: 'May 17, 2026 before 6:00 PM', progress: 55,
     route: [
@@ -282,10 +282,10 @@ const SHIPMENTS: Record<string, {
       { time: '03:22', date: 'Today, May 16', location: 'Frankfurt Airport (FRA)', country: 'Germany', flag: '🇩🇪', desc: 'Arrived at Frankfurt International Airport', type: 'flight' },
       { time: '22:30', date: 'Yesterday, May 15', location: 'Dubai International Airport', country: 'UAE', flag: '🇦🇪', desc: 'Customs cleared — all documentation verified — flight departed to Frankfurt', type: 'customs', note: 'Duty-free, no further charges' },
       { time: '17:45', date: 'Yesterday, May 15', location: 'Dubai Customs & Inspection', country: 'UAE', flag: '🇦🇪', desc: 'Package submitted for customs inspection', type: 'customs' },
-      { time: '14:10', date: 'Yesterday, May 15', location: 'Dubai Cargo Hub', country: 'UAE', flag: '🇦🇪', desc: 'Package received and logged into Quick Send transit system', type: 'sort' },
+      { time: '14:10', date: 'Yesterday, May 15', location: 'Dubai Cargo Hub', country: 'UAE', flag: '🇦🇪', desc: 'Package received and logged into Accessiblexpress transit system', type: 'sort' },
       { time: '06:55', date: 'Yesterday, May 15', location: 'Lagos Murtala Airport (LOS)', country: 'Nigeria', flag: '🇳🇬', desc: 'Package loaded onto Emirates cargo flight EK-9904 to Dubai', type: 'flight' },
       { time: '11:00', date: 'May 13, 2026', location: 'Lagos Export Terminal', country: 'Nigeria', flag: '🇳🇬', desc: 'Shipment handed to airline cargo partner — all export documentation approved', type: 'customs' },
-      { time: '08:30', date: 'May 13, 2026', location: 'Quick Send Lagos Hub', country: 'Nigeria', flag: '🇳🇬', desc: 'Package picked up from sender — weighed, measured, and labelled', type: 'pickup', note: 'Package condition: Excellent' },
+      { time: '08:30', date: 'May 13, 2026', location: 'Accessiblexpress Lagos Hub', country: 'Nigeria', flag: '🇳🇬', desc: 'Package picked up from sender — weighed, measured, and labelled', type: 'pickup', note: 'Package condition: Excellent' },
     ],
     alerts: [
       { type: 'info',    text: 'Weather conditions in Frankfurt are clear — no delays expected.' },
@@ -296,7 +296,7 @@ const SHIPMENTS: Record<string, {
     status: 'out_for_delivery', trackingNum: 'QSD-2024-112233', service: 'Express Road Delivery',
     weight: '8.7 kg', dimensions: '60 × 40 × 35 cm', contents: 'Clothing & Apparel',
     value: '$380', insurance: '$500 (standard coverage)', pieces: 3,
-    origin: { city: 'Accra', country: 'Ghana', flag: '🇬🇭', date: 'May 14, 2026', hub: 'Quick Send Accra Hub' },
+    origin: { city: 'Accra', country: 'Ghana', flag: '🇬🇭', date: 'May 14, 2026', hub: 'Accessiblexpress Accra Hub' },
     dest:   { city: 'Abuja', country: 'Nigeria', flag: '🇳🇬', hub: 'Abuja Delivery Centre', recipient: 'Chioma A.', address: '14 Wuse Zone 4, Abuja, FCT' },
     eta: 'Today by 5:00 PM', etaFull: 'May 16, 2026 before 5:00 PM', progress: 82,
     route: [
@@ -312,7 +312,7 @@ const SHIPMENTS: Record<string, {
       { time: '18:30', date: 'May 15, 2026', location: 'Lagos Transit Hub', country: 'Nigeria', flag: '🇳🇬', desc: 'Package transferred to Abuja line truck — departed 6:30 PM', type: 'truck' },
       { time: '10:00', date: 'May 15, 2026', location: 'Lagos Inbound Terminal', country: 'Nigeria', flag: '🇳🇬', desc: 'Arrived Lagos — customs cleared at Seme Border', type: 'customs' },
       { time: '16:00', date: 'May 14, 2026', location: 'Aflao Border Crossing', country: 'Togo', flag: '🇹🇬', desc: 'Cross-border customs cleared — Ghana exit stamp obtained', type: 'customs' },
-      { time: '09:15', date: 'May 14, 2026', location: 'Quick Send Accra Hub', country: 'Ghana', flag: '🇬🇭', desc: 'Package picked up, inspected, and packed for road transit', type: 'pickup' },
+      { time: '09:15', date: 'May 14, 2026', location: 'Accessiblexpress Accra Hub', country: 'Ghana', flag: '🇬🇭', desc: 'Package picked up, inspected, and packed for road transit', type: 'pickup' },
     ],
     alerts: [
       { type: 'success', text: 'Your driver is 12 km away — expect delivery between 4:00–5:00 PM.' },
@@ -703,10 +703,10 @@ function apiToShipRecord(a: PublicShipment): ShipRecord {
     weight: `${a.weight} kg`,
     dimensions: '—', contents: '—', value: '—',
     insurance: 'Standard coverage', pieces: 1,
-    origin: { city: senderCity, country: senderCountry, flag: '', date: createdDate, hub: `Quick Send ${senderCity} Hub` },
+    origin: { city: senderCity, country: senderCountry, flag: '', date: createdDate, hub: `Accessiblexpress ${senderCity} Hub` },
     dest: {
       city: recipientCity, country: recipientCountry, flag: '',
-      hub: `Quick Send ${recipientCity} Delivery Centre`,
+      hub: `Accessiblexpress ${recipientCity} Delivery Centre`,
       recipient: a.recipient.name,
       address: `${recipientCity}, ${recipientCountry}`,
     },
@@ -768,7 +768,7 @@ export default function TrackPage() {
 
   return (
     <div className="pt-20 min-h-screen" style={{ background: '#f0f4f8' }}>
-      <PageMeta title="Track Your Shipment" description="Enter your Quick Send tracking number for live updates on location, transit status, and estimated delivery." />
+      <PageMeta title="Track Your Shipment" description="Enter your Accessiblexpress tracking number for live updates on location, transit status, and estimated delivery." />
       {/* ── Header ─────────────────────────────────── */}
       <div className="relative py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #071426 0%, #0f2444 60%, #163166 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />

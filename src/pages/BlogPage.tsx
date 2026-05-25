@@ -21,9 +21,9 @@ const POSTS = [
   },
   {
     slug: '3', category: 'Company News',
-    title: 'Quick Send Expands to 12 New Countries Across Southeast Asia',
+    title: 'Accessiblexpress Expands to 12 New Countries Across Southeast Asia',
     excerpt: "We're thrilled to announce same-day and next-day delivery capabilities in Thailand, Vietnam, Indonesia, and 9 more markets.",
-    author: 'Quick Send Team', date: 'May 5, 2025', readTime: '3 min read',
+    author: 'Accessiblexpress Team', date: 'May 5, 2025', readTime: '3 min read',
     img: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&w=800',
     featured: false,
   },
@@ -47,7 +47,7 @@ const POSTS = [
     slug: '6', category: 'Company News',
     title: 'Introducing Real-Time SMS Tracking for All Shipments',
     excerpt: 'No app required. Every shipment now sends automatic SMS updates at every milestone, keeping your customers informed end to end.',
-    author: 'Quick Send Team', date: 'Apr 10, 2025', readTime: '2 min read',
+    author: 'Accessiblexpress Team', date: 'Apr 10, 2025', readTime: '2 min read',
     img: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&w=800',
     featured: false,
   },
@@ -68,7 +68,7 @@ export default function BlogPage() {
 
   return (
     <main style={{ paddingTop: 98 }}>
-      <PageMeta title="Logistics Blog" description="Industry insights, shipping guides, and company news from the Quick Send team." />
+      <PageMeta title="Logistics Blog" description="Industry insights, shipping guides, and company news from the Accessiblexpress team." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
@@ -77,7 +77,7 @@ export default function BlogPage() {
             Logistics Insights
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
-            The Quick Send Blog
+            The Accessiblexpress Blog
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 17, maxWidth: 480, margin: '0 auto' }}>
             Industry news, shipping guides, and company updates — everything you need to ship smarter.

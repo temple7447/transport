@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: https://quicksenddelivery.com/sitemap.xml
+Sitemap: https://accessiblexpress.com/sitemap.xml

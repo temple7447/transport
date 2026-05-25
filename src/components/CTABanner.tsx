@@ -42,7 +42,7 @@ export default function CTABanner() {
           className={`text-white/80 text-xl mb-10 max-w-2xl mx-auto leading-relaxed ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
           style={inView ? { animationDelay: '0.2s' } : {}}
         >
-          Join 15,000+ businesses that trust Quick Send Delivery for fast, reliable, and insured shipping to 120+ countries.
+          Join 15,000+ businesses that trust Accessiblexpress for fast, reliable, and insured shipping to 120+ countries.
         </p>
 
         <div

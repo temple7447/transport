@@ -1,4 +1,4 @@
-const SITE = 'Quick Send Delivery'
+const SITE = 'Accessiblexpress'
 
 export default function PageMeta({ title, description }: { title: string; description: string }) {
   const full = title === SITE ? SITE : `${title} | ${SITE}`

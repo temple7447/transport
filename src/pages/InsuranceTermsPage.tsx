@@ -29,7 +29,7 @@ export default function InsuranceTermsPage() {
             </div>
 
             <Block title="1. Overview">
-              Every shipment sent through Quick Send Delivery is automatically covered against loss and physical damage up to USD $500 at no extra cost. This coverage is underwritten by Lloyd's of London syndicate partners and administered by Quick Send Delivery Ltd. You may purchase enhanced or premium coverage at checkout.
+              Every shipment sent through Accessiblexpress is automatically covered against loss and physical damage up to USD $500 at no extra cost. This coverage is underwritten by Lloyd's of London syndicate partners and administered by Accessiblexpress Ltd. You may purchase enhanced or premium coverage at checkout.
             </Block>
 
             <Block title="2. What Is Covered">
@@ -80,7 +80,7 @@ export default function InsuranceTermsPage() {
             </Block>
 
             <Block title="7. Subrogation">
-              Where we pay a claim, Quick Send Delivery Ltd acquires all rights of subrogation against responsible third parties. You agree to cooperate with any recovery action and to not settle independently with third parties once a claim has been approved.
+              Where we pay a claim, Accessiblexpress Ltd acquires all rights of subrogation against responsible third parties. You agree to cooperate with any recovery action and to not settle independently with third parties once a claim has been approved.
             </Block>
 
             <Block title="8. Fraud">
@@ -92,9 +92,9 @@ export default function InsuranceTermsPage() {
             </Block>
 
             <Block title="10. Contact the Claims Team">
-              Quick Send Delivery Ltd · Claims Department<br />
+              Accessiblexpress Ltd · Claims Department<br />
               3800 N Lamar Blvd, Suite 200, Austin, TX 78756, USA<br />
-              <a href="mailto:claims@quicksenddelivery.com" className="text-red-600 hover:underline">claims@quicksenddelivery.com</a> · +1 (512) 678-5044
+              <a href="mailto:claims@accessiblexpress.com" className="text-red-600 hover:underline">claims@accessiblexpress.com</a> · +1 (512) 678-5044
             </Block>
 
           </div>

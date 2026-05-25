@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
           <div className="prose prose-slate max-w-none space-y-10">
 
             <Block title="1. Introduction">
-              Quick Send Delivery Ltd ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, and your rights under applicable data protection laws including the GDPR and CCPA.
+              Accessiblexpress Ltd ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, and your rights under applicable data protection laws including the GDPR and CCPA.
             </Block>
 
             <Block title="2. Data We Collect">
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
             </Block>
 
             <Block title="8. Your Rights">
-              Depending on your jurisdiction, you have the right to: access, correct, or delete your personal data; restrict or object to processing; data portability; and to withdraw consent. To exercise any right, email <a href="mailto:privacy@quicksenddelivery.com" className="text-red-600 hover:underline">privacy@quicksenddelivery.com</a>. We will respond within 30 days.
+              Depending on your jurisdiction, you have the right to: access, correct, or delete your personal data; restrict or object to processing; data portability; and to withdraw consent. To exercise any right, email <a href="mailto:privacy@accessiblexpress.com" className="text-red-600 hover:underline">privacy@accessiblexpress.com</a>. We will respond within 30 days.
             </Block>
 
             <Block title="9. International Transfers">
@@ -80,9 +80,9 @@ export default function PrivacyPolicyPage() {
             </Block>
 
             <Block title="13. Contact">
-              Quick Send Delivery Ltd · Data Protection Officer<br />
+              Accessiblexpress Ltd · Data Protection Officer<br />
               3800 N Lamar Blvd, Suite 200, Austin, TX 78756, USA<br />
-              <a href="mailto:privacy@quicksenddelivery.com" className="text-red-600 hover:underline">privacy@quicksenddelivery.com</a>
+              <a href="mailto:privacy@accessiblexpress.com" className="text-red-600 hover:underline">privacy@accessiblexpress.com</a>
             </Block>
 
           </div>

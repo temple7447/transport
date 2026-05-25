@@ -112,7 +112,7 @@ export default function BlogSection() {
                 <div className="flex items-center justify-between pt-4 border-t border-slate-50">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ background: post.accent }} />
-                    <span className="text-slate-500 text-xs font-medium">Quick Send Editorial</span>
+                    <span className="text-slate-500 text-xs font-medium">Accessiblexpress Editorial</span>
                   </div>
                   <span
                     className="text-xs font-semibold flex items-center gap-1 transition-all duration-200 group-hover:gap-2"

@@ -80,7 +80,7 @@ function PageLoader() {
 
       {/* Brand name */}
       <div style={{ fontWeight: 900, fontSize: 24, letterSpacing: '-0.5px', color: 'white', lineHeight: 1, animation: 'loaderFadeSlide 0.7s ease 0.1s both' }}>
-        QUICK SEND
+        ACCESSIBLEXPRESS
       </div>
       <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '4px', color: 'rgba(255,255,255,0.28)', marginTop: 5, marginBottom: 40, animation: 'loaderFadeSlide 0.7s ease 0.25s both' }}>
         DELIVERY

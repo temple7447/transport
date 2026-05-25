@@ -27,7 +27,7 @@ const PILLARS = [
     icon: <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>,
     label: 'Sustainable Packaging',
     title: 'Zero Single-Use Plastic in Our Network',
-    desc: 'All Quick Send branded packaging is made from recycled or biodegradable materials. We\'ve eliminated single-use plastic from all warehouses.',
+    desc: 'All Accessiblexpress branded packaging is made from recycled or biodegradable materials. We\'ve eliminated single-use plastic from all warehouses.',
     stat: '0', statLabel: 'single-use plastics',
   },
 ]
@@ -136,7 +136,7 @@ export default function SustainabilityPage() {
       <section className="py-16" style={{ background: 'linear-gradient(135deg,#080530,#0D0840)' }}>
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Ship Green With Us</h2>
-          <p className="mb-6 max-w-md mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>Every shipment you make through Quick Send contributes to our carbon offset programme at no extra cost.</p>
+          <p className="mb-6 max-w-md mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>Every shipment you make through Accessiblexpress contributes to our carbon offset programme at no extra cost.</p>
           <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
             Get Started
           </Link>

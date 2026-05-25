@@ -2,42 +2,42 @@ import PageMeta from '../components/PageMeta'
 const RELEASES = [
   {
     date: 'May 15, 2025',
-    title: 'Quick Send Delivery Raises $40M Series B to Accelerate Global Expansion',
+    title: 'Accessiblexpress Raises $40M Series B to Accelerate Global Expansion',
     excerpt: 'The funding round, led by Sequoia Capital, will be used to expand operations into Southeast Asia and deepen AI-powered logistics capabilities.',
   },
   {
     date: 'March 8, 2025',
-    title: 'Quick Send Achieves ISO 9001:2015 Certification for Quality Management',
+    title: 'Accessiblexpress Achieves ISO 9001:2015 Certification for Quality Management',
     excerpt: 'The certification underscores our commitment to delivering consistent, high-quality logistics services across all 120+ countries we serve.',
   },
   {
     date: 'January 22, 2025',
-    title: 'Quick Send Partners with DHL for Last-Mile Delivery in West Africa',
+    title: 'Accessiblexpress Partners with DHL for Last-Mile Delivery in West Africa',
     excerpt: "The strategic partnership expands our delivery network to over 12 million households across Nigeria, Ghana, Senegal, and Côte d'Ivoire.",
   },
   {
     date: 'November 10, 2024',
-    title: 'Quick Send Launches Real-Time Carbon Footprint Tracker for Shipments',
+    title: 'Accessiblexpress Launches Real-Time Carbon Footprint Tracker for Shipments',
     excerpt: 'Shippers can now view and offset the CO₂ emissions of every shipment directly from their dashboard — a first in the African logistics market.',
   },
   {
     date: 'August 4, 2024',
-    title: 'Quick Send Delivers Its 1,000,000th Package',
-    excerpt: 'Reaching one million deliveries in under three years, Quick Send celebrates the milestone with a free shipping campaign for SME customers.',
+    title: 'Accessiblexpress Delivers Its 1,000,000th Package',
+    excerpt: 'Reaching one million deliveries in under three years, Accessiblexpress celebrates the milestone with a free shipping campaign for SME customers.',
   },
 ]
 
 const COVERAGE = [
-  { outlet: 'TechCrunch',    headline: '"Quick Send is redefining what logistics looks like for emerging markets"' },
+  { outlet: 'TechCrunch',    headline: '"Accessiblexpress is redefining what logistics looks like for emerging markets"' },
   { outlet: 'Forbes Africa', headline: '"The startup digitising freight for a continent on the move"' },
   { outlet: 'Reuters',       headline: '"Series B signals growing investor confidence in African logistics tech"' },
-  { outlet: 'Bloomberg',     headline: '"Quick Send\'s real-time tracking is what shippers have been waiting for"' },
+  { outlet: 'Bloomberg',     headline: '"Accessiblexpress\'s real-time tracking is what shippers have been waiting for"' },
 ]
 
 export default function PressPage() {
   return (
     <main style={{ paddingTop: 98 }}>
-      <PageMeta title="Press &amp; Media" description="Latest Quick Send press releases, media assets, and coverage from around the world." />
+      <PageMeta title="Press &amp; Media" description="Latest Accessiblexpress press releases, media assets, and coverage from around the world." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
@@ -49,7 +49,7 @@ export default function PressPage() {
             Press & Media
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 17, maxWidth: 480, margin: '0 auto' }}>
-            Latest news, press releases, and media resources from Quick Send Delivery.
+            Latest news, press releases, and media resources from Accessiblexpress.
           </p>
         </div>
       </section>
@@ -60,7 +60,7 @@ export default function PressPage() {
           <div>
             <h2 className="font-bold text-slate-800 mb-1">Media Enquiries</h2>
             <p className="text-slate-500 text-sm">Contact our communications team for interviews, quotes, and assets.</p>
-            <a href="mailto:press@quicksenddelivery.com" className="text-sm font-semibold mt-1 inline-block" style={{ color: '#CC1500', textDecoration: 'none' }}>press@quicksenddelivery.com</a>
+            <a href="mailto:press@accessiblexpress.com" className="text-sm font-semibold mt-1 inline-block" style={{ color: '#CC1500', textDecoration: 'none' }}>press@accessiblexpress.com</a>
           </div>
           <button
             className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all shrink-0 opacity-60 cursor-not-allowed"
@@ -112,7 +112,7 @@ export default function PressPage() {
       <section className="py-16" style={{ background: 'white' }}>
         <div className="container mx-auto px-6">
           <h2 className="font-black text-slate-900 mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)', letterSpacing: '-0.5px' }}>Brand Assets</h2>
-          <p className="text-slate-500 mb-8 max-w-lg">Use our official logo, colours, and brand guidelines when writing about Quick Send Delivery.</p>
+          <p className="text-slate-500 mb-8 max-w-lg">Use our official logo, colours, and brand guidelines when writing about Accessiblexpress.</p>
           <div className="grid sm:grid-cols-3 gap-4 max-w-2xl">
             {['Logo Pack (SVG/PNG)', 'Brand Guidelines PDF', 'Product Screenshots'].map(item => (
               <div key={item} className="flex items-center gap-3 p-4 border border-slate-100 rounded-xl opacity-60 cursor-default">

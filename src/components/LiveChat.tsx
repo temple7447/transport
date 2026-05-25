@@ -19,7 +19,7 @@ export default function LiveChat() {
               </svg>
             </div>
             <div className="flex-1">
-              <p className="text-white font-bold text-sm">Quick Send Support</p>
+              <p className="text-white font-bold text-sm">Accessiblexpress Support</p>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#F5C100] animate-pulse" />
                 <p className="text-white/60 text-xs">Online now · Avg reply 2 min</p>
@@ -60,7 +60,7 @@ export default function LiveChat() {
               </a>
 
               <a
-                href="mailto:support@quicksenddelivery.com"
+                href="mailto:support@accessiblexpress.com"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all group"
                 style={{ textDecoration: 'none' }}
               >
@@ -71,7 +71,7 @@ export default function LiveChat() {
                 </div>
                 <div>
                   <p className="text-slate-800 font-semibold text-sm">Email Support</p>
-                  <p className="text-slate-400 text-xs">support@quicksenddelivery.com</p>
+                  <p className="text-slate-400 text-xs">support@accessiblexpress.com</p>
                 </div>
               </a>
 

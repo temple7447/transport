@@ -82,7 +82,7 @@ export default function BusinessSection() {
                   <div className="w-3 h-3 rounded-full bg-yellow-400" />
                   <div className="w-3 h-3 rounded-full bg-green-400" />
                 </div>
-                <span className="text-white/40 text-xs">Quick Send Enterprise Dashboard</span>
+                <span className="text-white/40 text-xs">Accessiblexpress Enterprise Dashboard</span>
               </div>
 
               {/* Stats row */}

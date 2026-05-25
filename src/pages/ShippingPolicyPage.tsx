@@ -47,7 +47,7 @@ export default function ShippingPolicyPage() {
 
             <Block title="2. Pickup and Drop-off">
               <strong>Scheduled Pickup:</strong> Available for most domestic and international shipments. Our courier will arrive within the selected time window. If no one is available at pickup, we will attempt once more before the booking is cancelled.<br /><br />
-              <strong>Drop-off:</strong> You may drop off parcels at any Quick Send partner location. Find your nearest drop-off point in the app or on our website.
+              <strong>Drop-off:</strong> You may drop off parcels at any Accessiblexpress partner location. Find your nearest drop-off point in the app or on our website.
             </Block>
 
             <Block title="3. Weight and Size Limits">
@@ -73,7 +73,7 @@ export default function ShippingPolicyPage() {
             </Block>
 
             <Block title="5. Tracking">
-              All shipments include free real-time tracking. You will receive a tracking number at booking confirmation. Track at <strong>quicksenddelivery.com/track</strong> or via SMS/email updates. Tracking events are typically updated within 30 minutes of a scan.
+              All shipments include free real-time tracking. You will receive a tracking number at booking confirmation. Track at <strong>accessiblexpress.com/track</strong> or via SMS/email updates. Tracking events are typically updated within 30 minutes of a scan.
             </Block>
 
             <Block title="6. Delivery Attempts">
@@ -85,7 +85,7 @@ export default function ShippingPolicyPage() {
             </Block>
 
             <Block title="8. International Shipments">
-              All international shipments require accurate customs declarations. Duties and taxes are determined by the destination country's customs authority and are the responsibility of the recipient unless you have selected a Delivered Duty Paid (DDP) service. Customs clearance may extend transit times. Quick Send Delivery is not liable for delays caused by customs holds.
+              All international shipments require accurate customs declarations. Duties and taxes are determined by the destination country's customs authority and are the responsibility of the recipient unless you have selected a Delivered Duty Paid (DDP) service. Customs clearance may extend transit times. Accessiblexpress is not liable for delays caused by customs holds.
             </Block>
 
             <Block title="9. Delays and Force Majeure">
@@ -98,7 +98,7 @@ export default function ShippingPolicyPage() {
 
             <Block title="11. Contact">
               For shipping enquiries:<br />
-              <a href="mailto:support@quicksenddelivery.com" className="text-red-600 hover:underline">support@quicksenddelivery.com</a> · +1 (512) 678-5033
+              <a href="mailto:support@accessiblexpress.com" className="text-red-600 hover:underline">support@accessiblexpress.com</a> · +1 (512) 678-5033
             </Block>
 
           </div>

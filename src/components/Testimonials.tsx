@@ -9,7 +9,7 @@ const REVIEWS = [
     initials: 'SJ',
     color: 'bg-yellow-400',
     rating: 5,
-    text: 'Quick Send Delivery transformed our fulfillment. Delivery times dropped by 40% and our customers notice. The real-time tracking feature alone saved us hundreds of support tickets per month.',
+    text: 'Accessiblexpress transformed our fulfillment. Delivery times dropped by 40% and our customers notice. The real-time tracking feature alone saved us hundreds of support tickets per month.',
   },
   {
     name: 'Marcus Oduya',
@@ -17,7 +17,7 @@ const REVIEWS = [
     initials: 'MO',
     color: 'bg-red-600',
     rating: 5,
-    text: 'We ship containers to Europe monthly. Quick Send handles customs, documentation, and last-mile delivery. The account manager is responsive within minutes. Absolutely professional.',
+    text: 'We ship containers to Europe monthly. Accessiblexpress handles customs, documentation, and last-mile delivery. The account manager is responsive within minutes. Absolutely professional.',
   },
   {
     name: 'Priya Natarajan',
@@ -25,7 +25,7 @@ const REVIEWS = [
     initials: 'PN',
     color: 'bg-yellow-400',
     rating: 5,
-    text: 'Medical equipment needs special handling and zero delays. Quick Send understands that. They have never once missed a deadline in 2 years of working together. Remarkable reliability.',
+    text: 'Medical equipment needs special handling and zero delays. Accessiblexpress understands that. They have never once missed a deadline in 2 years of working together. Remarkable reliability.',
   },
   {
     name: 'James Whitfield',
@@ -41,7 +41,7 @@ const REVIEWS = [
     initials: 'AK',
     color: 'bg-yellow-400',
     rating: 5,
-    text: "As a business shipping across 30 African countries, we needed a partner that understood local logistics. Quick Send does. Their last-mile coverage in tier-2 cities is impressive.",
+    text: "As a business shipping across 30 African countries, we needed a partner that understood local logistics. Accessiblexpress does. Their last-mile coverage in tier-2 cities is impressive.",
   },
 ]
 
@@ -70,7 +70,7 @@ export default function Testimonials() {
             Loved by Thousands of Shippers
           </h2>
           <p className="text-slate-500 text-lg max-w-xl mx-auto">
-            Don't take our word for it. See what our clients say about working with Quick Send Delivery.
+            Don't take our word for it. See what our clients say about working with Accessiblexpress.
           </p>
         </div>
 

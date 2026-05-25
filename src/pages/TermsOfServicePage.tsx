@@ -14,15 +14,15 @@ export default function TermsOfServicePage() {
           <div className="space-y-10">
 
             <Block title="1. Acceptance of Terms">
-              By accessing or using any Quick Send Delivery service — including our website, mobile application, API, and logistics services — you agree to be bound by these Terms of Service and all policies incorporated by reference. If you do not agree, you must not use our services.
+              By accessing or using any Accessiblexpress service — including our website, mobile application, API, and logistics services — you agree to be bound by these Terms of Service and all policies incorporated by reference. If you do not agree, you must not use our services.
             </Block>
 
             <Block title="2. Services">
-              Quick Send Delivery provides domestic and international parcel delivery, freight forwarding, warehousing, customs brokerage, and related logistics services. All services are subject to availability and our operational policies. We reserve the right to modify or discontinue any service with reasonable notice.
+              Accessiblexpress provides domestic and international parcel delivery, freight forwarding, warehousing, customs brokerage, and related logistics services. All services are subject to availability and our operational policies. We reserve the right to modify or discontinue any service with reasonable notice.
             </Block>
 
             <Block title="3. Account Registration">
-              You must provide accurate, complete, and current information when creating an account. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us immediately of any unauthorised access at <a href="mailto:security@quicksenddelivery.com" className="text-red-600 hover:underline">security@quicksenddelivery.com</a>.
+              You must provide accurate, complete, and current information when creating an account. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us immediately of any unauthorised access at <a href="mailto:security@accessiblexpress.com" className="text-red-600 hover:underline">security@accessiblexpress.com</a>.
             </Block>
 
             <Block title="4. Prohibited Items">
@@ -53,11 +53,11 @@ export default function TermsOfServicePage() {
             </Block>
 
             <Block title="8. Customs and Compliance">
-              You warrant that all customs declarations are accurate and complete. You are solely responsible for duties, taxes, and fines arising from incorrect or incomplete declarations. Quick Send Delivery acts as agent only — we are not the importer of record.
+              You warrant that all customs declarations are accurate and complete. You are solely responsible for duties, taxes, and fines arising from incorrect or incomplete declarations. Accessiblexpress acts as agent only — we are not the importer of record.
             </Block>
 
             <Block title="9. Intellectual Property">
-              All content, trademarks, logos, and software on our platform are owned by Quick Send Delivery Ltd or our licensors. You may not reproduce, distribute, or create derivative works without written permission.
+              All content, trademarks, logos, and software on our platform are owned by Accessiblexpress Ltd or our licensors. You may not reproduce, distribute, or create derivative works without written permission.
             </Block>
 
             <Block title="10. Termination">
@@ -73,9 +73,9 @@ export default function TermsOfServicePage() {
             </Block>
 
             <Block title="13. Contact">
-              Quick Send Delivery Ltd · Legal Department<br />
+              Accessiblexpress Ltd · Legal Department<br />
               3800 N Lamar Blvd, Suite 200, Austin, TX 78756, USA<br />
-              <a href="mailto:legal@quicksenddelivery.com" className="text-red-600 hover:underline">legal@quicksenddelivery.com</a>
+              <a href="mailto:legal@accessiblexpress.com" className="text-red-600 hover:underline">legal@accessiblexpress.com</a>
             </Block>
 
           </div>
