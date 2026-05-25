@@ -22,7 +22,7 @@ const PERKS = [
 
 export default function CareersPage() {
   return (
-    <main style={{ paddingTop: 148 }}>
+    <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#0D0840 0%,#080530 60%,#18106A 100%)', padding: '80px 0 64px' }}>

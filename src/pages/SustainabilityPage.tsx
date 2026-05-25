@@ -41,7 +41,7 @@ const GOALS = [
 
 export default function SustainabilityPage() {
   return (
-    <main style={{ paddingTop: 148 }}>
+    <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '80px 0 64px' }}>

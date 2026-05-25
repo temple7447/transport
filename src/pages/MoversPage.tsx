@@ -60,7 +60,7 @@ const STEPS = [
 
 export default function MoversPage() {
   return (
-    <div className="pt-[148px]">
+    <div className="pt-20">
       {/* Hero */}
       <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #080530 0%, #0D0840 60%, #18106A 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
