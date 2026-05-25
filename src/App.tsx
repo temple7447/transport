@@ -67,12 +67,23 @@ function PageLoader() {
         {/* Counter-spin inner arc */}
         <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', border: '1.5px solid transparent', borderBottomColor: '#CC1500', animation: 'loaderRingInner 2.1s ease-in-out infinite' }} />
         {/* Logo box */}
-        <div style={{ width: 96, height: 96, borderRadius: 22, background: 'linear-gradient(135deg, #CC1500 0%, #A81200 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 48px rgba(204,21,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
-          <svg viewBox="0 0 24 24" fill="none" style={{ width: 44, height: 44 }}>
-            <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
-            <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.82"/>
-            <circle cx="5"  cy="17" r="2.2" fill="white"/>
-            <circle cx="19" cy="17" r="2.2" fill="white"/>
+        <div style={{ width: 96, height: 96, borderRadius: 22, boxShadow: '0 0 48px rgba(204,21,0,0.35)' }}>
+          <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="plG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#F5C100" />
+                <stop offset="100%" stopColor="#CC1500" />
+              </linearGradient>
+            </defs>
+            <rect width="96" height="96" rx="22" fill="#0D0840" />
+            <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
+            <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
+            <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
+            <polygon points="42,10 50,10 30,84 12,84" fill="white" />
+            <polygon points="46,10 54,10 84,84 66,84" fill="white" />
+            <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#plG)" />
+            <polygon points="48,2 38,16 58,16" fill="#F5C100" />
+            <circle cx="48" cy="9" r="4" fill="#F5C100" />
           </svg>
         </div>
       </div>
@@ -107,7 +118,7 @@ function PublicLayout() {
       {/* Skip link — visible on focus for keyboard/screen-reader users */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-[200] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-200 focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
         style={{ background: '#F5C100', color: '#0D0840' }}
       >
         Skip to main content

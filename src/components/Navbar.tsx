@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import Logo from './Logo'
 
 type NavChild = { label: string; to: string; desc: string; icon: React.ReactNode }
 type NavItem  = { label: string; to: string; children?: NavChild[] }
@@ -79,20 +80,7 @@ export default function Navbar() {
         <div className="container mx-auto px-6 flex items-center justify-between" style={{ height: 42 }}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0" style={{ textDecoration: 'none' }}>
-            <div className="flex items-center justify-center rounded-lg shrink-0" style={{ width: 32, height: 32, background: 'linear-gradient(135deg,#CC1500,#CC1500)' }}>
-              <svg viewBox="0 0 24 24" fill="none" className="w-4.5 h-4.5" style={{ width: 18, height: 18 }}>
-                <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
-                <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.8"/>
-                <circle cx="5"  cy="17" r="2.2" fill="white"/>
-                <circle cx="19" cy="17" r="2.2" fill="white"/>
-              </svg>
-            </div>
-            <div className="leading-none select-none">
-              <div style={{ fontWeight: 900, fontSize: 13, letterSpacing: '-0.2px', color: 'white', lineHeight: 1.1 }}>ACCESSIBLEXPRESS</div>
-              <div style={{ fontSize: 7.5, fontWeight: 700, letterSpacing: '1.6px', color: 'rgba(255,255,255,0.35)', marginTop: 2 }}>DELIVERY</div>
-            </div>
-          </Link>
+          <Logo size={34} theme="dark" />
 
           {/* Contact info — hidden on small screens */}
           <div className="hidden md:flex items-center gap-7" style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12.5 }}>

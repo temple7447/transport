@@ -36,15 +36,26 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 shadow-2xl" style={{ background: '#F5C100' }}>
-            <svg viewBox="0 0 24 24" fill="none" className="w-9 h-9">
-              <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95" />
-              <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.8" />
-              <circle cx="5" cy="17" r="2.2" fill="white" />
-              <circle cx="19" cy="17" r="2.2" fill="white" />
+          <div className="inline-flex mb-4">
+            <svg width="64" height="64" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="alG" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#F5C100" />
+                  <stop offset="100%" stopColor="#CC1500" />
+                </linearGradient>
+              </defs>
+              <rect width="96" height="96" rx="22" fill="#0D0840" />
+              <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
+              <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
+              <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
+              <polygon points="42,10 50,10 30,84 12,84" fill="white" />
+              <polygon points="46,10 54,10 84,84 66,84" fill="white" />
+              <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#alG)" />
+              <polygon points="48,2 38,16 58,16" fill="#F5C100" />
+              <circle cx="48" cy="9" r="4" fill="#F5C100" />
             </svg>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">ACCESSIBLEXPRESS</h1>
+          <h1 className="text-2xl font-black text-white tracking-tight">Accessible<span style={{ color: '#CC1500' }}>xpress</span></h1>
           <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Admin Control Panel</p>
         </div>
 

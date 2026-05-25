@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
 import Reveal from './Reveal'
+import Logo from './Logo'
 
 const YEAR = new Date().getFullYear()
 
@@ -104,20 +105,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
           {/* Brand col (spans 2) */}
           <Reveal direction="left" className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#F5C100' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-                  <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
-                  <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.8"/>
-                  <circle cx="5" cy="17" r="2.2" fill="white"/>
-                  <circle cx="19" cy="17" r="2.2" fill="white"/>
-                </svg>
-              </div>
-              <div>
-                <span className="font-black text-lg text-white tracking-tight">ACCESSIBLEXPRESS</span>
-                <span className="text-xs font-medium block text-white/40">DELIVERY</span>
-              </div>
-            </Link>
+            <div className="mb-4">
+              <Logo size={38} theme="dark" />
+            </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               Your trusted global logistics partner. Fast, secure, and transparent shipping to 120+ countries worldwide.
             </p>

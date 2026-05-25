@@ -1172,16 +1172,25 @@ export default function AdminDashboard() {
         {/* Logo */}
         <div className="px-5 pt-6 pb-5 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ background: '#F5C100' }}>
-              <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-                <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95" />
-                <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.8" />
-                <circle cx="5" cy="17" r="2.2" fill="white" />
-                <circle cx="19" cy="17" r="2.2" fill="white" />
-              </svg>
-            </div>
+            <svg width="36" height="36" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="adG" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#F5C100" />
+                  <stop offset="100%" stopColor="#CC1500" />
+                </linearGradient>
+              </defs>
+              <rect width="96" height="96" rx="22" fill="#0D0840" />
+              <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
+              <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
+              <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
+              <polygon points="42,10 50,10 30,84 12,84" fill="white" />
+              <polygon points="46,10 54,10 84,84 66,84" fill="white" />
+              <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#adG)" />
+              <polygon points="48,2 38,16 58,16" fill="#F5C100" />
+              <circle cx="48" cy="9" r="4" fill="#F5C100" />
+            </svg>
             <div>
-              <p className="font-black text-white text-sm tracking-tight">ACCESSIBLEXPRESS</p>
+              <p className="font-black text-white text-sm tracking-tight">Accessible<span style={{ color: '#CC1500' }}>xpress</span></p>
               <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin Panel</p>
             </div>
           </div>
