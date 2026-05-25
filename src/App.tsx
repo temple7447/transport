@@ -132,7 +132,7 @@ function AdminGuard() {
 export default function App() {
   const [initialLoad, setInitialLoad] = useState(true)
   useEffect(() => {
-    const t = setTimeout(() => setInitialLoad(false), 4000)
+    const t = setTimeout(() => setInitialLoad(false), 6000)
     return () => clearTimeout(t)
   }, [])
 
