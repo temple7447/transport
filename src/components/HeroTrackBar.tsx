@@ -15,12 +15,13 @@ export default function HeroTrackBar() {
     <div className="flex flex-col md:flex-row">
 
       {/* Left — tracking input */}
-      <div className="flex-1 flex items-center gap-3 px-6 py-5 md:px-10" style={{ background: '#0D0840' }}>
-        <form onSubmit={submit} className="flex items-center gap-3 w-full">
+      <div className="flex-1" style={{ background: '#0D0840' }}>
+        <form onSubmit={submit} className="flex items-stretch h-full w-full">
+          {/* Input — takes all available width */}
           <div className="flex-1 relative">
             <svg
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
-              style={{ color: 'rgba(255,255,255,0.35)' }}
+              className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+              style={{ color: 'rgba(255,255,255,0.4)' }}
               viewBox="0 0 24 24" fill="none" stroke="currentColor"
               strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
             >
@@ -33,21 +34,21 @@ export default function HeroTrackBar() {
               onChange={e => setValue(e.target.value)}
               placeholder="Enter Your Tracking Number"
               aria-label="Shipment tracking number"
-              className="w-full pl-11 pr-4 py-3.5 rounded-xl text-sm font-medium outline-none transition-all"
+              className="w-full h-full pl-12 pr-4 text-sm font-medium outline-none"
               style={{
-                background: 'rgba(255,255,255,0.07)',
-                border: '1px solid rgba(255,255,255,0.15)',
+                background: 'transparent',
+                border: 'none',
                 color: 'white',
                 caretColor: '#F5C100',
+                minHeight: 64,
               }}
-              onFocus={e => { e.currentTarget.style.border = '1px solid rgba(245,193,0,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
-              onBlur={e => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.07)' }}
             />
           </div>
+          {/* Button — flush to the right */}
           <button
             type="submit"
-            className="shrink-0 flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-150 whitespace-nowrap"
-            style={{ background: '#F5C100', color: '#0D0840', boxShadow: '0 2px 12px rgba(245,193,0,0.3)' }}
+            className="shrink-0 flex items-center gap-2 px-8 text-sm font-bold transition-all duration-150 whitespace-nowrap"
+            style={{ background: '#F5C100', color: '#0D0840' }}
             onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
             onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
           >
