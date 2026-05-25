@@ -841,7 +841,11 @@ function TrackTab({ shipments, onUpdate }: { shipments: AdminShipment[]; onUpdat
   const [updateDone, setUpdateDone] = useState(false)
 
   const search = () => {
-    const found = shipments.find(s => s.id.toLowerCase() === query.trim().toLowerCase())
+    const q = query.trim().toLowerCase()
+    const found = shipments.find(s =>
+      s.trackingNumber?.toLowerCase() === q ||
+      s.id.toLowerCase() === q
+    )
     setResult(found || null)
     setNotFound(!found)
     if (found) setNewStatus(found.status)
@@ -902,7 +906,7 @@ function TrackTab({ shipments, onUpdate }: { shipments: AdminShipment[]; onUpdat
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold opacity-70 mb-1">Tracking ID</p>
-                <p className="font-mono font-black text-xl">{result.id}</p>
+                <p className="font-mono font-black text-xl">{result.trackingNumber || result.id}</p>
                 <p className="opacity-70 text-sm mt-1">{result.sender.city} → {result.recipient.city} · ETA: {result.eta}</p>
               </div>
               <StatusBadge status={result.status} />

@@ -32,7 +32,16 @@
       "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/CustomsPage.tsx)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(node server.js)",
+      "Bash(echo \"Backend PID: $!\")",
+      "Bash(yarn dev *)",
+      "Bash(echo \"Frontend PID: $!\")",
+      "Bash(sleep 4 && cat /tmp/backend.log | tail -10 && echo \"---\" && cat /tmp/frontend.log | tail -6)",
+      "Read(//private/tmp/**)",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@accessiblexpress.com\",\"password\":\"admin123\"}')",
+      "Bash(curl -s http://localhost:5000/api/v1/admin/shipments -H 'Authorization: Bearer __CMDSUB_OUTPUT__')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); s=d.get\\('data',{}\\).get\\('shipments',[]\\); print\\('ID:', s[0]['_id'] if s else 'none'\\); print\\('TrackNum:', s[0].get\\('trackingNumber','none'\\) if s else 'none'\\)\")"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"
