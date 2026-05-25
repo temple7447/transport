@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import Hero from '../components/Hero'
 import HeroTrackBar from '../components/HeroTrackBar'
 import Partners from '../components/Partners'
@@ -9,6 +10,7 @@ import CTABanner from '../components/CTABanner'
 export default function HomePage() {
   return (
     <>
+      <PageMeta title="Fast Reliable Freight & Logistics Worldwide" description="Quick Send delivers parcels, freight, and household moves to 120+ countries. Real-time tracking, same-day express, and door-to-door service." />
       <Hero />
       <HeroTrackBar />
       <Partners />

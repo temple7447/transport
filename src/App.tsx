@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LiveChat from './components/LiveChat'
 import QuickTrack from './components/QuickTrack'
+import ErrorBoundary from './components/ErrorBoundary'
 import { getToken } from './lib/api'
 
 const HomePage             = lazy(() => import('./pages/HomePage'))
@@ -85,6 +86,7 @@ function AdminGuard() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           {/* Admin — no Navbar/Footer */}
@@ -122,6 +124,7 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
+      </ErrorBoundary>
     </BrowserRouter>
   )
 }

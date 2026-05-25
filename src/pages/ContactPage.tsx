@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { useState } from 'react'
 import { api } from '../lib/api'
 
@@ -57,6 +58,7 @@ export default function ContactPage() {
 
   return (
     <div className="pt-20 min-h-screen bg-slate-50">
+      <PageMeta title="Contact Us" description="Reach our logistics team for shipping quotes, support, and enquiries. We respond within 4 hours on business days." />
       {/* Header */}
       <div className="relative py-20 text-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #080530 0%, #18106A 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
@@ -171,7 +173,7 @@ export default function ContactPage() {
             {OFFICES.map(office => (
               <div key={office.city} className="card-hover bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
                 <div className="h-44 overflow-hidden">
-                  <img src={office.img} alt={office.city} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  <img src={office.img} alt={office.city} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5">
                   <div className="mb-3">

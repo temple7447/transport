@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
 
 const SvcIcon = ({ path, w = 'w-11 h-11' }: { path: string | string[]; w?: string }) => (
@@ -90,10 +91,11 @@ const SERVICES = [
 export default function ServicesPage() {
   return (
     <div className="pt-20">
+      <PageMeta title="Shipping &amp; Logistics Services" description="Express delivery, air freight, ocean shipping, warehousing, and customs clearance — all under one roof worldwide." />
       {/* Hero */}
       <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #080530 0%, #18106A 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-        <img src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+        <img src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" loading="eager" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
             Our Services
@@ -116,7 +118,7 @@ export default function ServicesPage() {
             <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
               {/* Image */}
               <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-60`} />
                 <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
                   <span className="mb-3">{svc.icon}</span>

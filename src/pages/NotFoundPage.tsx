@@ -1,13 +1,16 @@
+import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
 
 export default function NotFoundPage() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <PageMeta title="Page Not Found" description="The page you are looking for doesn't exist. Return home or track your shipment." />
       {/* Background */}
       <div className="absolute inset-0">
         <img
           src="https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?auto=compress&cs=tinysrgb&w=1800&q=80"
           alt=""
+          loading="eager"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,8,64,0.97) 0%, rgba(15,36,68,0.93) 50%, rgba(22,49,102,0.88) 100%)' }} />

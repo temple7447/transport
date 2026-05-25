@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { useState } from 'react'
 
 
@@ -67,6 +68,7 @@ export default function BlogPage() {
 
   return (
     <main style={{ paddingTop: 98 }}>
+      <PageMeta title="Logistics Blog" description="Industry insights, shipping guides, and company news from the Quick Send team." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
@@ -89,7 +91,7 @@ export default function BlogPage() {
           <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">Featured Article</p>
           <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid md:grid-cols-2 hover:shadow-lg transition-shadow">
             <div className="aspect-video md:aspect-auto overflow-hidden">
-              <img src={featured.img} alt={featured.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              <img src={featured.img} alt={featured.title} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-8 md:p-10 flex flex-col justify-center">
               <span className="inline-flex text-xs font-bold px-3 py-1 rounded-full mb-4 w-fit" style={{ background: `${CATEGORY_COLORS[featured.category]}18`, color: CATEGORY_COLORS[featured.category] }}>
@@ -135,7 +137,7 @@ export default function BlogPage() {
             {filtered.map(post => (
               <article key={post.slug} className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group">
                 <div className="aspect-video overflow-hidden">
-                  <img src={post.img} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={post.img} alt={post.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-5">
                   <span className="inline-flex text-xs font-bold px-2.5 py-1 rounded-full mb-3" style={{ background: `${CATEGORY_COLORS[post.category]}18`, color: CATEGORY_COLORS[post.category] }}>

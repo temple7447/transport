@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -61,6 +62,7 @@ export default function HelpCenterPage() {
 
   return (
     <main style={{ paddingTop: 98 }}>
+      <PageMeta title="Help Center" description="Answers to your shipping questions — tracking, customs, claims, billing, and more." />
 
       {/* Hero + search */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 56px' }}>

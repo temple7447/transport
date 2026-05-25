@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
 
 const SERVICES = [
@@ -65,10 +66,11 @@ const STATS = [
 export default function FreightPage() {
   return (
     <div className="pt-20">
+      <PageMeta title="Air, Ocean &amp; Road Freight" description="End-to-end freight forwarding: air cargo in 2–4 days, FCL/LCL ocean shipping, and cross-border road transport to 120+ countries." />
       {/* Hero */}
       <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 60%, #18106A 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-        <img src="https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+        <img src="https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" loading="eager" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="absolute top-10 right-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,21,0,0.2), transparent 70%)' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}>
@@ -113,7 +115,7 @@ export default function FreightPage() {
             {SERVICES.map((svc, idx) => (
               <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                 <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover" />
+                  <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                   <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-70`} />
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
                     <span className="mb-3">{svc.icon}</span>

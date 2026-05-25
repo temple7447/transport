@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { useState, useEffect, useRef, useMemo } from 'react'
 import type { JSX } from 'react'
 import { Link } from 'react-router-dom'
@@ -767,6 +768,7 @@ export default function TrackPage() {
 
   return (
     <div className="pt-20 min-h-screen" style={{ background: '#f0f4f8' }}>
+      <PageMeta title="Track Your Shipment" description="Enter your Quick Send tracking number for live updates on location, transit status, and estimated delivery." />
       {/* ── Header ─────────────────────────────────── */}
       <div className="relative py-20 overflow-hidden" style={{ background: 'linear-gradient(135deg, #071426 0%, #0f2444 60%, #163166 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
@@ -986,7 +988,7 @@ export default function TrackPage() {
 
             {/* Image banner */}
             <div className="rounded-3xl overflow-hidden relative h-72 md:h-96 shadow-xl mb-10">
-              <img src="https://images.pexels.com/photos/5025521/pexels-photo-5025521.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="Delivery" className="w-full h-full object-cover" />
+              <img src="https://images.pexels.com/photos/5025521/pexels-photo-5025521.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="Delivery" loading="lazy" className="w-full h-full object-cover" />
               <div className="absolute inset-0 flex items-center" style={{ background: 'linear-gradient(to right, rgba(7,20,38,0.9) 40%, transparent)' }}>
                 <div className="px-10 max-w-lg">
                   <h3 className="text-white font-black text-3xl md:text-4xl mb-3">See Exactly Where Your Package Is</h3>

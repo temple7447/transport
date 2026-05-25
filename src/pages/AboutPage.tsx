@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 
 const TEAM = [
   { name: 'Emeka Okafor', role: 'CEO & Founder', img: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop', bio: '20+ years in global logistics. Former VP at a Big 3 courier.' },
@@ -21,9 +22,10 @@ const TIMELINE = [
 export default function AboutPage() {
   return (
     <div className="pt-20">
+      <PageMeta title="About Quick Send" description="Quick Send is a global logistics company trusted by 50,000+ businesses across 120+ countries. Founded in Lagos, shipping worldwide since 2016." />
       {/* Hero */}
       <div className="relative h-[520px] overflow-hidden flex items-center">
-        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" loading="eager" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,8,64,0.95) 50%, rgba(13,8,64,0.5))' }} />
         <div className="container mx-auto px-6 relative z-10">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
@@ -138,7 +140,7 @@ export default function AboutPage() {
             {TEAM.map(member => (
               <div key={member.name} className="card-hover bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
                 <div className="h-56 overflow-hidden">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                  <img src={member.img} alt={member.name} loading="lazy" className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-bold text-slate-800 text-lg">{member.name}</h3>
@@ -153,7 +155,7 @@ export default function AboutPage() {
 
       {/* Warehouse image */}
       <section className="relative h-80 overflow-hidden flex items-center">
-        <img src="https://images.pexels.com/photos/4481326/pexels-photo-4481326.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Warehouse" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://images.pexels.com/photos/4481326/pexels-photo-4481326.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Warehouse" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: 'rgba(13,8,64,0.7)' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h2 className="text-4xl font-black text-white mb-4">Ready to Join 15,000+ Businesses?</h2>

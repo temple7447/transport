@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
 
 const PILLARS = [
@@ -42,6 +43,7 @@ const GOALS = [
 export default function SustainabilityPage() {
   return (
     <main style={{ paddingTop: 98 }}>
+      <PageMeta title="Sustainability" description="Our roadmap to carbon-neutral shipping by 2026 and net-zero logistics operations by 2030." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '80px 0 64px' }}>

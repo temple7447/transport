@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 const RELEASES = [
   {
     date: 'May 15, 2025',
@@ -36,6 +37,7 @@ const COVERAGE = [
 export default function PressPage() {
   return (
     <main style={{ paddingTop: 98 }}>
+      <PageMeta title="Press &amp; Media" description="Latest Quick Send press releases, media assets, and coverage from around the world." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>

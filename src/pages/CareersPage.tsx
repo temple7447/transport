@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
 
 const OPENINGS = [
@@ -23,6 +24,7 @@ const PERKS = [
 export default function CareersPage() {
   return (
     <main style={{ paddingTop: 98 }}>
+      <PageMeta title="Careers at Quick Send" description="Join our global team. Open roles in operations, technology, and logistics across multiple countries." />
 
       {/* Hero */}
       <section style={{ background: 'linear-gradient(135deg,#0D0840 0%,#080530 60%,#18106A 100%)', padding: '80px 0 64px' }}>

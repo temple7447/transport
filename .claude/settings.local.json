@@ -16,7 +16,20 @@
       "Bash(grep -rn \"#[0-9A-Fa-f]\\\\{3,6\\\\}\" /Users/temple/Documents/Rachead/transport/src --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.css\")",
       "Bash(sed -i '' 's/className=\"pt-20\"/className=\"pt-[148px]\"/g' src/pages/AboutPage.tsx src/pages/ServicesPage.tsx src/pages/CustomsPage.tsx src/pages/MoversPage.tsx src/pages/FreightPage.tsx)",
       "Bash(sed -i '' 's/className=\"pt-20 min-h-screen bg-slate-50\"/className=\"pt-[148px] min-h-screen bg-slate-50\"/g' src/pages/ContactPage.tsx)",
-      "Bash(sed -i '' 's/className=\"pt-20 min-h-screen\"/className=\"pt-[148px] min-h-screen\"/g' src/pages/TrackPage.tsx)"
+      "Bash(sed -i '' 's/className=\"pt-20 min-h-screen\"/className=\"pt-[148px] min-h-screen\"/g' src/pages/TrackPage.tsx)",
+      "Bash(sed -i '' \"1s|^|import PageMeta from '../components/PageMeta'\\\\n|\" src/pages/ContactPage.tsx)",
+      "Bash(sed -i '' 's|    <div className=\"pt-20 min-h-screen bg-slate-50\">|    <div className=\"pt-20 min-h-screen bg-slate-50\">\\\\n      <PageMeta title=\"Contact Us\" description=\"Reach our logistics team for shipping quotes, support, and enquiries. We respond within 4 hours on business days.\" />|' src/pages/ContactPage.tsx)",
+      "Bash(sed -i '' \"1s|^|import PageMeta from '../components/PageMeta'\\\\n|\" src/pages/BlogPage.tsx)",
+      "Bash(sed -i '' 's|    <main style={{ paddingTop: 98 }}>|    <main style={{ paddingTop: 98 }}>\\\\n      <PageMeta title=\"Logistics Blog\" description=\"Industry insights, shipping guides, and company news from the Quick Send team.\" />|' src/pages/BlogPage.tsx)",
+      "Bash(sed -i '' \"1s|^|import PageMeta from '../components/PageMeta'\\\\n|\" src/pages/HelpCenterPage.tsx)",
+      "Bash(sed -i '' \"1s|^|import PageMeta from '../components/PageMeta'\\\\n|\" src/pages/TrackPage.tsx)",
+      "Bash(sed -i '' 's|    <div className=\"pt-20 min-h-screen\" style={{ background: '\"'\"'#f0f4f8'\"'\"' }}>|    <div className=\"pt-20 min-h-screen\" style={{ background: '\"'\"'#f0f4f8'\"'\"' }}>\\\\n      <PageMeta title=\"Track Your Shipment\" description=\"Enter your Quick Send tracking number for live updates on location, transit status, and estimated delivery.\" />|' src/pages/TrackPage.tsx)",
+      "Bash(sed -i '' \"1s|^|import PageMeta from '../components/PageMeta'\\\\n|\" src/pages/NotFoundPage.tsx)",
+      "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/ServicesPage.tsx)",
+      "Bash(sed -i '' 's|alt={svc.title} className=\"absolute inset-0 w-full h-full object-cover\"|alt={svc.title} loading=\"lazy\" className=\"absolute inset-0 w-full h-full object-cover\"|g' src/pages/ServicesPage.tsx)",
+      "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/FreightPage.tsx)",
+      "Bash(sed -i '' 's|alt={svc.title} className=\"absolute inset-0 w-full h-full object-cover\"|alt={svc.title} loading=\"lazy\" className=\"absolute inset-0 w-full h-full object-cover\"|g' src/pages/FreightPage.tsx)",
+      "Bash(sed -i '' 's|alt=\"\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|alt=\"\" loading=\"eager\" className=\"absolute inset-0 w-full h-full object-cover opacity-10\"|g' src/pages/CustomsPage.tsx)"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"
