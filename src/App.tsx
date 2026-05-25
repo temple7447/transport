@@ -50,8 +50,54 @@ function ScrollToTop() {
 
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: '#0D0840' }}>
-      <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-yellow-400" style={{ animation: 'spin 0.8s linear infinite' }} />
+    <div style={{ position: 'fixed', inset: 0, background: '#080530', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+
+      {/* Dot grid */}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
+
+      {/* Ambient glows */}
+      <div style={{ position: 'absolute', top: '15%', left: '25%', width: 480, height: 480, borderRadius: '50%', background: 'radial-gradient(circle, rgba(204,21,0,0.13) 0%, transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '15%', right: '20%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,193,0,0.08) 0%, transparent 65%)', pointerEvents: 'none' }} />
+
+      {/* Animated ring + logo */}
+      <div style={{ position: 'relative', width: 96, height: 96, marginBottom: 36 }}>
+        {/* Outer slow ring */}
+        <div style={{ position: 'absolute', inset: -12, borderRadius: '50%', border: '1.5px solid rgba(245,193,0,0.15)', animation: 'loaderRingOuter 8s linear infinite' }} />
+        {/* Spinning arc */}
+        <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', border: '2px solid transparent', borderTopColor: '#F5C100', borderRightColor: 'rgba(245,193,0,0.3)', animation: 'loaderRingOuter 1.4s ease-in-out infinite' }} />
+        {/* Counter-spin inner arc */}
+        <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', border: '1.5px solid transparent', borderBottomColor: '#CC1500', animation: 'loaderRingInner 2.1s ease-in-out infinite' }} />
+        {/* Logo box */}
+        <div style={{ width: 96, height: 96, borderRadius: 22, background: 'linear-gradient(135deg, #CC1500 0%, #A81200 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 48px rgba(204,21,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
+          <svg viewBox="0 0 24 24" fill="none" style={{ width: 44, height: 44 }}>
+            <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
+            <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.82"/>
+            <circle cx="5"  cy="17" r="2.2" fill="white"/>
+            <circle cx="19" cy="17" r="2.2" fill="white"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Brand name */}
+      <div style={{ fontWeight: 900, fontSize: 24, letterSpacing: '-0.5px', color: 'white', lineHeight: 1, animation: 'loaderFadeSlide 0.7s ease 0.1s both' }}>
+        QUICK SEND
+      </div>
+      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '4px', color: 'rgba(255,255,255,0.28)', marginTop: 5, marginBottom: 40, animation: 'loaderFadeSlide 0.7s ease 0.25s both' }}>
+        DELIVERY
+      </div>
+
+      {/* Progress bar */}
+      <div style={{ width: 200, height: 2, background: 'rgba(255,255,255,0.07)', borderRadius: 4, overflow: 'hidden', animation: 'loaderFadeSlide 0.5s ease 0.35s both' }}>
+        <div style={{ height: '100%', background: 'linear-gradient(90deg, #CC1500 0%, #F5C100 100%)', borderRadius: 4, animation: 'loadProgress 2s ease-out forwards' }} />
+      </div>
+
+      {/* Bouncing dots */}
+      <div style={{ display: 'flex', gap: 7, marginTop: 22, animation: 'loaderFadeSlide 0.5s ease 0.5s both' }}>
+        {[0, 1, 2].map(i => (
+          <div key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#F5C100', animation: `loadDots 1.1s ease-in-out ${i * 0.18}s infinite` }} />
+        ))}
+      </div>
+
     </div>
   )
 }

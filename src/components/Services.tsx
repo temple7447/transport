@@ -4,112 +4,52 @@ import Reveal from './Reveal'
 
 const SERVICES = [
   {
-    icon: <IcoBolt className="w-7 h-7 text-white" />,
+    icon: <IcoBolt className="w-6 h-6" />,
     title: 'Express Delivery',
-    badge: 'Most Popular',
-    badgeColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Same-Day & Next-Day Delivery',
-    desc: 'When speed is everything, our Express service guarantees your package arrives the same day (domestic) or next business day (international). Real-time GPS tracking every step of the way.',
-    features: [
-      'Same-day pickup within 2 hours',
-      'Next-day international delivery',
-      'SMS + email notifications',
-      'Proof of delivery photo',
-      'Up to 70 kg per parcel',
-    ],
-    price: '$12',
+    desc: 'Same-day pickup within 2 hours, next-day international delivery, with real-time GPS tracking every step of the way.',
+    img: 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/services',
-    bg: 'linear-gradient(135deg, #F5C100 0%, #CC1500 100%)',
+    featured: false,
   },
   {
-    icon: <IcoPlane className="w-7 h-7 text-white" />,
+    icon: <IcoPlane className="w-6 h-6" />,
     title: 'Air Freight',
-    badge: 'Fast International',
-    badgeColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Global Air Cargo in 2–4 Days',
-    desc: 'Access 500+ airports worldwide with our dedicated air freight network. Ideal for high-value, time-sensitive cargo. We handle all documentation and customs clearance.',
-    features: [
-      '500+ airports served',
-      '2–4 day international transit',
-      'Customs documentation included',
-      'Dangerous goods certified',
-      'Temperature-controlled options',
-    ],
-    price: '$45',
+    desc: 'Access 500+ airports worldwide. 2–4 day international transit with full customs documentation included.',
+    img: 'https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/freight#air',
-    bg: 'linear-gradient(135deg, #CC1500 0%, #F5C100 100%)',
+    featured: true,
   },
   {
-    icon: <IcoShip className="w-7 h-7 text-white" />,
-    title: 'Sea Freight',
-    badge: 'Best Value',
-    badgeColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Cost-Effective Ocean Freight',
-    desc: 'Move large volumes across the globe affordably. FCL and LCL options with door-to-port or door-to-door delivery to 300+ ports worldwide.',
-    features: [
-      'FCL & LCL options',
-      '300+ ports covered',
-      'Full container tracking',
-      'Refrigerated cargo support',
-      'On-board bill of lading',
-    ],
-    price: '$180',
+    icon: <IcoShip className="w-6 h-6" />,
+    title: 'Ocean Freight',
+    desc: 'Move large volumes affordably. FCL & LCL options to 300+ ports worldwide with door-to-door service.',
+    img: 'https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/freight#ocean',
-    bg: 'linear-gradient(135deg, #0D0840 0%, #080530 100%)',
+    featured: false,
   },
   {
-    icon: <IcoTruck className="w-7 h-7 text-white" />,
+    icon: <IcoTruck className="w-6 h-6" />,
     title: 'Road Transport',
-    badge: 'Door-to-Door',
-    badgeColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Reliable Ground Logistics',
-    desc: 'Our fleet of 2,000+ vehicles covers major road corridors across continents. Perfect for domestic and cross-border deliveries with real-time fleet visibility.',
-    features: [
-      '2,000+ vehicle fleet',
-      'Cross-border clearance',
-      'Live fleet tracking',
-      'Fragile goods handling',
-      'Flexible pickup windows',
-    ],
-    price: '$8',
+    desc: 'Our fleet of 2,000+ vehicles covers major corridors across continents with live tracking on every load.',
+    img: 'https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/freight#road',
-    bg: 'linear-gradient(135deg, #CC1500 0%, #0D0840 100%)',
+    featured: false,
   },
   {
-    icon: <IcoWarehouse className="w-7 h-7 text-white" />,
+    icon: <IcoWarehouse className="w-6 h-6" />,
     title: 'Warehousing',
-    badge: 'Fulfillment Ready',
-    badgeColor: 'bg-red-100 text-red-700',
-    headline: 'Smart Storage & Fulfillment',
-    desc: 'Climate-controlled warehouses in 50+ strategic locations. Inventory management, pick-and-pack, and same-day order fulfillment for e-commerce businesses.',
-    features: [
-      '50+ global warehouse locations',
-      'Climate-controlled storage',
-      'Pick, pack & ship service',
-      'Real-time inventory dashboard',
-      'Returns processing',
-    ],
-    price: '$0.40/day',
+    desc: 'Climate-controlled storage in 50+ locations. Pick, pack & ship with real-time inventory dashboard.',
+    img: 'https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/services#warehouse',
-    bg: 'linear-gradient(135deg, #080530 0%, #18106A 100%)',
+    featured: true,
   },
   {
-    icon: <IcoShieldCheck className="w-7 h-7 text-white" />,
+    icon: <IcoShieldCheck className="w-6 h-6" />,
     title: 'Customs Clearance',
-    badge: 'AEO Certified',
-    badgeColor: 'bg-red-100 text-red-700',
-    headline: 'Hassle-Free Customs Brokerage',
-    desc: 'Our certified customs experts handle all documentation, duties, and compliance requirements so your shipments clear borders without delays — in any country.',
-    features: [
-      'Licensed customs brokers',
-      'Automated HS code classification',
-      'Duty & tax pre-calculation',
-      'CITES & special permit handling',
-      'Same-day clearance for express cargo',
-    ],
-    price: 'From $35',
+    desc: 'Licensed brokers handle all documentation, duties, and compliance so your shipments clear borders without delays.',
+    img: 'https://images.pexels.com/photos/4481326/pexels-photo-4481326.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
     to: '/customs',
-    bg: 'linear-gradient(135deg, #F5C100 0%, #CC1500 100%)',
+    featured: false,
   },
 ]
 
@@ -128,47 +68,91 @@ export default function Services() {
           </p>
         </Reveal>
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {SERVICES.map((svc, i) => (
-            <Reveal key={svc.title} direction={i % 2 === 0 ? 'left' : 'right'} delay={0.05}>
-              <div className={`flex flex-col md:flex-row ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''} bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300`}>
+            <Reveal key={svc.title} direction="up" delay={i * 0.07}>
+              <div
+                className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full"
+                style={{ background: svc.featured ? '#0D0840' : 'white' }}
+              >
+                {/* Image + diagonal cut + icon */}
+                <div style={{ position: 'relative' }}>
+                  <div style={{ height: 200, overflow: 'hidden' }}>
+                    <img
+                      src={svc.img}
+                      alt={svc.title}
+                      loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.06)' }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)' }}
+                    />
+                  </div>
 
-                {/* Image / colour panel */}
-                <div className="md:w-2/5 min-h-56 md:min-h-0 relative flex flex-col justify-end p-6 md:p-8" style={{ background: svc.bg }}>
-                  <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+                  {/* Diagonal cut overlay */}
+                  <div style={{
+                    position: 'absolute', bottom: -1, left: 0, right: 0, height: 56,
+                    background: svc.featured ? '#0D0840' : 'white',
+                    clipPath: 'polygon(0 55%, 100% 0%, 100% 100%, 0 100%)',
+                  }} />
+
+                  {/* Icon circle straddling boundary */}
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '50%',
+                    transform: 'translate(-50%, 50%)',
+                    zIndex: 10,
+                  }}>
+                    <div style={{
+                      width: 62, height: 62, borderRadius: '50%',
+                      background: svc.featured ? '#0D0840' : 'white',
+                      border: svc.featured ? '3px solid #CC1500' : '3px solid #0D0840',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      boxShadow: svc.featured
+                        ? '0 0 0 4px rgba(204,21,0,0.2), 0 8px 24px rgba(0,0,0,0.3)'
+                        : '0 0 0 4px rgba(13,8,64,0.08), 0 8px 24px rgba(0,0,0,0.12)',
+                      color: svc.featured ? '#CC1500' : '#0D0840',
+                    }}>
                       {svc.icon}
                     </div>
-                    <h3 className="text-white font-black text-xl">{svc.title}</h3>
                   </div>
                 </div>
 
-                {/* Content panel */}
-                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-                  {svc.badge && (
-                    <span className={`inline-flex self-start text-xs font-bold px-3 py-1 rounded-full mb-3 ${svc.badgeColor}`}>
-                      {svc.badge}
-                    </span>
-                  )}
-                  <h4 className="text-xl md:text-2xl font-black text-slate-800 mb-2">{svc.headline}</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-5">{svc.desc}</p>
+                {/* Content */}
+                <div style={{ paddingTop: 44, padding: '44px 24px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <h3 style={{
+                    fontWeight: 900, fontSize: 20, marginBottom: 10,
+                    color: svc.featured ? 'white' : '#1e293b',
+                    textAlign: 'center',
+                  }}>
+                    {svc.title}
+                  </h3>
+                  <p style={{
+                    fontSize: 14, lineHeight: 1.7,
+                    color: svc.featured ? 'rgba(255,255,255,0.6)' : '#64748b',
+                    textAlign: 'center', flex: 1, marginBottom: 20,
+                  }}>
+                    {svc.desc}
+                  </p>
 
-                  <ul className="space-y-2 mb-6">
-                    {svc.features.map(f => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex gap-3">
-                    <Link to="/contact" className="btn-primary py-3! px-6! text-sm!" style={{ textDecoration: 'none' }}>Get Quote</Link>
-                    <Link to={svc.to} className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all" style={{ textDecoration: 'none' }}>
+                  {/* Learn More button */}
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Link
+                      to={svc.to}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 8,
+                        padding: '11px 28px', borderRadius: 8,
+                        fontWeight: 700, fontSize: 13, letterSpacing: '0.5px', textTransform: 'uppercase',
+                        textDecoration: 'none',
+                        background: svc.featured ? '#CC1500' : '#0D0840',
+                        color: 'white',
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.85'; (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)' }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)' }}
+                    >
                       Learn More
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>
+                        <path d="M9 5l7 7-7 7"/>
+                      </svg>
                     </Link>
                   </div>
                 </div>
