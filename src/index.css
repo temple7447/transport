@@ -2,8 +2,8 @@
 
 @theme {
   --color-navy-900: #071426;
-  --color-navy-800: #0f2444;
-  --color-navy-700: #163166;
+  --color-navy-800: #050e1d;
+  --color-navy-700: #0e1e3c;
   --color-brand-yellow: #F5C100;
   --color-brand-yellow-dark: #D4A800;
   --color-brand-red: #CC1500;
@@ -69,7 +69,7 @@ body {
 
   .btn-primary {
     background: #F5C100;
-    color: #0f0900;
+    color: #071426;
     font-weight: 700;
     padding: 14px 28px;
     border-radius: 10px;

@@ -4,14 +4,14 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 const POSTS = [
   {
     category: 'Shipping Tips',
-    categoryColor: 'bg-blue-50 text-blue-700',
+    categoryColor: 'bg-red-50 text-[#CC1500]',
     date: 'May 10, 2026',
     title: 'How to Pack Fragile Items for International Shipping',
     excerpt: 'Learn the professional techniques our warehouse experts use to ensure fragile goods arrive intact across continents.',
     readTime: '4 min read',
     img: 'https://images.pexels.com/photos/4246100/pexels-photo-4246100.jpeg?auto=compress&cs=tinysrgb&w=800&h=480&fit=crop',
     imgAlt: 'Person carefully packing items in a box',
-    accent: '#2563eb',
+    accent: '#CC1500',
   },
   {
     category: 'Industry News',
@@ -26,14 +26,14 @@ const POSTS = [
   },
   {
     category: 'Business Growth',
-    categoryColor: 'bg-green-50 text-green-700',
+    categoryColor: 'bg-yellow-50 text-[#071426]',
     date: 'Apr 28, 2026',
     title: '10 Ways to Cut Shipping Costs for Your E-commerce Store',
     excerpt: 'From bulk discounts to smart packaging, discover proven strategies that can reduce shipping expenses by up to 35%.',
     readTime: '8 min read',
     img: 'https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=800&h=480&fit=crop',
     imgAlt: 'E-commerce packages and shipping boxes',
-    accent: '#16a34a',
+    accent: '#F5C100',
   },
 ]
 
@@ -54,8 +54,8 @@ export default function BlogSection() {
           </div>
           <Link
             to="/blog"
-            className="hidden sm:flex items-center gap-2 text-blue-700 font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-200 shrink-0"
-            style={{ textDecoration: 'none' }}
+            className="hidden sm:flex items-center gap-2 font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-200 shrink-0"
+            style={{ color: '#CC1500', textDecoration: 'none' }}
           >
             View All Articles
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +102,7 @@ export default function BlogSection() {
               {/* Content */}
               <div className="p-5 sm:p-6">
                 <p className="text-slate-400 text-xs mb-2">{post.date}</p>
-                <h3 className="font-bold text-slate-800 text-base sm:text-lg mb-2 sm:mb-3 leading-snug group-hover:text-blue-700 transition-colors duration-200">
+                <h3 className="font-bold text-slate-800 text-base sm:text-lg mb-2 sm:mb-3 leading-snug group-hover:text-brand-red transition-colors duration-200">
                   {post.title}
                 </h3>
                 <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">

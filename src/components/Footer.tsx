@@ -176,7 +176,7 @@ export default function Footer() {
                 <h4 className="text-white font-bold mb-1">Stay Informed</h4>
                 <p className="text-white/50 text-sm">
                   {subState === 'error'
-                    ? <span style={{ color: '#ff8080' }}>Something went wrong — please try again.</span>
+                    ? <span style={{ color: '#CC1500' }}>Something went wrong — please try again.</span>
                     : 'Get shipping tips, industry news, and exclusive offers.'}
                 </p>
               </div>

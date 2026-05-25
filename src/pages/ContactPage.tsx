@@ -58,7 +58,7 @@ export default function ContactPage() {
   return (
     <div className="pt-20 min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="relative py-20 text-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2444 0%, #163166 100%)' }}>
+      <div className="relative py-20 text-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #050e1d 0%, #0e1e3c 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <div className="container mx-auto px-6 relative z-10">
           <h1 className="text-5xl md:text-6xl font-black text-white mb-4">Get in Touch</h1>

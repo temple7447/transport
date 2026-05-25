@@ -91,7 +91,7 @@ export default function ServicesPage() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2444 0%, #163166 100%)' }}>
+      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #050e1d 0%, #0e1e3c 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <img src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">

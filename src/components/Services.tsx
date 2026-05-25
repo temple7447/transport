@@ -91,7 +91,7 @@ const SERVICES = [
     ],
     price: '$0.40/day',
     to: '/services#warehouse',
-    bg: 'linear-gradient(135deg, #0f2444 0%, #163166 100%)',
+    bg: 'linear-gradient(135deg, #050e1d 0%, #0e1e3c 100%)',
   },
   {
     icon: <IcoShieldCheck className="w-7 h-7 text-white" />,

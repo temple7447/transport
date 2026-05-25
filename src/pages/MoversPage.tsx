@@ -62,10 +62,10 @@ export default function MoversPage() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a0533 0%, #2d1065 60%, #4c1d95 100%)' }}>
+      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #050e1d 0%, #071426 60%, #0e1e3c 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <img src="https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
-        <div className="absolute top-10 left-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)' }} />
+        <div className="absolute top-10 left-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,21,0,0.25), transparent 70%)' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}>
             Moving Services
@@ -162,7 +162,7 @@ export default function MoversPage() {
       </div>
 
       {/* CTA */}
-      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg,#1a0533,#4c1d95)' }}>
+      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg,#050e1d,#071426)' }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Ready to Plan Your Move?</h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.6)' }}>Book a free, no-obligation home or office survey today and we'll give you a transparent quote within 24 hours.</p>

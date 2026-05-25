@@ -37,16 +37,16 @@ const SLIDES = [
 ]
 
 const LIVE_EVENTS = [
-  { city: 'New York, USA',  status: 'Delivered',       dot: '#4ade80' },
-  { city: 'London, UK',     status: 'In Transit',       dot: '#60a5fa' },
+  { city: 'New York, USA',  status: 'Delivered',       dot: '#F5C100' },
+  { city: 'London, UK',     status: 'In Transit',       dot: '#CC1500' },
   { city: 'Dubai, UAE',     status: 'Dispatched',       dot: '#F5C100' },
-  { city: 'Tokyo, Japan',   status: 'Delivered',        dot: '#4ade80' },
-  { city: 'Lagos, Nigeria', status: 'Out for Delivery', dot: '#a78bfa' },
-  { city: 'Sydney, AU',     status: 'Processing',       dot: '#facc15' },
-  { city: 'Paris, France',  status: 'Delivered',        dot: '#4ade80' },
-  { city: 'Singapore',      status: 'In Transit',       dot: '#60a5fa' },
-  { city: 'Austin, TX',     status: 'Delivered',        dot: '#4ade80' },
-  { city: 'Toronto, CA',    status: 'Customs Cleared',  dot: '#34d399' },
+  { city: 'Tokyo, Japan',   status: 'Delivered',        dot: '#F5C100' },
+  { city: 'Lagos, Nigeria', status: 'Out for Delivery', dot: '#CC1500' },
+  { city: 'Sydney, AU',     status: 'Processing',       dot: '#F5C100' },
+  { city: 'Paris, France',  status: 'Delivered',        dot: '#F5C100' },
+  { city: 'Singapore',      status: 'In Transit',       dot: '#CC1500' },
+  { city: 'Austin, TX',     status: 'Delivered',        dot: '#F5C100' },
+  { city: 'Toronto, CA',    status: 'Customs Cleared',  dot: '#F5C100' },
 ]
 
 const STATS = [
@@ -168,9 +168,9 @@ export default function Hero() {
         >
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
-            style={{ background: 'rgba(204,21,0,0.18)', border: '1px solid rgba(204,21,0,0.45)', color: '#ff8575' }}
+            style={{ background: 'rgba(204,21,0,0.18)', border: '1px solid rgba(204,21,0,0.45)', color: '#F5C100' }}
           >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#ff6b5b', boxShadow: '0 0 6px #ff6b5b' }} />
+            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#CC1500', boxShadow: '0 0 6px #CC1500' }} />
             {s.eyebrow}
           </span>
         </div>
@@ -284,7 +284,7 @@ export default function Hero() {
               onClick={next}
               className="flex items-center justify-center rounded-full transition-all duration-200"
               style={{ width: 42, height: 42, background: '#CC1500' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#aa1200'; e.currentTarget.style.transform = 'scale(1.08)' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#A81200'; e.currentTarget.style.transform = 'scale(1.08)' }}
               onMouseLeave={e => { e.currentTarget.style.background = '#CC1500'; e.currentTarget.style.transform = 'none' }}
               aria-label="Next"
             >

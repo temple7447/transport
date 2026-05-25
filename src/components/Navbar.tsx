@@ -312,7 +312,7 @@ export default function Navbar() {
                 textDecoration: 'none',
                 boxShadow: '0 2px 12px rgba(245,193,0,0.3)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#e6b400'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(245,193,0,0.45)' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#D4A800'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(245,193,0,0.45)' }}
               onMouseLeave={e => { e.currentTarget.style.background = '#F5C100'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(245,193,0,0.3)' }}
             >
               Get a Quote

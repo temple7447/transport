@@ -9,7 +9,8 @@
       "Bash(pkill -f \"vite --port 5173\")",
       "WebFetch(domain:wavefastexpress.com)",
       "Bash(yarn tsc *)",
-      "Bash(yarn build *)"
+      "Bash(yarn build *)",
+      "Bash(grep -E \"#[0-9a-fA-F]{3,6}\")"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"
