@@ -25,7 +25,7 @@ export default function CareersPage() {
     <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#071426 0%,#0f2444 60%,#163166 100%)', padding: '80px 0 64px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D0840 0%,#080530 60%,#18106A 100%)', padding: '80px 0 64px' }}>
         <div className="container mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.4)', color: '#CC1500' }}>
             We're Hiring
@@ -45,7 +45,7 @@ export default function CareersPage() {
       </section>
 
       {/* Stats */}
-      <section style={{ background: '#071426', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: '#0D0840', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {[{ val: '200+', label: 'Team Members' }, { val: '18', label: 'Countries' }, { val: '4.8★', label: 'Glassdoor Rating' }, { val: '94%', label: 'Retention Rate' }].map((s, i) => (
             <div key={i} className="py-8 text-center" style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
@@ -105,11 +105,11 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: 'linear-gradient(135deg,#071426,#0e1e3c)' }}>
+      <section className="py-16" style={{ background: 'linear-gradient(135deg,#0D0840,#18106A)' }}>
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Don't See Your Role?</h2>
           <p className="text-white/50 mb-6 max-w-md mx-auto">We're always looking for talented people. Drop us your CV and we'll reach out when something opens up.</p>
-          <a href="mailto:careers@quicksenddelivery.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#071426', textDecoration: 'none' }}>
+          <a href="mailto:careers@quicksenddelivery.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
             Send Your CV
           </a>
         </div>

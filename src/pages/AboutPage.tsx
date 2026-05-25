@@ -24,7 +24,7 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative h-[520px] overflow-hidden flex items-center">
         <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(7,20,38,0.95) 50%, rgba(7,20,38,0.5))' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,8,64,0.95) 50%, rgba(13,8,64,0.5))' }} />
         <div className="container mx-auto px-6 relative z-10">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.8)' }}>
             Our Story
@@ -154,7 +154,7 @@ export default function AboutPage() {
       {/* Warehouse image */}
       <section className="relative h-80 overflow-hidden flex items-center">
         <img src="https://images.pexels.com/photos/4481326/pexels-photo-4481326.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Warehouse" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: 'rgba(7,20,38,0.7)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(13,8,64,0.7)' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <h2 className="text-4xl font-black text-white mb-4">Ready to Join 15,000+ Businesses?</h2>
           <p className="text-white/60 mb-8 text-lg">Start shipping in minutes. No contracts, no setup fees.</p>

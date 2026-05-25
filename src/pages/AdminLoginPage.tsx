@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #071426 0%, #0f2444 60%, #163166 100%)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 60%, #18106A 100%)' }}>
       {/* Background dot grid */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
       {/* Glow blobs */}
@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
           </p>
 
           {error && (
-            <div className="flex items-center gap-2 p-3 rounded-xl mb-5 text-sm" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.3)', color: '#ff8080' }}>
+            <div className="flex items-center gap-2 p-3 rounded-xl mb-5 text-sm" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.3)', color: '#CC1500' }}>
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -116,11 +116,11 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={loading}
               className="w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-2 transition-all"
-              style={{ background: '#F5C100', color: '#0f0900', opacity: loading ? 0.8 : 1 }}
+              style={{ background: '#F5C100', color: '#0D0840', opacity: loading ? 0.8 : 1 }}
             >
               {loading ? (
                 <>
-                  <span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0f0900', animation: 'spin 1s linear infinite' }} />
+                  <span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0D0840', animation: 'spin 1s linear infinite' }} />
                   Signing in…
                 </>
               ) : (

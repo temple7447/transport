@@ -26,7 +26,7 @@ const POSTS = [
   },
   {
     category: 'Business Growth',
-    categoryColor: 'bg-yellow-50 text-[#071426]',
+    categoryColor: 'bg-yellow-50 text-[#0D0840]',
     date: 'Apr 28, 2026',
     title: '10 Ways to Cut Shipping Costs for Your E-commerce Store',
     excerpt: 'From bulk discounts to smart packaging, discover proven strategies that can reduce shipping expenses by up to 35%.',

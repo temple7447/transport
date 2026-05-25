@@ -98,7 +98,7 @@ export default function Footer() {
   }
 
   return (
-    <footer style={{ background: '#071426' }}>
+    <footer style={{ background: '#0D0840' }}>
       <div className="container mx-auto px-6 pt-16 pb-8">
         {/* Top grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">

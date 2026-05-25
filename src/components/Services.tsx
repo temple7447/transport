@@ -55,7 +55,7 @@ const SERVICES = [
     ],
     price: '$180',
     to: '/freight#ocean',
-    bg: 'linear-gradient(135deg, #071426 0%, #0f2444 100%)',
+    bg: 'linear-gradient(135deg, #0D0840 0%, #080530 100%)',
   },
   {
     icon: <IcoTruck className="w-7 h-7 text-white" />,
@@ -73,7 +73,7 @@ const SERVICES = [
     ],
     price: '$8',
     to: '/freight#road',
-    bg: 'linear-gradient(135deg, #CC1500 0%, #071426 100%)',
+    bg: 'linear-gradient(135deg, #CC1500 0%, #0D0840 100%)',
   },
   {
     icon: <IcoWarehouse className="w-7 h-7 text-white" />,
@@ -91,7 +91,7 @@ const SERVICES = [
     ],
     price: '$0.40/day',
     to: '/services#warehouse',
-    bg: 'linear-gradient(135deg, #050e1d 0%, #0e1e3c 100%)',
+    bg: 'linear-gradient(135deg, #080530 0%, #18106A 100%)',
   },
   {
     icon: <IcoShieldCheck className="w-7 h-7 text-white" />,

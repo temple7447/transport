@@ -10,7 +10,10 @@
       "WebFetch(domain:wavefastexpress.com)",
       "Bash(yarn tsc *)",
       "Bash(yarn build *)",
-      "Bash(grep -E \"#[0-9a-fA-F]{3,6}\")"
+      "Bash(grep -E \"#[0-9a-fA-F]{3,6}\")",
+      "Bash(cat)",
+      "Read(//tmp/**)",
+      "Bash(grep -rn \"#[0-9A-Fa-f]\\\\{3,6\\\\}\" /Users/temple/Documents/Rachead/transport/src --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.css\")"
     ],
     "additionalDirectories": [
       "/Users/temple/Documents/Rachead/transport-backend/src/routes"

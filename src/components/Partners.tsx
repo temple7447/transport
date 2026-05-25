@@ -10,7 +10,7 @@ const CARRIERS = [
   { name: 'Alibaba Global', abbr: 'ALI',    bg: '#FF6000', text: '#fff',    desc: 'Global Trade' },
   { name: 'CMA CGM',        abbr: 'CMA',    bg: '#003087', text: '#fff',    desc: 'Container Lines' },
   { name: 'Stripe',         abbr: 'STR',    bg: '#635BFF', text: '#fff',    desc: 'Payments' },
-  { name: 'Flexport',       abbr: 'FLP',    bg: '#00C2FF', text: '#001A33', desc: 'Freight Platform' },
+  { name: 'Flexport',       abbr: 'FLP',    bg: '#00C2FF', text: '#0D0840', desc: 'Freight Platform' },
 ]
 
 import { IcoLock, IcoPlane, IcoShield, IcoLeaf, IcoStar } from '../lib/icons'

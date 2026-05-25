@@ -143,7 +143,7 @@ export default function QuoteCalculator() {
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,20,38,0.97) 0%, rgba(22,49,102,0.94) 100%)' }} />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,8,64,0.97) 0%, rgba(22,49,102,0.94) 100%)' }} />
               <div className="relative z-10 flex flex-col flex-1 justify-center">
               {!quote ? (
                 <div className="text-center">

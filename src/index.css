@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-900: #071426;
-  --color-navy-800: #050e1d;
-  --color-navy-700: #0e1e3c;
+  --color-navy-900: #0D0840;
+  --color-navy-800: #080530;
+  --color-navy-700: #18106A;
   --color-brand-yellow: #F5C100;
   --color-brand-yellow-dark: #D4A800;
   --color-brand-red: #CC1500;
@@ -69,7 +69,7 @@ body {
 
   .btn-primary {
     background: #F5C100;
-    color: #071426;
+    color: #0D0840;
     font-weight: 700;
     padding: 14px 28px;
     border-radius: 10px;

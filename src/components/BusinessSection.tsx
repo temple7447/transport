@@ -16,9 +16,9 @@ export default function BusinessSection() {
   const [ref, inView] = useScrollReveal()
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #071426 0%, #0f2444 100%)' }}>
+    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 100%)' }}>
       <div className="absolute inset-0 dot-pattern opacity-30" />
-      <div className="absolute top-10 right-10 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl" />
+      <div className="absolute top-10 right-10 w-80 h-80 bg-[#CC1500]/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-20 w-64 h-64 rounded-full blur-3xl" style={{ background: 'rgba(245,193,0,0.10)' }} />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
@@ -124,7 +124,7 @@ export default function BusinessSection() {
             </div>
 
             {/* Floating badge */}
-            <div className="absolute -top-4 -right-4 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ background: '#F5C100', color: '#0f0900' }}>
+            <div className="absolute -top-4 -right-4 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ background: '#F5C100', color: '#0D0840' }}>
               Enterprise Ready
             </div>
           </div>

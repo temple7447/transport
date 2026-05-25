@@ -10,7 +10,7 @@ export default function NotFoundPage() {
           alt=""
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,20,38,0.97) 0%, rgba(15,36,68,0.93) 50%, rgba(22,49,102,0.88) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,8,64,0.97) 0%, rgba(15,36,68,0.93) 50%, rgba(22,49,102,0.88) 100%)' }} />
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
       </div>
 

@@ -75,12 +75,12 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50">
 
       {/* ══ Tier 1 — top contact bar ══════════════════════════════ */}
-      <div style={{ background: '#050e1d', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ background: '#080530', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <div className="container mx-auto px-6 flex items-center justify-between" style={{ height: 42 }}>
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0" style={{ textDecoration: 'none' }}>
-            <div className="flex items-center justify-center rounded-lg shrink-0" style={{ width: 32, height: 32, background: 'linear-gradient(135deg,#CC1500,#ff3a2a)' }}>
+            <div className="flex items-center justify-center rounded-lg shrink-0" style={{ width: 32, height: 32, background: 'linear-gradient(135deg,#CC1500,#CC1500)' }}>
               <svg viewBox="0 0 24 24" fill="none" className="w-4.5 h-4.5" style={{ width: 18, height: 18 }}>
                 <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
                 <path d="M15 7h5l3 4v3h-8V7z" fill="white" opacity="0.8"/>
@@ -159,9 +159,9 @@ export default function Navbar() {
       </div>
 
       {/* ══ Tier 2 — main navigation bar ═════════════════════════ */}
-      <nav style={{ background: '#071426', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+      <nav style={{ background: '#0D0840', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
         {/* Red underline accent */}
-        <div style={{ height: 2, background: 'linear-gradient(90deg,#CC1500 0%,#ff4433 50%,transparent 100%)' }} />
+        <div style={{ height: 2, background: 'linear-gradient(90deg,#CC1500 0%,#CC1500 50%,transparent 100%)' }} />
 
         <div className="container mx-auto px-6">
           <div className="hidden md:flex items-center" style={{ height: 54 }}>
@@ -240,29 +240,26 @@ export default function Navbar() {
                         transform: isOpen ? 'translateY(0)' : 'translateY(-6px)',
                         pointerEvents: isOpen ? 'auto' : 'none',
                         transition: 'opacity 0.18s ease, transform 0.18s ease',
-                        minWidth: item.children!.length > 4 ? 320 : 290,
+                        minWidth: item.children!.length > 4 ? 300 : 270,
                         zIndex: 60,
                       }}
                     >
                       <div
-                        className="bg-white rounded-xl overflow-hidden"
-                        style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08)', border: '1px solid rgba(0,0,0,0.06)' }}
+                        className="rounded-xl overflow-hidden"
+                        style={{ background: '#0D0840', boxShadow: '0 12px 40px rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
                       >
-                        {/* Red top accent */}
-                        <div style={{ height: 3, background: 'linear-gradient(90deg,#CC1500,#ff6b5b)' }} />
+                        {/* Yellow accent line */}
+                        <div style={{ height: 2, background: '#F5C100' }} />
 
                         {/* Header */}
-                        <div className="px-4 py-3 border-b border-slate-50 bg-slate-50/60">
+                        <div className="px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
                           <Link
                             to={item.to}
-                            className="flex items-center justify-between group"
+                            className="flex items-center justify-between"
                             style={{ textDecoration: 'none' }}
                           >
-                            <div>
-                              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.label}</p>
-                              <p className="text-sm font-bold text-slate-800 mt-0.5 leading-tight">All {item.label} Services</p>
-                            </div>
-                            <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full" style={{ color: '#CC1500', background: 'rgba(204,21,0,0.07)' }}>
+                            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>{item.label}</p>
+                            <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: '#F5C100' }}>
                               View all
                               <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                             </span>
@@ -270,27 +267,22 @@ export default function Navbar() {
                         </div>
 
                         {/* Items */}
-                        <div className="p-2">
+                        <div className="p-1.5">
                           {item.children!.map(child => (
                             <Link
                               key={child.label}
                               to={child.to}
-                              className="flex items-start gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 group"
+                              className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150"
                               style={{ textDecoration: 'none' }}
-                              onMouseEnter={e => { e.currentTarget.style.background = '#f8fafc' }}
+                              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
                               onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
                             >
-                              <div
-                                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-150 mt-0.5"
-                                style={{ background: '#f1f5f9', color: '#64748b' }}
-                                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#CC1500'; el.style.color = 'white' }}
-                                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#f1f5f9'; el.style.color = '#64748b' }}
-                              >
+                              <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ color: '#F5C100', background: 'rgba(245,193,0,0.1)' }}>
                                 {child.icon}
                               </div>
                               <div className="min-w-0">
-                                <p className="text-sm font-semibold text-slate-800 group-hover:text-[#CC1500] transition-colors leading-tight">{child.label}</p>
-                                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{child.desc}</p>
+                                <p className="text-sm font-semibold leading-tight" style={{ color: 'rgba(255,255,255,0.85)' }}>{child.label}</p>
+                                <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{child.desc}</p>
                               </div>
                             </Link>
                           ))}
@@ -308,7 +300,7 @@ export default function Navbar() {
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shrink-0 transition-all duration-150"
               style={{
                 background: '#F5C100',
-                color: '#071426',
+                color: '#0D0840',
                 textDecoration: 'none',
                 boxShadow: '0 2px 12px rgba(245,193,0,0.3)',
               }}
@@ -331,7 +323,7 @@ export default function Navbar() {
           transition: 'max-height 0.35s ease, opacity 0.25s ease',
         }}
       >
-        <div style={{ background: '#071426', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ background: '#0D0840', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="px-3 py-3">
 
             {NAV.map(item => {
@@ -422,7 +414,7 @@ export default function Navbar() {
             <Link
               to="/contact"
               className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold transition-all"
-              style={{ background: '#F5C100', color: '#071426', textDecoration: 'none', boxShadow: '0 4px 16px rgba(245,193,0,0.3)' }}
+              style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none', boxShadow: '0 4px 16px rgba(245,193,0,0.3)' }}
             >
               Get a Quote
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>

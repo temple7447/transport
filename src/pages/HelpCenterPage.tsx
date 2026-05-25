@@ -63,7 +63,7 @@ export default function HelpCenterPage() {
     <main style={{ paddingTop: 98 }}>
 
       {/* Hero + search */}
-      <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '64px 0 56px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 56px' }}>
         <div className="container mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
             Help Center
@@ -86,7 +86,7 @@ export default function HelpCenterPage() {
             <button
               onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
               className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-bold shrink-0"
-              style={{ background: '#F5C100', color: '#071426' }}
+              style={{ background: '#F5C100', color: '#0D0840' }}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
               Search

@@ -44,7 +44,7 @@ export default function SustainabilityPage() {
     <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '80px 0 64px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '80px 0 64px' }}>
         <div className="container mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
             Sustainability
@@ -60,7 +60,7 @@ export default function SustainabilityPage() {
       </section>
 
       {/* Impact numbers */}
-      <section style={{ background: '#071426', borderBottom: '1px solid rgba(245,193,0,0.1)' }}>
+      <section style={{ background: '#0D0840', borderBottom: '1px solid rgba(245,193,0,0.1)' }}>
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4">
           {[
             { val: '18,400t', label: 'CO₂ Offset in 2025' },
@@ -95,7 +95,7 @@ export default function SustainabilityPage() {
                     <h3 className="font-bold text-slate-800 mb-2 leading-snug">{p.title}</h3>
                     <p className="text-slate-500 text-sm leading-relaxed mb-4">{p.desc}</p>
                     <div className="inline-flex items-baseline gap-1.5 px-3 py-1 rounded-full" style={{ background: 'rgba(245,193,0,0.1)' }}>
-                      <span className="font-black" style={{ fontSize: 20, color: '#071426' }}>{p.stat}</span>
+                      <span className="font-black" style={{ fontSize: 20, color: '#0D0840' }}>{p.stat}</span>
                       <span className="text-xs text-slate-500">{p.statLabel}</span>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ export default function SustainabilityPage() {
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{g.year}</p>
                   <p className="font-semibold text-slate-700 text-sm">{g.goal}</p>
                 </div>
-                {g.done && <span className="ml-auto text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(245,193,0,0.15)', color: '#071426' }}>Complete</span>}
+                {g.done && <span className="ml-auto text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(245,193,0,0.15)', color: '#0D0840' }}>Complete</span>}
               </div>
             ))}
           </div>
@@ -131,11 +131,11 @@ export default function SustainabilityPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: 'linear-gradient(135deg,#050e1d,#071426)' }}>
+      <section className="py-16" style={{ background: 'linear-gradient(135deg,#080530,#0D0840)' }}>
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Ship Green With Us</h2>
           <p className="mb-6 max-w-md mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>Every shipment you make through Quick Send contributes to our carbon offset programme at no extra cost.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#071426', textDecoration: 'none' }}>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
             Get Started
           </Link>
         </div>

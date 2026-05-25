@@ -28,6 +28,7 @@ import BlogPage from './pages/BlogPage'
 import PressPage from './pages/PressPage'
 import HelpCenterPage from './pages/HelpCenterPage'
 import SustainabilityPage from './pages/SustainabilityPage'
+import QuickTrack from './components/QuickTrack'
 import { getToken } from './lib/api'
 
 function ScrollToTop() {
@@ -53,6 +54,7 @@ function PublicLayout() {
       <ScrollToTop />
       <Navbar />
       <Outlet />
+      <QuickTrack />
       <Footer />
       <LiveChat />
     </>

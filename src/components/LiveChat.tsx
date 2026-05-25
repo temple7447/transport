@@ -9,7 +9,7 @@ export default function LiveChat() {
       {open && (
         <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 w-80 overflow-hidden" style={{ animation: 'fadeInUp 0.2s ease' }}>
           {/* Header */}
-          <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,#071426,#163166)' }}>
+          <div className="px-5 py-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg,#0D0840,#18106A)' }}>
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: '#F5C100' }}>
               <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                 <path d="M1 3h14v11H1V3z" fill="white" opacity="0.95"/>
@@ -21,7 +21,7 @@ export default function LiveChat() {
             <div className="flex-1">
               <p className="text-white font-bold text-sm">Quick Send Support</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#F5C100] animate-pulse" />
                 <p className="text-white/60 text-xs">Online now · Avg reply 2 min</p>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function LiveChat() {
       <button
         onClick={() => setOpen(!open)}
         className="w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-105"
-        style={{ background: open ? '#1e293b' : 'linear-gradient(135deg,#CC1500,#ff4444)', color: 'white' }}
+        style={{ background: open ? '#0D0840' : 'linear-gradient(135deg,#CC1500,#CC1500)', color: 'white' }}
         aria-label="Open support chat"
       >
         {open ? (

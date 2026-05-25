@@ -38,7 +38,7 @@ export default function PressPage() {
     <main style={{ paddingTop: 98 }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#050e1d 0%,#071426 60%,#0e1e3c 100%)', padding: '64px 0 48px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
         <div className="container mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
             Newsroom
@@ -62,7 +62,7 @@ export default function PressPage() {
           </div>
           <button
             className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all shrink-0 opacity-60 cursor-not-allowed"
-            style={{ background: '#071426', color: 'white' }}
+            style={{ background: '#0D0840', color: 'white' }}
             disabled
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>

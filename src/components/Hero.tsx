@@ -139,7 +139,7 @@ export default function Hero() {
             loading={i === 0 ? 'eager' : 'lazy'}
           />
           {/* Gradient: dark left → semi-dark right */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(108deg, rgba(5,14,29,0.97) 0%, rgba(7,20,38,0.88) 38%, rgba(7,20,38,0.6) 62%, rgba(7,20,38,0.22) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(108deg, rgba(8,5,48,0.97) 0%, rgba(13,8,64,0.88) 38%, rgba(13,8,64,0.6) 62%, rgba(13,8,64,0.22) 100%)' }} />
         </div>
       ))}
 
@@ -208,7 +208,7 @@ export default function Hero() {
             width: 64,
             height: 3,
             borderRadius: 2,
-            background: 'linear-gradient(90deg,#CC1500,#ff4433)',
+            background: 'linear-gradient(90deg,#CC1500,#CC1500)',
             marginTop: 16,
             marginBottom: 20,
             transformOrigin: 'left',
@@ -245,7 +245,7 @@ export default function Hero() {
           <Link
             to={s.cta1.to}
             className="flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all duration-200"
-            style={{ background: '#F5C100', color: '#071426', textDecoration: 'none', boxShadow: '0 4px 24px rgba(245,193,0,0.35)' }}
+            style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none', boxShadow: '0 4px 24px rgba(245,193,0,0.35)' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(245,193,0,0.5)' }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(245,193,0,0.35)' }}
           >
@@ -354,7 +354,7 @@ export default function Hero() {
       {/* ── Stats strip ──────────────────────────────────── */}
       <div
         className="relative grid grid-cols-2 sm:grid-cols-4"
-        style={{ zIndex: 10, background: 'rgba(5,14,29,0.88)', backdropFilter: 'blur(20px)', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ zIndex: 10, background: 'rgba(8,5,48,0.88)', backdropFilter: 'blur(20px)', borderTop: '1px solid rgba(255,255,255,0.06)' }}
       >
         {STATS.map((st, i) => (
           <div
