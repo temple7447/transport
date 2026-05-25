@@ -4,7 +4,6 @@ import './App.css'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import LiveChat from './components/LiveChat'
 import QuickTrack from './components/QuickTrack'
 import ErrorBoundary from './components/ErrorBoundary'
 import { getToken } from './lib/api'
@@ -119,7 +118,6 @@ function PublicLayout() {
       <Outlet />
       <QuickTrack />
       <Footer />
-      <LiveChat />
     </>
   )
 }
