@@ -1,50 +1,44 @@
 import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
+import ServiceCard from '../components/ServiceCard'
+import type { ServiceCardData } from '../components/ServiceCard'
 
-const SERVICES = [
+const SERVICES: ServiceCardData[] = [
   {
     id: 'import',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>,
     title: 'Import Clearance',
-    tag: 'Inbound Goods',
-    headline: 'Fast, Compliant Import Processing',
-    desc: 'Our licensed customs brokers manage the full import clearance process — classification, duty calculation, entry filing, and release — so your goods clear customs without delays or penalties.',
-    features: ['HS code classification', 'Duty & VAT calculation', 'Entry filing & bond management', 'Examination coordination', 'Delivery order processing', '24-hour clearance at key ports'],
+    desc: 'Our licensed customs brokers manage the full import clearance process — classification, duty calculation, entry filing, and release — so your goods clear without delays or penalties.',
     img: 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    color: 'from-[#0D0840] to-[#080530]',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>,
+    to: '/contact',
+    featured: false,
   },
   {
     id: 'export',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>,
     title: 'Export Clearance',
-    tag: 'Outbound Goods',
-    headline: 'Smooth Export Documentation & Filing',
-    desc: 'Exporting goods internationally requires precise documentation and compliance. We prepare all export declarations, obtain necessary permits, and ensure your shipment departs without regulatory issues.',
-    features: ['Export declaration filing', 'Certificate of Origin issuance', 'Export permit procurement', 'Prohibited goods checking', 'Letter of Credit compliance', 'Electronic filing at all ports'],
+    desc: 'We prepare all export declarations, obtain necessary permits, and ensure your shipment departs without regulatory issues — with electronic filing at all ports.',
     img: 'https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    color: 'from-[#0D0840] to-[#080530]',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>,
+    to: '/contact',
+    featured: true,
   },
   {
     id: 'consulting',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>,
     title: 'Trade Consulting',
-    tag: 'Expert Guidance',
-    headline: 'Navigate Complex Trade Regulations',
-    desc: 'Our trade compliance consultants help importers and exporters understand regulations, optimise duty payments, and avoid costly errors. We review your supply chain and identify savings opportunities.',
-    features: ['Tariff engineering & optimisation', 'Free Trade Agreement analysis', 'Import/export audit review', 'Restricted party screening', 'Country of origin advice', 'Staff compliance training'],
+    desc: 'Our trade compliance consultants help you understand regulations, optimise duty payments, and avoid costly errors — with FTA analysis and staff training.',
     img: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    color: 'from-[#080530] to-[#18106A]',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>,
+    to: '/contact',
+    featured: false,
   },
   {
     id: 'importer-rep',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>,
     title: "Importer's Representative",
-    tag: 'Regulatory Compliance',
-    headline: 'Act as Your Local Compliance Partner',
-    desc: 'For businesses importing into markets where a local representative is legally required, we act as your official importer of record. We assume compliance responsibility so you can trade without a local entity.',
-    features: ['Importer of Record (IOR) service', 'Full liability assumption', 'VAT & tax registration support', 'Regulatory compliance management', 'Available in 50+ countries', 'Ongoing compliance monitoring'],
+    desc: 'We act as your official importer of record in markets requiring a local representative — assuming full compliance responsibility in 50+ countries.',
     img: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    color: 'from-[#CC1500] to-[#0D0840]',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>,
+    to: '/contact',
+    featured: true,
   },
 ]
 
@@ -100,33 +94,10 @@ export default function CustomsPage() {
             <h2 className="text-4xl font-black text-slate-800 mb-4">Customs Services</h2>
             <p className="text-slate-500 max-w-xl mx-auto">From single shipment clearance to ongoing trade compliance — we cover every aspect of customs management.</p>
           </div>
-          <div className="space-y-8">
-            {SERVICES.map((svc, idx) => (
-              <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-70`} />
-                  <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
-                    <span className="mb-3">{svc.icon}</span>
-                    <p className="text-white font-black text-3xl">{svc.title}</p>
-                  </div>
-                </div>
-                <div className={`p-8 md:p-10 flex flex-col justify-center ${idx % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                  <span className="text-xs font-bold px-3 py-1 rounded-full inline-flex w-fit mb-4" style={{ background: 'rgba(204,21,0,0.1)', color: '#CC1500' }}>{svc.tag}</span>
-                  <h2 className="text-2xl font-black text-slate-800 mb-3">{svc.headline}</h2>
-                  <p className="text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
-                  <ul className="space-y-2.5 mb-8">
-                    {svc.features.map(f => (
-                      <li key={f} className="flex items-center gap-3 text-slate-600 text-sm">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(204,21,0,0.1)' }}>
-                          <svg className="w-3 h-3" fill="none" stroke="#CC1500" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
-                        </div>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="btn-primary w-fit">Get Started</Link>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+            {SERVICES.map(svc => (
+              <div id={svc.id} key={svc.id}>
+                <ServiceCard {...svc} btnLabel="Get Started" />
               </div>
             ))}
           </div>

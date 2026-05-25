@@ -1,90 +1,62 @@
 import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
+import ServiceCard from '../components/ServiceCard'
+import type { ServiceCardData } from '../components/ServiceCard'
 
-const SvcIcon = ({ path, w = 'w-11 h-11' }: { path: string | string[]; w?: string }) => (
-  <svg className={`${w} text-white drop-shadow`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}>
-    {(Array.isArray(path) ? path : [path]).map((d, i) => <path key={i} d={d} />)}
-  </svg>
-)
-
-const SERVICES = [
+const SERVICES: ServiceCardData[] = [
   {
     id: 'express',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>,
     title: 'Express Delivery',
-    tag: 'Most Popular',
-    tagColor: 'bg-yellow-100 text-yellow-700',
-    headline: 'Same-Day & Next-Day Delivery',
-    desc: 'When speed is everything, our Express service guarantees your package arrives the same day (domestic) or next business day (international). Real-time GPS tracking every step of the way.',
-    features: ['Same-day pickup within 2 hours', 'Next-day international delivery', 'SMS + email notifications', 'Proof of delivery photo', 'Up to 70kg per parcel'],
+    desc: 'When speed is everything, our Express service guarantees same-day (domestic) or next-day (international) delivery with real-time GPS tracking every step of the way.',
     img: 'https://images.pexels.com/photos/4246019/pexels-photo-4246019.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$12',
-    color: 'from-yellow-400 to-red-600',
-    icon: <SvcIcon path="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />,
+    to: '/contact',
+    featured: false,
   },
   {
     id: 'air',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>,
     title: 'Air Freight',
-    tag: 'Fast International',
-    tagColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Global Air Cargo in 2–4 Days',
-    desc: 'Access 500+ airports worldwide with our dedicated air freight network. Ideal for high-value, time-sensitive cargo. We handle all documentation and customs clearance.',
-    features: ['500+ airports served', '2–4 day international transit', 'Customs documentation included', 'Dangerous goods certified', 'Temperature-controlled options'],
+    desc: 'Access 500+ airports worldwide. 2–4 day international transit with customs documentation included, dangerous goods certified, and temperature-controlled options.',
     img: 'https://images.pexels.com/photos/747679/pexels-photo-747679.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$45',
-    color: 'from-red-600 to-yellow-400',
-    icon: <SvcIcon path="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />,
+    to: '/freight#air',
+    featured: true,
   },
   {
     id: 'sea',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M12 3v4M3 17l2-6h14l2 6H3zM1 21h22M7 11V7a5 5 0 0110 0v4"/></svg>,
     title: 'Sea Freight',
-    tag: 'Best Value',
-    tagColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Cost-Effective Ocean Freight',
-    desc: 'The most economical solution for large or heavy shipments. We offer both Full Container Load (FCL) and Less than Container Load (LCL) to 300+ ports globally.',
-    features: ['300+ global ports', 'FCL & LCL options', '15–45 day transit times', 'Port-to-port or door-to-door', 'Bulk cargo specialists'],
+    desc: 'The most economical solution for large shipments. FCL & LCL options to 300+ ports globally with port-to-port or door-to-door service.',
     img: 'https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$280',
-    color: 'from-yellow-400 to-red-600',
-    icon: <SvcIcon path={['M12 3v4', 'M3 17l2-6h14l2 6H3z', 'M1 21h22', 'M7 11V7a5 5 0 0110 0v4']} />,
+    to: '/freight#ocean',
+    featured: false,
   },
   {
     id: 'road',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1V8h3l3 3v4l1 1h-1m-6 0h-3"/></svg>,
     title: 'Road Transport',
-    tag: 'Domestic & Cross-Border',
-    tagColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Reliable Ground Logistics',
-    desc: 'Our fleet of 2,000+ vehicles covers major trade routes across Africa, Europe, and Asia. Door-to-door delivery with full cargo tracking and dedicated drivers.',
-    features: ['2,000+ vehicle fleet', 'Refrigerated transport available', 'Oversize load specialists', 'Cross-border customs support', 'Real-time fleet tracking'],
+    desc: 'Our fleet of 2,000+ vehicles covers major trade routes across Africa, Europe, and Asia. Refrigerated, oversize, and cross-border with real-time tracking.',
     img: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$8',
-    color: 'from-red-600 to-yellow-400',
-    icon: <SvcIcon path={['M9 17a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z', 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1V8h3l3 3v4l1 1h-1m-6 0h-3']} />,
+    to: '/freight#road',
+    featured: false,
   },
   {
     id: 'warehouse',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/><path d="M9 21V12h6v9"/></svg>,
     title: 'Warehousing & Fulfillment',
-    tag: 'Storage Solutions',
-    tagColor: 'bg-red-100 text-red-700',
-    headline: 'Smart Warehouse Management',
-    desc: 'Secure, climate-controlled warehouses in 50+ strategic locations. Store inventory close to your customers, fulfil orders same-day, and scale without limits.',
-    features: ['50+ warehouse locations', 'Climate-controlled facilities', 'Pick, pack & ship services', 'Inventory management portal', 'Returns processing included'],
+    desc: 'Climate-controlled storage at 50+ locations. Pick, pack & ship with an inventory management portal and returns processing included.',
     img: 'https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$0.40/day',
-    color: 'from-yellow-400 to-red-600',
-    icon: <SvcIcon path={['M3 9.5L12 3l9 6.5V21H3V9.5z', 'M9 21V12h6v9']} />,
+    to: '/contact',
+    featured: true,
   },
   {
     id: 'customs',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>,
     title: 'Customs Clearance',
-    tag: 'Compliance Guaranteed',
-    tagColor: 'bg-red-100 text-red-700',
-    headline: 'Hassle-Free Import & Export',
-    desc: 'Our licensed customs brokers handle all paperwork, duties, taxes, and compliance requirements. We guarantee clearance within 24 hours at supported border points.',
-    features: ['Licensed customs brokers', '24-hour clearance guarantee', 'Duty & tax calculation', 'HS code classification', 'Import/export permits'],
+    desc: 'Licensed brokers handle all paperwork, duties, taxes, and compliance. 24-hour clearance guarantee with HS code classification and import/export permits.',
     img: 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-    from: '$35',
-    color: 'from-red-600 to-yellow-400',
-    icon: <SvcIcon path="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />,
+    to: '/customs',
+    featured: false,
   },
 ]
 
@@ -113,43 +85,14 @@ export default function ServicesPage() {
 
       {/* Services */}
       <div className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6 space-y-8">
-          {SERVICES.map((svc, idx) => (
-            <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-              {/* Image */}
-              <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-60`} />
-                <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
-                  <span className="mb-3">{svc.icon}</span>
-                  <p className="text-white font-black text-3xl">{svc.title}</p>
-                  <p className="text-white/70 text-sm mt-1">Starting from <strong className="text-white">{svc.from}</strong></p>
-                </div>
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {SERVICES.map(svc => (
+              <div id={svc.id} key={svc.id}>
+                <ServiceCard {...svc} btnLabel="Get Quote" />
               </div>
-              {/* Content */}
-              <div className={`p-8 md:p-10 flex flex-col justify-center ${idx % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                <span className={`text-xs font-bold px-3 py-1 rounded-full ${svc.tagColor} inline-flex w-fit mb-4`}>{svc.tag}</span>
-                <h2 className="text-2xl font-black text-slate-800 mb-3">{svc.headline}</h2>
-                <p className="text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
-                <ul className="space-y-2.5 mb-8">
-                  {svc.features.map(f => (
-                    <li key={f} className="flex items-center gap-3 text-slate-600 text-sm">
-                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/>
-                        </svg>
-                      </div>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex gap-3">
-                  <Link to="/contact" className="btn-primary">Get Quote</Link>
-                  <Link to="/contact" className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors" style={{ textDecoration: 'none' }}>Learn More</Link>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

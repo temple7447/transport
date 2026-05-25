@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useEffect, lazy, Suspense } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import './App.css'
 
 import Navbar from './components/Navbar'
@@ -130,6 +130,14 @@ function AdminGuard() {
 }
 
 export default function App() {
+  const [initialLoad, setInitialLoad] = useState(true)
+  useEffect(() => {
+    const t = setTimeout(() => setInitialLoad(false), 4000)
+    return () => clearTimeout(t)
+  }, [])
+
+  if (initialLoad) return <PageLoader />
+
   return (
     <BrowserRouter>
       <ErrorBoundary>

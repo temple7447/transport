@@ -1,58 +1,44 @@
 import PageMeta from '../components/PageMeta'
 import { Link } from 'react-router-dom'
+import ServiceCard from '../components/ServiceCard'
+import type { ServiceCardData } from '../components/ServiceCard'
 
-const SERVICES = [
+const SERVICES: ServiceCardData[] = [
   {
     id: 'air',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>,
     title: 'Air Freight',
-    tag: 'Fastest International',
-    tagColor: 'bg-blue-100 text-blue-700',
-    headline: 'Global Air Cargo in 2–4 Days',
-    desc: 'Access 500+ airports worldwide through our dedicated air freight network. Ideal for high-value, time-sensitive cargo. We handle all documentation, insurance, and customs clearance end-to-end.',
-    features: ['500+ airports served globally', '2–4 day international transit', 'Customs documentation included', 'Dangerous goods certified', 'Temperature-controlled options', 'Charter services available'],
-    img: 'https://images.pexels.com/photos/747679/pexels-photo-747679.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    from: 'From $45/kg',
-    color: 'from-red-600 to-yellow-400',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>,
+    desc: 'Access 500+ airports worldwide. 2–4 day international transit, dangerous goods certified, with full documentation and customs clearance end-to-end.',
+    img: 'https://images.pexels.com/photos/747679/pexels-photo-747679.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
+    to: '/contact',
+    featured: false,
   },
   {
     id: 'ocean',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M12 3v4M3 17l2-6h14l2 6H3zM1 21h22M7 11V7a5 5 0 0110 0v4"/></svg>,
     title: 'Ocean Freight',
-    tag: 'Best Value for Bulk',
-    tagColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Cost-Effective Sea Shipping Worldwide',
-    desc: 'The most economical solution for large or heavy shipments. We offer both Full Container Load (FCL) and Less than Container Load (LCL) services to 300+ ports globally, with real-time container tracking.',
-    features: ['300+ global ports covered', 'FCL & LCL available', '15–45 day transit times', 'Port-to-port or door-to-door', 'Hazardous cargo specialists', 'Consolidation services'],
-    img: 'https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    from: 'From $280/CBM',
-    color: 'from-yellow-400 to-red-600',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M12 3v4M3 17l2-6h14l2 6H3zM1 21h22M7 11V7a5 5 0 0110 0v4"/></svg>,
+    desc: 'The most economical solution for bulk shipments. FCL & LCL to 300+ ports globally with door-to-door delivery and real-time container tracking.',
+    img: 'https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
+    to: '/contact',
+    featured: true,
   },
   {
     id: 'road',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1V8h3l3 3v4l1 1h-1m-6 0h-3"/></svg>,
     title: 'Road Freight',
-    tag: 'Domestic & Cross-Border',
-    tagColor: 'bg-yellow-100 text-yellow-800',
-    headline: 'Reliable Ground Freight Across Borders',
-    desc: 'Our fleet of 2,000+ vehicles covers major trade corridors across Africa, Europe, and Asia. Full and partial truck loads, refrigerated transport, and oversize cargo — all with real-time fleet tracking.',
-    features: ['2,000+ vehicle strong fleet', 'FTL & LTL options', 'Refrigerated transport available', 'Oversize load specialists', 'Cross-border customs support', 'Dedicated driver assignment'],
-    img: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    from: 'From $8/km',
-    color: 'from-red-600 to-yellow-400',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z"/><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1V8h3l3 3v4l1 1h-1m-6 0h-3"/></svg>,
+    desc: 'Our 2,000+ vehicle fleet covers major trade corridors across Africa, Europe, and Asia. FTL & LTL with refrigerated and oversize options.',
+    img: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
+    to: '/contact',
+    featured: false,
   },
   {
     id: 'soc',
+    icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>,
     title: 'SOC Movements',
-    tag: 'Shipper-Owned Containers',
-    tagColor: 'bg-red-100 text-red-700',
-    headline: 'Flexible SOC Container Solutions',
-    desc: 'We manage your shipper-owned containers (SOC) across multi-leg journeys. Full visibility on container location, condition, and status — ideal for businesses with high shipping volumes needing greater control.',
-    features: ['Multi-leg container tracking', 'Container leasing & purchase', 'Depot management included', 'Custom reporting dashboard', 'Priority port handling', 'Dedicated SOC coordinator'],
-    img: 'https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&fit=crop',
-    from: 'Custom pricing',
-    color: 'from-yellow-400 to-red-600',
-    icon: <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4}><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>,
+    desc: 'Full visibility on your shipper-owned containers across multi-leg journeys — tracking, depot management, and a dedicated coordinator.',
+    img: 'https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop',
+    to: '/contact',
+    featured: true,
   },
 ]
 
@@ -111,37 +97,10 @@ export default function FreightPage() {
             <h2 className="text-4xl font-black text-slate-800 mb-4">Our Freight Services</h2>
             <p className="text-slate-500 max-w-xl mx-auto">Choose the right freight mode for your cargo type, timeline, and budget.</p>
           </div>
-          <div className="space-y-8">
-            {SERVICES.map((svc, idx) => (
-              <div key={svc.id} id={svc.id} className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                <div className={`relative h-64 lg:h-auto ${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className={`absolute inset-0 bg-linear-to-br ${svc.color} opacity-70`} />
-                  <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
-                    <span className="mb-3">{svc.icon}</span>
-                    <p className="text-white font-black text-3xl">{svc.title}</p>
-                    <p className="text-white/70 text-sm mt-1">{svc.from}</p>
-                  </div>
-                </div>
-                <div className={`p-8 md:p-10 flex flex-col justify-center ${idx % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${svc.tagColor} inline-flex w-fit mb-4`}>{svc.tag}</span>
-                  <h2 className="text-2xl font-black text-slate-800 mb-3">{svc.headline}</h2>
-                  <p className="text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
-                  <ul className="space-y-2.5 mb-8">
-                    {svc.features.map(f => (
-                      <li key={f} className="flex items-center gap-3 text-slate-600 text-sm">
-                        <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                          <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
-                        </div>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex gap-3">
-                    <Link to="/contact" className="btn-primary">Get Quote</Link>
-                    <Link to="/contact" className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 transition-colors" style={{ textDecoration: 'none' }}>Enquire</Link>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+            {SERVICES.map(svc => (
+              <div id={svc.id} key={svc.id}>
+                <ServiceCard {...svc} btnLabel="Get Quote" />
               </div>
             ))}
           </div>
