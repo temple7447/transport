@@ -16,8 +16,8 @@ export default function HeroTrackBar() {
 
       {/* Left — tracking input */}
       <div className="flex-1" style={{ background: '#0D0840' }}>
-        <form onSubmit={submit} className="flex items-stretch h-full w-full">
-          {/* Input — takes all available width */}
+        <form onSubmit={submit} className="flex flex-col md:flex-row items-stretch w-full">
+          {/* Input — full width */}
           <div className="flex-1 relative">
             <svg
               className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
@@ -34,20 +34,20 @@ export default function HeroTrackBar() {
               onChange={e => setValue(e.target.value)}
               placeholder="Enter Your Tracking Number"
               aria-label="Shipment tracking number"
-              className="w-full h-full pl-12 pr-4 text-sm font-medium outline-none"
+              className="w-full pl-12 pr-4 text-sm font-medium outline-none"
               style={{
                 background: 'transparent',
                 border: 'none',
                 color: 'white',
                 caretColor: '#F5C100',
-                minHeight: 64,
+                height: 64,
               }}
             />
           </div>
-          {/* Button — flush to the right */}
+          {/* Button — next line on mobile, flush right on desktop */}
           <button
             type="submit"
-            className="shrink-0 flex items-center gap-2 px-8 text-sm font-bold transition-all duration-150 whitespace-nowrap"
+            className="flex items-center justify-center gap-2 px-8 py-4 md:py-0 text-sm font-bold transition-all duration-150 whitespace-nowrap"
             style={{ background: '#F5C100', color: '#0D0840' }}
             onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
             onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
