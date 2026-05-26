@@ -1,4 +1,4 @@
-const BASE = (import.meta.env.VITE_API_URL as string | undefined) ?? ''
+const BASE = 'https://transport-backend-j2j8.onrender.com'
 
 // ── Token helpers ──────────────────────────────────────────────────────────
 export const TOKEN_KEY = 'qsd_admin_token'
