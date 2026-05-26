@@ -2,7 +2,8 @@ import PageMeta from '../components/PageMeta'
 import { useState, useEffect, useRef, useMemo } from 'react'
 import type { JSX } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Loader } from '@googlemaps/js-api-loader'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import { api } from '../lib/api'
 import type { PublicShipment } from '../lib/api'
 
@@ -157,105 +158,65 @@ function getCityCoords(city: string): [number, number] | null {
   return key ? CITY_COORDS[key] : null
 }
 
-/* ─── Google Maps config ─────────────────────────────────────── */
-const GMAPS_KEY = (import.meta.env.VITE_GOOGLE_MAPS_KEY as string | undefined) ?? ''
-
-const MAP_STYLES = [
-  { elementType: 'geometry',                                               stylers: [{ color: '#eef2f7' }] },
-  { elementType: 'labels.icon',                                            stylers: [{ visibility: 'off' }] },
-  { elementType: 'labels.text.fill',                                       stylers: [{ color: '#8899aa' }] },
-  { elementType: 'labels.text.stroke',                                     stylers: [{ color: '#f5f7fa' }] },
-  { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#c4d0de', visibility: 'on' }] },
-  { featureType: 'administrative.country', elementType: 'labels.text.fill',stylers: [{ color: '#8899aa' }] },
-  { featureType: 'landscape',              elementType: 'geometry',        stylers: [{ color: '#eef2f7' }] },
-  { featureType: 'poi',                                                     stylers: [{ visibility: 'off' }] },
-  { featureType: 'road',                                                    stylers: [{ visibility: 'off' }] },
-  { featureType: 'transit',                                                 stylers: [{ visibility: 'off' }] },
-  { featureType: 'water',                  elementType: 'geometry',        stylers: [{ color: '#b8cfe0' }] },
-]
-
-let _loader: Loader | null = null
-function getLoader() {
-  if (!_loader && GMAPS_KEY) {
-    _loader = new Loader({ apiKey: GMAPS_KEY, version: 'weekly' })
-  }
-  return _loader
-}
-
 type StopEntry = { coords: [number, number]; stop: { city: string; country: string; flag: string; done: boolean; active: boolean; date: string } }
 type CfgEntry  = { label: string; color: string; bg: string; light: string; dot: string }
 
-/* ─── Imperative map canvas ──────────────────────────────────── */
+/* ─── Leaflet map canvas ─────────────────────────────────────── */
 function MapCanvas({ positions, cfg }: { positions: StopEntry[]; cfg: CfgEntry }) {
   const divRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const loader = getLoader()
-    if (!loader || !divRef.current || positions.length < 2) return
+    if (!divRef.current || positions.length < 2) return
 
-    let cancelled = false
-
-    ;(loader as unknown as { load: () => Promise<void> }).load().then(() => {
-      if (cancelled || !divRef.current) return
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const g = (window as any).google.maps
-
-      const bounds = new g.LatLngBounds()
-      const pathCoords = positions.map(({ coords }) => {
-        const ll = { lat: coords[0], lng: coords[1] }
-        bounds.extend(ll)
-        return ll
-      })
-
-      const map = new g.Map(divRef.current, {
-        styles: MAP_STYLES,
-        disableDefaultUI: true,
-        zoomControl: true,
-        gestureHandling: 'cooperative',
-      })
-      map.fitBounds(bounds, 60)
-
-      // Dashed route line
-      new g.Polyline({
-        path: pathCoords,
-        map,
-        strokeColor: cfg.color,
-        strokeOpacity: 0,
-        icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 3 }, offset: '0', repeat: '18px' }],
-      })
-
-      // Markers + info windows
-      positions.forEach(({ coords, stop }) => {
-        const marker = new g.Marker({
-          position: { lat: coords[0], lng: coords[1] },
-          map,
-          zIndex: stop.active ? 20 : 1,
-          icon: {
-            path: g.SymbolPath.CIRCLE,
-            fillColor: stop.done || stop.active ? cfg.color : '#94a3b8',
-            fillOpacity: 1,
-            strokeColor: 'white',
-            strokeWeight: 2.5,
-            scale: stop.active ? 11 : 7,
-          },
-        })
-
-        const info = new g.InfoWindow({
-          content: `<div style="font-family:system-ui,sans-serif;min-width:130px;padding:2px 0">
-            <p style="font-weight:700;font-size:13px;margin:0">${stop.flag} ${stop.city}</p>
-            <p style="color:#64748b;font-size:11px;margin:4px 0 0">${stop.country} · ${stop.date}</p>
-            ${stop.active ? `<p style="color:${cfg.color};font-weight:700;font-size:11px;margin:6px 0 0">● Current location</p>` : ''}
-            ${stop.done && !stop.active ? `<p style="color:#16a34a;font-size:11px;margin:6px 0 0">✓ Checkpoint passed</p>` : ''}
-          </div>`,
-        })
-
-        marker.addListener('click', () => info.open({ map, anchor: marker }))
-      })
-    }).catch((err: unknown) => {
-      if (!cancelled) console.error('[Google Maps]', err)
+    const map = L.map(divRef.current, {
+      zoomControl: true,
+      scrollWheelZoom: false,
+      attributionControl: false,
     })
 
-    return () => { cancelled = true }
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+    }).addTo(map)
+
+    // Route polyline
+    const latlngs = positions.map(({ coords }) => [coords[0], coords[1]] as [number, number])
+    L.polyline(latlngs, {
+      color: cfg.color,
+      weight: 2.5,
+      dashArray: '6 8',
+      opacity: 0.8,
+    }).addTo(map)
+
+    // Markers
+    positions.forEach(({ coords, stop }) => {
+      const isActive = stop.active
+      const isDone = stop.done
+      const color = isDone || isActive ? cfg.color : '#94a3b8'
+      const size = isActive ? 14 : 9
+
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:2.5px solid white;box-shadow:0 1px 6px rgba(0,0,0,0.25);${isActive ? `box-shadow:0 0 0 4px ${color}33,0 1px 6px rgba(0,0,0,0.25)` : ''}"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+      })
+
+      const popup = L.popup({ closeButton: false, offset: [0, -6] }).setContent(
+        `<div style="font-family:system-ui,sans-serif;min-width:130px;padding:2px 0">
+          <p style="font-weight:700;font-size:13px;margin:0">${stop.flag} ${stop.city}</p>
+          <p style="color:#64748b;font-size:11px;margin:4px 0 0">${stop.country} · ${stop.date}</p>
+          ${isActive ? `<p style="color:${cfg.color};font-weight:700;font-size:11px;margin:6px 0 0">● Current location</p>` : ''}
+          ${isDone && !isActive ? `<p style="color:#16a34a;font-size:11px;margin:6px 0 0">✓ Checkpoint passed</p>` : ''}
+        </div>`
+      )
+
+      L.marker([coords[0], coords[1]], { icon }).addTo(map).bindPopup(popup)
+    })
+
+    const group = L.featureGroup(positions.map(({ coords }) => L.marker([coords[0], coords[1]])))
+    map.fitBounds(group.getBounds().pad(0.3))
+
+    return () => { map.remove() }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -396,12 +357,7 @@ function RouteVisualizer({ ship }: { ship: typeof SHIPMENTS[string] }) {
       </div>
 
       <div className="h-72">
-        {!GMAPS_KEY ? (
-          <div className="h-full bg-slate-50 flex flex-col items-center justify-center gap-2 text-slate-400 text-sm">
-            <svg className="w-8 h-8 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-            <p>Add <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">VITE_GOOGLE_MAPS_KEY</code> to <code className="text-xs bg-slate-100 px-1 py-0.5 rounded">.env</code></p>
-          </div>
-        ) : positions.length >= 2 ? (
+        {positions.length >= 2 ? (
           <MapCanvas key={ship.trackingNum} positions={positions} cfg={cfg} />
         ) : (
           <div className="h-full bg-slate-50 flex items-center justify-center text-slate-400 text-sm">
