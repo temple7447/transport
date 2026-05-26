@@ -13,7 +13,7 @@ const RELEASES = [
   {
     date: 'January 22, 2025',
     title: 'Accessiblexpress Partners with DHL for Last-Mile Delivery in West Africa',
-    excerpt: "The strategic partnership expands our delivery network to over 12 million households across Nigeria, Ghana, Senegal, and Côte d'Ivoire.",
+    excerpt: "The strategic partnership expands our delivery network to over 12 million households across West Africa, Southeast Asia, and Latin America.",
   },
   {
     date: 'November 10, 2024',

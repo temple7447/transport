@@ -328,7 +328,7 @@ export default function AdminShipmentDetail() {
               <div>
                 <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">Location <span className="normal-case font-normal">(optional)</span></label>
                 <input type="text" value={eventLoc} onChange={e => setEventLoc(e.target.value)}
-                  placeholder="e.g. Lagos Sorting Hub"
+                  placeholder="e.g. Dubai Sorting Hub"
                   className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-yellow-400" />
               </div>
               <div>

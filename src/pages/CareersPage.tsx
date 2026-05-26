@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const OPENINGS = [
   { title: 'Senior Logistics Coordinator',   dept: 'Operations',    location: 'Austin, TX',    type: 'Full-time' },
   { title: 'Customs Clearance Specialist',   dept: 'Customs',       location: 'Remote',        type: 'Full-time' },
-  { title: 'Freight Sales Executive',        dept: 'Sales',         location: 'Lagos, Nigeria', type: 'Full-time' },
+  { title: 'Freight Sales Executive',        dept: 'Sales',         location: 'Remote',         type: 'Full-time' },
   { title: 'Last-Mile Delivery Driver',      dept: 'Field Ops',     location: 'Austin, TX',    type: 'Full-time' },
   { title: 'Full-Stack Developer',           dept: 'Engineering',   location: 'Remote',        type: 'Full-time' },
   { title: 'Customer Success Manager',       dept: 'Support',       location: 'Remote',        type: 'Full-time' },

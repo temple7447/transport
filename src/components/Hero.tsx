@@ -41,7 +41,7 @@ const LIVE_EVENTS = [
   { city: 'London, UK',     status: 'In Transit',       dot: '#CC1500' },
   { city: 'Dubai, UAE',     status: 'Dispatched',       dot: '#F5C100' },
   { city: 'Tokyo, Japan',   status: 'Delivered',        dot: '#F5C100' },
-  { city: 'Lagos, Nigeria', status: 'Out for Delivery', dot: '#CC1500' },
+  { city: 'Accra, Ghana',   status: 'Out for Delivery', dot: '#CC1500' },
   { city: 'Sydney, AU',     status: 'Processing',       dot: '#F5C100' },
   { city: 'Paris, France',  status: 'Delivered',        dot: '#F5C100' },
   { city: 'Singapore',      status: 'In Transit',       dot: '#CC1500' },

@@ -64,7 +64,7 @@ export default function QuoteCalculator() {
                   <label className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">From (City / Country)</label>
                   <input
                     type="text"
-                    placeholder="e.g. Lagos, Nigeria"
+                    placeholder="e.g. London, UK"
                     value={form.from}
                     onChange={e => set('from', e.target.value)}
                     className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"

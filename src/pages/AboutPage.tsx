@@ -11,8 +11,8 @@ const TEAM = [
 ]
 
 const TIMELINE = [
-  { year: '2016', event: 'Founded in Lagos', desc: 'Started with 3 vans and a dream to modernise African logistics.' },
-  { year: '2018', event: 'First International Route', desc: 'Launched Lagos–London air freight. 200 packages in month one.' },
+  { year: '2016', event: 'Founded', desc: 'Started with 3 vans and a dream to modernise global logistics.' },
+  { year: '2018', event: 'First International Route', desc: 'Launched our first international air freight corridor. 200 packages in month one.' },
   { year: '2020', event: 'Tech Platform Launch', desc: 'Built our proprietary tracking and route optimisation system.' },
   { year: '2022', event: '50 Countries Covered', desc: 'Expanded to Europe, Middle East, and Southeast Asia.' },
   { year: '2023', event: '1 Million Packages', desc: 'Hit 1 million successful deliveries. 15,000 business clients.' },
@@ -22,7 +22,7 @@ const TIMELINE = [
 export default function AboutPage() {
   return (
     <div className="pt-20">
-      <PageMeta title="About Accessiblexpress" description="Accessiblexpress is a global logistics company trusted by 50,000+ businesses across 120+ countries. Founded in Lagos, shipping worldwide since 2016." />
+      <PageMeta title="About Accessiblexpress" description="Accessiblexpress is a global logistics company trusted by 50,000+ businesses across 120+ countries. Shipping worldwide since 2016." />
       {/* Hero */}
       <div className="relative h-[520px] overflow-hidden flex items-center">
         <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1400&h=800&fit=crop" alt="Team" loading="eager" className="absolute inset-0 w-full h-full object-cover" />
@@ -35,7 +35,7 @@ export default function AboutPage() {
             We're Rewriting the Rules of Global Logistics
           </h1>
           <p className="text-white/60 text-lg max-w-xl leading-relaxed">
-            Born in Lagos. Built for the world. Accessiblexpress was founded on a simple belief:
+            Built for the world. Accessiblexpress was founded on a simple belief:
             shipping should be fast, transparent, and accessible to every business on earth.
           </p>
         </div>

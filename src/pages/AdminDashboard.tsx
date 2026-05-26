@@ -543,13 +543,13 @@ function ShipmentsTab({
                 {[
                   { title: 'Sender', color: '#F5C100', textColor: '#0f0900', letter: 'S', fields: [
                     { k: 'senderName', label: 'Full Name *', ph: 'John Smith' },
-                    { k: 'senderPhone', label: 'Phone', ph: '+234 800 000 0000' },
+                    { k: 'senderPhone', label: 'Phone', ph: '+1 800 000 0000' },
                     { k: 'senderEmail', label: 'Email', ph: 'john@example.com' },
-                    { k: 'senderStreet', label: 'Street Address', ph: '14 Allen Avenue' },
-                    { k: 'senderCity', label: 'City *', ph: 'Lagos' },
-                    { k: 'senderState', label: 'State / Province', ph: 'Lagos State' },
-                    { k: 'senderCountry', label: 'Country *', ph: 'Nigeria' },
-                    { k: 'senderPostal', label: 'Postal Code', ph: '100001' },
+                    { k: 'senderStreet', label: 'Street Address', ph: '14 Main Street' },
+                    { k: 'senderCity', label: 'City *', ph: 'Dubai' },
+                    { k: 'senderState', label: 'State / Province', ph: 'Dubai' },
+                    { k: 'senderCountry', label: 'Country *', ph: 'UAE' },
+                    { k: 'senderPostal', label: 'Postal Code', ph: '00000' },
                   ]},
                   { title: 'Recipient', color: '#CC1500', textColor: 'white', letter: 'R', fields: [
                     { k: 'recipientName', label: 'Full Name *', ph: 'Jane Doe' },
@@ -707,13 +707,13 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
 
   const senderFields = [
     { key: 'senderName',    label: 'Full Name *',     ph: 'John Smith' },
-    { key: 'senderPhone',   label: 'Phone',            ph: '+234 800 123 4567' },
+    { key: 'senderPhone',   label: 'Phone',            ph: '+1 800 123 4567' },
     { key: 'senderEmail',   label: 'Email',            ph: 'john@example.com' },
-    { key: 'senderStreet',  label: 'Street Address',   ph: '14 Allen Avenue' },
-    { key: 'senderCity',    label: 'City *',            ph: 'Lagos' },
-    { key: 'senderState',   label: 'State / Province', ph: 'Lagos State' },
-    { key: 'senderCountry', label: 'Country *',         ph: 'Nigeria' },
-    { key: 'senderPostal',  label: 'Postal Code',       ph: '100001' },
+    { key: 'senderStreet',  label: 'Street Address',   ph: '14 Main Street' },
+    { key: 'senderCity',    label: 'City *',            ph: 'Dubai' },
+    { key: 'senderState',   label: 'State / Province', ph: 'Dubai' },
+    { key: 'senderCountry', label: 'Country *',         ph: 'UAE' },
+    { key: 'senderPostal',  label: 'Postal Code',       ph: '00000' },
   ]
   const recipientFields = [
     { key: 'recipientName',    label: 'Full Name *',     ph: 'Jane Doe' },
