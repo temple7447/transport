@@ -246,4 +246,18 @@ export const api = {
     const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
     return normalizeShipment(s)
   },
+
+  updateEvent: async (id: string, eventId: string, patch: Partial<Omit<ShipEvent, '_id'>>) => {
+    const res = await request<unknown>('PATCH', `/api/admin/shipments/${encodeURIComponent(id)}/events/${encodeURIComponent(eventId)}`, patch)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
+
+  deleteEvent: async (id: string, eventId: string) => {
+    const res = await request<unknown>('DELETE', `/api/admin/shipments/${encodeURIComponent(id)}/events/${encodeURIComponent(eventId)}`)
+    const r = res as Record<string, unknown>
+    const s = ((r.data as Record<string, unknown>)?.shipment ?? r.shipment ?? r) as Record<string, unknown>
+    return normalizeShipment(s)
+  },
 }
