@@ -182,6 +182,54 @@ const EMPTY_FORM = {
   contents: '', declaredValue: '', eta: '', notes: '',
 }
 
+const SAMPLE_SHIPMENTS: Array<Omit<typeof EMPTY_FORM, ''> & { label: string }> = [
+  {
+    label: 'Dubai → London',
+    senderName: 'Ahmed Al Mansouri', senderPhone: '+971 50 123 4567', senderEmail: 'ahmed@globalexports.ae',
+    senderStreet: '14 Trade Centre Road', senderCity: 'Dubai', senderState: 'Dubai', senderCountry: 'UAE', senderPostal: '00000',
+    recipientName: 'James Harrington', recipientPhone: '+44 20 7946 0101', recipientEmail: 'james@harrington.co.uk',
+    recipientStreet: '47 Baker Street', recipientCity: 'London', recipientState: 'England', recipientCountry: 'United Kingdom', recipientPostal: 'NW1 6XE',
+    service: 'express', weight: '4.2', dimLength: '40', dimWidth: '30', dimHeight: '20',
+    contents: 'Electronics — Laptop & Accessories', declaredValue: '1200', eta: '', notes: 'Handle with care — fragile electronics',
+  },
+  {
+    label: 'Accra → New York',
+    senderName: 'Kwame Asante', senderPhone: '+233 24 456 7890', senderEmail: 'kwame@asantetraders.gh',
+    senderStreet: '5 Independence Avenue', senderCity: 'Accra', senderState: 'Greater Accra', senderCountry: 'Ghana', senderPostal: 'GA-123',
+    recipientName: 'Olivia Thompson', recipientPhone: '+1 212 555 0180', recipientEmail: 'olivia.t@acmeinc.com',
+    recipientStreet: '350 Fifth Avenue', recipientCity: 'New York', recipientState: 'NY', recipientCountry: 'United States', recipientPostal: '10118',
+    service: 'standard', weight: '1.5', dimLength: '25', dimWidth: '20', dimHeight: '5',
+    contents: 'Documents & Legal Papers', declaredValue: '50', eta: '', notes: 'Do not bend',
+  },
+  {
+    label: 'Frankfurt → Singapore',
+    senderName: 'Klaus Weber', senderPhone: '+49 69 1234 5678', senderEmail: 'k.weber@weberlogistik.de',
+    senderStreet: 'Hanauer Landstraße 12', senderCity: 'Frankfurt', senderState: 'Hesse', senderCountry: 'Germany', senderPostal: '60314',
+    recipientName: 'Li Wei', recipientPhone: '+65 9123 4567', recipientEmail: 'liwei@sigatech.sg',
+    recipientStreet: '10 Raffles Place', recipientCity: 'Singapore', recipientState: 'Central Region', recipientCountry: 'Singapore', recipientPostal: '048621',
+    service: 'overnight', weight: '12.0', dimLength: '60', dimWidth: '40', dimHeight: '30',
+    contents: 'Industrial Machinery Parts', declaredValue: '5000', eta: '', notes: 'Heavy package — use forklift',
+  },
+  {
+    label: 'London → Accra',
+    senderName: 'Sarah Mitchell', senderPhone: '+44 20 7946 0200', senderEmail: 'sarah@mitchellfashion.co.uk',
+    senderStreet: '22 Oxford Street', senderCity: 'London', senderState: 'England', senderCountry: 'United Kingdom', senderPostal: 'W1D 1AN',
+    recipientName: 'Abena Osei', recipientPhone: '+233 30 220 0001', recipientEmail: 'abena@osei-boutique.gh',
+    recipientStreet: '8 Osu Oxford Street', recipientCity: 'Accra', recipientState: 'Greater Accra', recipientCountry: 'Ghana', recipientPostal: 'GA-456',
+    service: 'standard', weight: '8.0', dimLength: '50', dimWidth: '40', dimHeight: '25',
+    contents: 'Clothing & Fashion Accessories', declaredValue: '800', eta: '', notes: '',
+  },
+  {
+    label: 'New York → Dubai',
+    senderName: 'Marcus Johnson', senderPhone: '+1 646 555 0123', senderEmail: 'm.johnson@pharmaworld.com',
+    senderStreet: '1600 Broadway', senderCity: 'New York', senderState: 'NY', senderCountry: 'United States', senderPostal: '10019',
+    recipientName: 'Fatima Al Zaabi', recipientPhone: '+971 4 345 6789', recipientEmail: 'fatima@zaabimed.ae',
+    recipientStreet: '25 Health Care City', recipientCity: 'Dubai', recipientState: 'Dubai', recipientCountry: 'UAE', recipientPostal: '00000',
+    service: 'express', weight: '3.0', dimLength: '30', dimWidth: '20', dimHeight: '15',
+    contents: 'Medical Supplies & Equipment', declaredValue: '2500', eta: '', notes: 'Requires cold chain — keep below 8°C',
+  },
+]
+
 /* ─── Shipments Tab ──────────────────────────────────────────────────────── */
 type EditForm = typeof EMPTY_FORM & { status: ShipStatus }
 
@@ -538,6 +586,20 @@ function ShipmentsTab({
                 </div>
               )}
 
+              {/* Sample templates */}
+              <div className="bg-slate-50 rounded-xl p-4">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-2">Quick Fill — Sample Shipments</p>
+                <div className="flex flex-wrap gap-2">
+                  {SAMPLE_SHIPMENTS.map(s => (
+                    <button key={s.label} type="button"
+                      onClick={() => setEditForm(f => ({ ...f, ...s }))}
+                      className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-600 hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-800 transition-all">
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Sender + Recipient */}
               <div className="grid md:grid-cols-2 gap-5">
                 {[
@@ -731,6 +793,24 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
       <div>
         <h2 className="text-2xl font-black text-slate-800">Create New Shipment</h2>
         <p className="text-slate-500 text-sm">A tracking number will be automatically generated on submission.</p>
+      </div>
+
+      {/* Sample templates */}
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-3">Quick Fill — Sample Shipments</p>
+        <div className="flex flex-wrap gap-2">
+          {SAMPLE_SHIPMENTS.map(s => (
+            <button key={s.label} type="button"
+              onClick={() => setForm({ ...s })}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-800 transition-all">
+              {s.label}
+            </button>
+          ))}
+          <button type="button" onClick={() => setForm(EMPTY_FORM)}
+            className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-400 hover:border-red-300 hover:bg-red-50 hover:text-red-500 transition-all">
+            Clear All
+          </button>
+        </div>
       </div>
 
       {error && (
