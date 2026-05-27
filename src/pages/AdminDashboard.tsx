@@ -1097,10 +1097,36 @@ function TrackTab({ shipments, onUpdate }: { shipments: AdminShipment[]; onUpdat
 
           {/* Add Event */}
           <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm">
-            <p className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-4 flex items-center gap-1.5">
+            <p className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-3 flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M12 4.5v15m7.5-7.5h-15"/></svg>
               Add Timeline Event
             </p>
+
+            {/* Templates */}
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide mb-2">Quick Templates</p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {([
+                { label: 'Order Received',    desc: 'Shipment order received and confirmed.',                        loc: 'Accessiblexpress Control Centre', type: 'info'      as const },
+                { label: 'Picked Up',         desc: 'Package collected from sender.',                               loc: 'Sender Location',                 type: 'pickup'    as const },
+                { label: 'At Sorting Hub',    desc: 'Package arrived at sorting facility and is being processed.',  loc: 'Sorting Hub',                     type: 'transit'   as const },
+                { label: 'Departed Origin',   desc: 'Package has departed the origin facility.',                    loc: 'Origin Facility',                 type: 'transit'   as const },
+                { label: 'In Transit',        desc: 'Package is in transit to the destination.',                    loc: 'In Transit',                      type: 'transit'   as const },
+                { label: 'Arrived at Hub',    desc: 'Package arrived at destination hub.',                          loc: 'Destination Hub',                 type: 'transit'   as const },
+                { label: 'Customs Clearance', desc: 'Package cleared customs inspection.',                          loc: 'Customs',                         type: 'transit'   as const },
+                { label: 'Out for Delivery',  desc: 'Package is out for delivery with the courier.',                loc: 'Local Delivery Hub',              type: 'delivery'  as const },
+                { label: 'Delivered',         desc: 'Package successfully delivered to the recipient.',             loc: 'Recipient Address',               type: 'delivery'  as const },
+                { label: 'Failed Attempt',    desc: 'Delivery attempt failed — recipient unavailable.',             loc: 'Recipient Address',               type: 'exception' as const },
+                { label: 'Delay',             desc: 'Shipment delayed due to unforeseen circumstances.',            loc: 'In Transit',                      type: 'exception' as const },
+                { label: 'Held at Customs',   desc: 'Package held at customs pending clearance.',                   loc: 'Customs',                         type: 'exception' as const },
+              ] as { label: string; desc: string; loc: string; type: ShipEvent['type'] }[]).map(t => (
+                <button key={t.label}
+                  onClick={() => { setAddDesc(t.desc); setAddLoc(t.loc); setAddType(t.type) }}
+                  className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-800 transition-all">
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
             <div className="grid sm:grid-cols-2 gap-3 mb-3">
               <div className="sm:col-span-2">
                 <label className="text-[10px] font-semibold text-slate-500 uppercase tracking-wide block mb-1">Description *</label>
