@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
-        name: 'Quick Send Delivery',
-        short_name: 'Quick Send',
+        name: 'Accessiblexpress',
+        short_name: 'Accessiblexpress',
         description: 'Global freight, logistics, and moving services to 120+ countries. Real-time tracking.',
         theme_color: '#0D0840',
         background_color: '#0D0840',
@@ -29,6 +29,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,ico,woff2}'],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/images\.pexels\.com\/.*/i,
