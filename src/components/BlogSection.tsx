@@ -4,14 +4,14 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 const POSTS = [
   {
     category: 'Shipping Tips',
-    categoryColor: 'bg-red-50 text-[#CC1500]',
+    categoryColor: 'bg-red-50 text-[#1565C0]',
     date: 'May 10, 2026',
     title: 'How to Pack Fragile Items for International Shipping',
     excerpt: 'Learn the professional techniques our warehouse experts use to ensure fragile goods arrive intact across continents.',
     readTime: '4 min read',
     img: 'https://images.pexels.com/photos/4246100/pexels-photo-4246100.jpeg?auto=compress&cs=tinysrgb&w=800&h=480&fit=crop',
     imgAlt: 'Person carefully packing items in a box',
-    accent: '#CC1500',
+    accent: '#1565C0',
   },
   {
     category: 'Industry News',
@@ -22,18 +22,18 @@ const POSTS = [
     readTime: '6 min read',
     img: 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=800&h=480&fit=crop',
     imgAlt: 'Customs documentation and paperwork',
-    accent: '#CC1500',
+    accent: '#1565C0',
   },
   {
     category: 'Business Growth',
-    categoryColor: 'bg-yellow-50 text-[#0D0840]',
+    categoryColor: 'bg-yellow-50 text-[#1F2937]',
     date: 'Apr 28, 2026',
     title: '10 Ways to Cut Shipping Costs for Your E-commerce Store',
     excerpt: 'From bulk discounts to smart packaging, discover proven strategies that can reduce shipping expenses by up to 35%.',
     readTime: '8 min read',
     img: 'https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=800&h=480&fit=crop',
     imgAlt: 'E-commerce packages and shipping boxes',
-    accent: '#F5C100',
+    accent: '#FF9800',
   },
 ]
 
@@ -55,7 +55,7 @@ export default function BlogSection() {
           <Link
             to="/blog"
             className="hidden sm:flex items-center gap-2 font-semibold text-sm whitespace-nowrap hover:gap-3 transition-all duration-200 shrink-0"
-            style={{ color: '#CC1500', textDecoration: 'none' }}
+            style={{ color: '#1565C0', textDecoration: 'none' }}
           >
             View All Articles
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -20,14 +20,14 @@ export default class ErrorBoundary extends Component<Props, State> {
       return (
         <div
           className="min-h-screen flex items-center justify-center px-6"
-          style={{ background: '#0D0840' }}
+          style={{ background: '#1565C0' }}
         >
           <div className="text-center max-w-md">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
-              style={{ background: 'rgba(204,21,0,0.15)' }}
+              style={{ background: 'rgba(21,101,192,0.15)' }}
             >
-              <svg className="w-8 h-8" style={{ color: '#CC1500' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}>
+              <svg className="w-8 h-8" style={{ color: '#1565C0' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}>
                 <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
               </svg>
             </div>
@@ -38,9 +38,9 @@ export default class ErrorBoundary extends Component<Props, State> {
             <button
               onClick={() => window.location.reload()}
               className="px-7 py-3 rounded-xl text-sm font-bold transition-all"
-              style={{ background: '#F5C100', color: '#0D0840' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
+              style={{ background: '#FF9800', color: '#1F2937' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#E68900' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#FF9800' }}
             >
               Refresh Page
             </button>

@@ -56,9 +56,9 @@ const POSTS = [
 const CATEGORIES = ['All', 'Industry News', 'Tips & Guides', 'Company News']
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Industry News': '#CC1500',
-  'Tips & Guides': '#F5C100',
-  'Company News':  '#CC1500',
+  'Industry News': '#1565C0',
+  'Tips & Guides': '#FF9800',
+  'Company News':  '#1565C0',
 }
 
 export default function BlogPage() {
@@ -71,9 +71,9 @@ export default function BlogPage() {
       <PageMeta title="Logistics Blog" description="Industry insights, shipping guides, and company news from the Accessiblexpress team." />
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1976D2 100%)', padding: '64px 0 48px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(255,152,0,0.12)', border: '1px solid rgba(255,152,0,0.3)', color: '#FF9800' }}>
             Logistics Insights
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
@@ -101,7 +101,7 @@ export default function BlogPage() {
               <p className="text-slate-500 leading-relaxed mb-6 text-sm">{featured.excerpt}</p>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-slate-400">{featured.author} · {featured.date} · {featured.readTime}</div>
-                <span className="flex items-center gap-1 text-sm font-bold opacity-50 cursor-default" style={{ color: '#CC1500' }}>
+                <span className="flex items-center gap-1 text-sm font-bold opacity-50 cursor-default" style={{ color: '#1565C0' }}>
                   Read More
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                 </span>
@@ -123,9 +123,9 @@ export default function BlogPage() {
                 onClick={() => setActive(cat)}
                 className="px-4 py-2 rounded-full text-sm font-semibold transition-all"
                 style={{
-                  background: active === cat ? '#CC1500' : 'white',
+                  background: active === cat ? '#1565C0' : 'white',
                   color: active === cat ? 'white' : '#64748b',
-                  border: active === cat ? '1px solid #CC1500' : '1px solid #e2e8f0',
+                  border: active === cat ? '1px solid #1565C0' : '1px solid #e2e8f0',
                 }}
               >
                 {cat}
@@ -143,7 +143,7 @@ export default function BlogPage() {
                   <span className="inline-flex text-xs font-bold px-2.5 py-1 rounded-full mb-3" style={{ background: `${CATEGORY_COLORS[post.category]}18`, color: CATEGORY_COLORS[post.category] }}>
                     {post.category}
                   </span>
-                  <h3 className="font-bold text-slate-800 leading-snug mb-2 group-hover:text-[#CC1500] transition-colors">{post.title}</h3>
+                  <h3 className="font-bold text-slate-800 leading-snug mb-2 group-hover:text-[#1565C0] transition-colors">{post.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
                   <div className="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-50">
                     <span>{post.author}</span>

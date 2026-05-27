@@ -65,9 +65,9 @@ export default function HelpCenterPage() {
       <PageMeta title="Help Center" description="Answers to your shipping questions — tracking, customs, claims, billing, and more." />
 
       {/* Hero + search */}
-      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 56px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1976D2 100%)', padding: '64px 0 56px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(255,152,0,0.12)', border: '1px solid rgba(255,152,0,0.3)', color: '#FF9800' }}>
             Help Center
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
@@ -88,7 +88,7 @@ export default function HelpCenterPage() {
             <button
               onClick={() => faqRef.current?.scrollIntoView({ behavior: 'smooth' })}
               className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-bold shrink-0"
-              style={{ background: '#F5C100', color: '#0D0840' }}
+              style={{ background: '#FF9800', color: '#1F2937' }}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
               Search
@@ -107,10 +107,10 @@ export default function HelpCenterPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {CATEGORIES.map(cat => (
               <div key={cat.title} className="bg-white border border-slate-100 rounded-2xl p-6 hover:shadow-md hover:-translate-y-1 transition-all group cursor-pointer">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors" style={{ background: 'rgba(204,21,0,0.07)', color: '#CC1500' }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors" style={{ background: 'rgba(21,101,192,0.07)', color: '#1565C0' }}>
                   {cat.icon}
                 </div>
-                <h3 className="font-bold text-slate-800 mb-1.5 group-hover:text-[#CC1500] transition-colors">{cat.title}</h3>
+                <h3 className="font-bold text-slate-800 mb-1.5 group-hover:text-[#1565C0] transition-colors">{cat.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed mb-3">{cat.desc}</p>
                 <span className="text-xs font-semibold text-slate-400">{cat.count} articles</span>
               </div>
@@ -125,19 +125,19 @@ export default function HelpCenterPage() {
           <h2 className="font-black text-slate-900 mb-8" style={{ fontSize: 'clamp(24px,3vw,36px)', letterSpacing: '-0.5px' }}>Frequently Asked Questions</h2>
           <div className="space-y-3">
             {filteredFAQs.length === 0 ? (
-              <p className="text-slate-500 text-sm text-center py-8">No results found. Try a different search term or <Link to="/contact" className="text-[#CC1500] font-semibold">contact support</Link>.</p>
+              <p className="text-slate-500 text-sm text-center py-8">No results found. Try a different search term or <Link to="/contact" className="text-[#1565C0] font-semibold">contact support</Link>.</p>
             ) : filteredFAQs.map((faq, i) => (
               <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-4 text-left"
-                  style={{ background: openFaq === i ? 'rgba(204,21,0,0.04)' : 'white' }}
+                  style={{ background: openFaq === i ? 'rgba(21,101,192,0.04)' : 'white' }}
                 >
                   <span className="font-semibold text-slate-800 text-sm pr-4">{faq.q}</span>
                   <svg className="w-5 h-5 shrink-0 text-slate-400 transition-transform" style={{ transform: openFaq === i ? 'rotate(180deg)' : 'none' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 {openFaq === i && (
-                  <div className="px-6 pb-5" style={{ borderTop: '1px solid rgba(204,21,0,0.08)' }}>
+                  <div className="px-6 pb-5" style={{ borderTop: '1px solid rgba(21,101,192,0.08)' }}>
                     <p className="text-slate-500 text-sm leading-relaxed pt-4">{faq.a}</p>
                   </div>
                 )}
@@ -153,7 +153,7 @@ export default function HelpCenterPage() {
           <h2 className="font-bold text-slate-800 mb-2">Still Need Help?</h2>
           <p className="text-slate-500 text-sm mb-6">Our support team is available Mon–Fri 07:00–18:00 WAT</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold" style={{ background: '#CC1500', color: 'white', textDecoration: 'none' }}>
+            <Link to="/contact" className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold" style={{ background: '#1565C0', color: 'white', textDecoration: 'none' }}>
               Contact Support
             </Link>
             <a href="https://wa.me/15126785033" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold" style={{ background: '#25D366', color: 'white', textDecoration: 'none' }}>

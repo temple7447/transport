@@ -65,7 +65,7 @@ export default function ServicesPage() {
     <div className="pt-20">
       <PageMeta title="Shipping &amp; Logistics Services" description="Express delivery, air freight, ocean shipping, warehousing, and customs clearance — all under one roof worldwide." />
       {/* Hero */}
-      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #080530 0%, #18106A 100%)' }}>
+      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D47A1 0%, #1976D2 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <img src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" loading="eager" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">

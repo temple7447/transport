@@ -22,7 +22,7 @@ const STATUS_CFG: Record<ShipStatus, { label: string; color: string; bg: string;
   confirmed:        { label: 'Confirmed',          color: '#7c3aed', bg: 'linear-gradient(135deg,#6d28d9,#8b5cf6)', light: '#f5f3ff', dot: '#7c3aed' },
   picked_up:        { label: 'Picked Up',          color: '#0891b2', bg: 'linear-gradient(135deg,#0e7490,#0891b2)', light: '#ecfeff', dot: '#0891b2' },
   in_transit:       { label: 'In Transit',         color: '#2563eb', bg: 'linear-gradient(135deg,#1d4ed8,#3b82f6)', light: '#eff6ff', dot: '#2563eb' },
-  out_for_delivery: { label: 'Out for Delivery',   color: '#CC1500', bg: 'linear-gradient(135deg,#CC1500,#ef4444)', light: '#fff5f5', dot: '#CC1500' },
+  out_for_delivery: { label: 'Out for Delivery',   color: '#1565C0', bg: 'linear-gradient(135deg,#1565C0,#ef4444)', light: '#fff5f5', dot: '#1565C0' },
   delivered:        { label: 'Delivered',          color: '#16a34a', bg: 'linear-gradient(135deg,#15803d,#22c55e)', light: '#f0fdf4', dot: '#16a34a' },
   failed:           { label: 'Failed',             color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', light: '#fef2f2', dot: '#ef4444' },
   cancelled:        { label: 'Cancelled',          color: '#64748b', bg: 'linear-gradient(135deg,#475569,#64748b)', light: '#f8fafc', dot: '#94a3b8' },

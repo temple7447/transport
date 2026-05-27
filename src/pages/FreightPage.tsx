@@ -54,10 +54,10 @@ export default function FreightPage() {
     <div className="pt-20">
       <PageMeta title="Air, Ocean &amp; Road Freight" description="End-to-end freight forwarding: air cargo in 2–4 days, FCL/LCL ocean shipping, and cross-border road transport to 120+ countries." />
       {/* Hero */}
-      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 60%, #18106A 100%)' }}>
+      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1565C0 0%, #0D47A1 60%, #1976D2 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <img src="https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" loading="eager" className="absolute inset-0 w-full h-full object-cover opacity-10" />
-        <div className="absolute top-10 right-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,21,0,0.2), transparent 70%)' }} />
+        <div className="absolute top-10 right-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(21,101,192,0.2), transparent 70%)' }} />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}>
             Freight Services
@@ -79,7 +79,7 @@ export default function FreightPage() {
       </div>
 
       {/* Stats */}
-      <div style={{ background: '#F5C100' }}>
+      <div style={{ background: '#FF9800' }}>
         <div className="container mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
           {STATS.map(s => (
             <div key={s.label} className="text-center">
@@ -134,7 +134,7 @@ export default function FreightPage() {
       </div>
 
       {/* CTA */}
-      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg, #0D0840, #18106A)' }}>
+      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg, #1565C0, #1976D2)' }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Ready to Move Your Cargo?</h2>
           <p className="text-white/60 mb-8 max-w-lg mx-auto">Get a competitive freight quote in minutes. Our team is ready to find the best route and rate for your shipment.</p>

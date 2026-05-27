@@ -99,7 +99,7 @@ export default function Footer() {
   }
 
   return (
-    <footer style={{ background: '#0D0840' }}>
+    <footer style={{ background: '#1565C0' }}>
       <div className="container mx-auto px-6 pt-16 pb-8">
         {/* Top grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
@@ -166,7 +166,7 @@ export default function Footer() {
                 <h4 className="text-white font-bold mb-1">Stay Informed</h4>
                 <p className="text-white/50 text-sm">
                   {subState === 'error'
-                    ? <span style={{ color: '#CC1500' }}>Something went wrong — please try again.</span>
+                    ? <span style={{ color: '#1565C0' }}>Something went wrong — please try again.</span>
                     : 'Get shipping tips, industry news, and exclusive offers.'}
                 </p>
               </div>

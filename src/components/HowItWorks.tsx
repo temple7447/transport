@@ -12,7 +12,7 @@ const STEPS = [
     title: 'Create Shipment',
     desc: 'Enter package details, pickup and delivery addresses. Get an instant quote in seconds.',
     color: 'bg-yellow-400',
-    glow: 'rgba(245,193,0,0.4)',
+    glow: 'rgba(255,152,0,0.4)',
   },
   {
     num: '02',
@@ -24,7 +24,7 @@ const STEPS = [
     title: 'Schedule Pickup',
     desc: 'Choose a convenient pickup time. Our courier arrives at your doorstep right on schedule.',
     color: 'bg-yellow-400',
-    glow: 'rgba(245,193,0,0.4)',
+    glow: 'rgba(255,152,0,0.4)',
   },
   {
     num: '03',
@@ -37,7 +37,7 @@ const STEPS = [
     title: 'Live Tracking',
     desc: 'Track your package in real-time via app, SMS, or email. Know exactly where it is, always.',
     color: 'bg-red-600',
-    glow: 'rgba(204,21,0,0.35)',
+    glow: 'rgba(21,101,192,0.35)',
   },
   {
     num: '04',
@@ -49,7 +49,7 @@ const STEPS = [
     title: 'Delivered!',
     desc: 'Package safely delivered with proof of delivery photo, digital signature, and instant notification.',
     color: 'bg-yellow-400',
-    glow: 'rgba(245,193,0,0.4)',
+    glow: 'rgba(255,152,0,0.4)',
   },
 ]
 
@@ -74,7 +74,7 @@ export default function HowItWorks() {
           <div
             className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 z-0 origin-left"
             style={{
-              background: 'linear-gradient(to right, #F5C100, #CC1500)',
+              background: 'linear-gradient(to right, #FF9800, #1565C0)',
               opacity: 0.25,
               transform: inView ? 'scaleX(1)' : 'scaleX(0)',
               transition: 'transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.3s',
@@ -88,7 +88,7 @@ export default function HowItWorks() {
                 top: '6px',
                 left: '12.5%',
                 animation: 'travelLine 3.2s cubic-bezier(0.4,0,0.6,1) 1.4s forwards',
-                boxShadow: '0 0 14px rgba(245,193,0,0.7)',
+                boxShadow: '0 0 14px rgba(255,152,0,0.7)',
               }}
             >
               <svg className="w-3.5 h-3.5 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>

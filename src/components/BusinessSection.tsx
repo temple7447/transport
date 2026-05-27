@@ -16,10 +16,10 @@ export default function BusinessSection() {
   const [ref, inView] = useScrollReveal()
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 100%)' }}>
+    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1565C0 0%, #0D47A1 100%)' }}>
       <div className="absolute inset-0 dot-pattern opacity-30" />
-      <div className="absolute top-10 right-10 w-80 h-80 bg-[#CC1500]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-20 w-64 h-64 rounded-full blur-3xl" style={{ background: 'rgba(245,193,0,0.10)' }} />
+      <div className="absolute top-10 right-10 w-80 h-80 bg-[#1565C0]/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-20 w-64 h-64 rounded-full blur-3xl" style={{ background: 'rgba(255,152,0,0.10)' }} />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -44,7 +44,7 @@ export default function BusinessSection() {
                   className={`flex items-center gap-2.5 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
                   style={inView ? { animationDelay: `${0.25 + i * 0.06}s` } : {}}
                 >
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(245,193,0,0.2)', border: '1px solid rgba(245,193,0,0.4)' }}>
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(255,152,0,0.2)', border: '1px solid rgba(255,152,0,0.4)' }}>
                     <svg className="w-3 h-3 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/>
                     </svg>
@@ -58,7 +58,7 @@ export default function BusinessSection() {
               className={`flex flex-wrap gap-4 ${inView ? 'animate-reveal-up' : 'opacity-0'}`}
               style={inView ? { animationDelay: '0.75s' } : {}}
             >
-              <Link to="/contact" className="btn-primary py-4! px-8! shadow-2xl" style={{ boxShadow: '0 25px 50px rgba(245,193,0,0.2)', textDecoration: 'none' }}>
+              <Link to="/contact" className="btn-primary py-4! px-8! shadow-2xl" style={{ boxShadow: '0 25px 50px rgba(255,152,0,0.2)', textDecoration: 'none' }}>
                 Talk to Sales
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -124,7 +124,7 @@ export default function BusinessSection() {
             </div>
 
             {/* Floating badge */}
-            <div className="absolute -top-4 -right-4 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ background: '#F5C100', color: '#0D0840' }}>
+            <div className="absolute -top-4 -right-4 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ background: '#FF9800', color: '#1F2937' }}>
               Enterprise Ready
             </div>
           </div>

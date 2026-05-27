@@ -16,7 +16,7 @@ export default function ServiceCard({ icon, title, desc, img, to, featured = fal
   return (
     <div
       className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full"
-      style={{ background: featured ? '#0D0840' : 'white' }}
+      style={{ background: featured ? '#1565C0' : 'white' }}
     >
       {/* Image + diagonal cut + icon */}
       <div style={{ position: 'relative' }}>
@@ -32,7 +32,7 @@ export default function ServiceCard({ icon, title, desc, img, to, featured = fal
         {/* Diagonal white/navy strip */}
         <div style={{
           position: 'absolute', bottom: -1, left: 0, right: 0, height: 56,
-          background: featured ? '#0D0840' : 'white',
+          background: featured ? '#1565C0' : 'white',
           clipPath: 'polygon(0 55%, 100% 0%, 100% 100%, 0 100%)',
         }} />
 
@@ -40,12 +40,12 @@ export default function ServiceCard({ icon, title, desc, img, to, featured = fal
         <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 50%)', zIndex: 10 }}>
           <div style={{
             width: 62, height: 62, borderRadius: '50%',
-            background: featured ? '#0D0840' : 'white',
-            border: featured ? '3px solid #CC1500' : '3px solid #0D0840',
+            background: featured ? '#1565C0' : 'white',
+            border: featured ? '3px solid #1565C0' : '3px solid #e2e8f0',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: featured ? '#CC1500' : '#0D0840',
+            color: featured ? '#1565C0' : '#1F2937',
             boxShadow: featured
-              ? '0 0 0 4px rgba(204,21,0,0.18), 0 8px 24px rgba(0,0,0,0.3)'
+              ? '0 0 0 4px rgba(21,101,192,0.18), 0 8px 24px rgba(0,0,0,0.3)'
               : '0 0 0 4px rgba(13,8,64,0.07), 0 8px 24px rgba(0,0,0,0.12)',
           }}>
             {icon}
@@ -78,7 +78,7 @@ export default function ServiceCard({ icon, title, desc, img, to, featured = fal
               padding: '11px 28px', borderRadius: 8,
               fontWeight: 700, fontSize: 13, letterSpacing: '0.5px',
               textTransform: 'uppercase', textDecoration: 'none',
-              background: featured ? '#CC1500' : '#0D0840',
+              background: featured ? '#1565C0' : '#1F2937',
               color: 'white',
               transition: 'opacity 0.18s, transform 0.18s',
             }}

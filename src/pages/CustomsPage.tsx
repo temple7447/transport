@@ -55,7 +55,7 @@ export default function CustomsPage() {
     <div className="pt-20">
       <PageMeta title="Customs Clearance &amp; Trade Services" description="Licensed customs brokers for import/export clearance, IOR services, and trade consulting in 120+ countries." />
       {/* Hero */}
-      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 60%, #18106A 100%)' }}>
+      <div className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, #1565C0 0%, #0D47A1 60%, #1976D2 100%)' }}>
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
         <img src="https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=1400&h=600&fit=crop" alt="" loading="eager" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">
@@ -64,7 +64,7 @@ export default function CustomsPage() {
           </span>
           <h1 className="font-black text-white mb-5" style={{ fontSize: 'clamp(36px, 6vw, 62px)', lineHeight: 1.1 }}>
             Clear Customs<br />
-            <span style={{ color: '#F5C100' }}>Without the Headache</span>
+            <span style={{ color: '#FF9800' }}>Without the Headache</span>
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px', maxWidth: '580px', margin: '0 auto 36px' }}>
             Licensed customs brokers handling import & export clearance, trade consulting, and full compliance management in 50+ countries.
@@ -79,7 +79,7 @@ export default function CustomsPage() {
       </div>
 
       {/* Key credentials */}
-      <div style={{ background: '#F5C100' }}>
+      <div style={{ background: '#FF9800' }}>
         <div className="container mx-auto px-6 py-5 flex flex-wrap justify-center gap-8 text-sm font-semibold text-slate-800">
           {['🏛️ Licensed Customs Brokers', '⚡ 24-Hour Clearance Guarantee', '🌍 50+ Countries', '📋 Full Documentation Support', '🔒 100% Compliance Rate'].map(item => (
             <span key={item}>{item}</span>
@@ -116,7 +116,7 @@ export default function CustomsPage() {
             <div className="grid md:grid-cols-5 gap-6">
               {PROCESS.map((step, i) => (
                 <div key={step.title} className="text-center">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 font-black text-xl relative z-10" style={{ background: i === 0 ? 'linear-gradient(135deg,#0D0840,#080530)' : i === PROCESS.length - 1 ? 'linear-gradient(135deg,#F5C100,#CC1500)' : 'white', color: i === 0 || i === PROCESS.length - 1 ? 'white' : '#64748b', border: '2px solid #e2e8f0' }}>
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 font-black text-xl relative z-10" style={{ background: i === 0 ? 'linear-gradient(135deg,#1565C0,#0D47A1)' : i === PROCESS.length - 1 ? 'linear-gradient(135deg,#FF9800,#1565C0)' : 'white', color: i === 0 || i === PROCESS.length - 1 ? 'white' : '#64748b', border: '2px solid #e2e8f0' }}>
                     {String(i + 1).padStart(2, '0')}
                   </div>
                   <h3 className="font-bold text-slate-800 mb-2 text-sm">{step.title}</h3>
@@ -129,7 +129,7 @@ export default function CustomsPage() {
       </div>
 
       {/* CTA */}
-      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg, #0D0840, #080530)' }}>
+      <div className="py-16 text-center" style={{ background: 'linear-gradient(135deg, #1565C0, #0D47A1)' }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Ready to Clear Customs Faster?</h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: 'rgba(255,255,255,0.6)' }}>Talk to one of our licensed customs brokers today. We'll review your requirements and give you a clearance strategy within 24 hours.</p>

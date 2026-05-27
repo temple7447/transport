@@ -9,7 +9,7 @@ const STATUS_CFG: Record<ShipStatus, { label: string; color: string; bg: string;
   confirmed:        { label: 'Confirmed',          color: '#7c3aed', bg: '#f5f3ff', grad: 'linear-gradient(135deg,#6d28d9,#8b5cf6)' },
   picked_up:        { label: 'Picked Up',          color: '#0891b2', bg: '#ecfeff', grad: 'linear-gradient(135deg,#0e7490,#0891b2)' },
   in_transit:       { label: 'In Transit',         color: '#2563eb', bg: '#eff6ff', grad: 'linear-gradient(135deg,#1d4ed8,#3b82f6)' },
-  out_for_delivery: { label: 'Out for Delivery',   color: '#CC1500', bg: '#fff5f5', grad: 'linear-gradient(135deg,#CC1500,#ef4444)' },
+  out_for_delivery: { label: 'Out for Delivery',   color: '#1565C0', bg: '#fff5f5', grad: 'linear-gradient(135deg,#1565C0,#ef4444)' },
   delivered:        { label: 'Delivered',           color: '#16a34a', bg: '#f0fdf4', grad: 'linear-gradient(135deg,#15803d,#22c55e)' },
   failed:           { label: 'Failed',              color: '#dc2626', bg: '#fef2f2', grad: 'linear-gradient(135deg,#b91c1c,#dc2626)' },
   cancelled:        { label: 'Cancelled',           color: '#94a3b8', bg: '#f8fafc', grad: 'linear-gradient(135deg,#475569,#64748b)' },
@@ -154,7 +154,7 @@ export default function AdminShipmentDetail() {
           <div className="flex gap-2 flex-wrap">
             <button onClick={() => setShowUpdate(true)}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:opacity-85"
-              style={{ background: '#F5C100', color: '#0f0900' }}>
+              style={{ background: '#FF9800', color: '#0f0900' }}>
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
               Update Status
             </button>
@@ -204,8 +204,8 @@ export default function AdminShipmentDetail() {
             {/* Sender & Recipient */}
             <div className="grid sm:grid-cols-2 gap-5">
               {[
-                { label: 'Sender', letter: 'S', letterBg: '#F5C100', letterColor: '#0f0900', party: ship.sender },
-                { label: 'Recipient', letter: 'R', letterBg: '#CC1500', letterColor: 'white', party: ship.recipient },
+                { label: 'Sender', letter: 'S', letterBg: '#FF9800', letterColor: '#0f0900', party: ship.sender },
+                { label: 'Recipient', letter: 'R', letterBg: '#1565C0', letterColor: 'white', party: ship.recipient },
               ].map(({ label, letter, letterBg, letterColor, party }) => (
                 <div key={label} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
                   <div className="flex items-center gap-2 mb-4">
@@ -344,7 +344,7 @@ export default function AdminShipmentDetail() {
                 </button>
                 <button onClick={handleUpdateStatus} disabled={updating}
                   className="flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  style={{ background: '#FF9800', color: '#0f0900' }}>
                   {updating
                     ? <><span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0f0900', animation: 'spin 1s linear infinite' }} />Saving…</>
                     : 'Save Update'}

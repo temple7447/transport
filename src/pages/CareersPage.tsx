@@ -27,19 +27,19 @@ export default function CareersPage() {
       <PageMeta title="Careers at Accessiblexpress" description="Join our global team. Open roles in operations, technology, and logistics across multiple countries." />
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#0D0840 0%,#080530 60%,#18106A 100%)', padding: '80px 0 64px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#1565C0 0%,#0D47A1 60%,#1976D2 100%)', padding: '80px 0 64px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.4)', color: '#CC1500' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(21,101,192,0.15)', border: '1px solid rgba(21,101,192,0.4)', color: '#1565C0' }}>
             We're Hiring
           </span>
           <h1 className="font-black text-white mb-4" style={{ fontSize: 'clamp(36px,5vw,64px)', lineHeight: 1.05, letterSpacing: '-1.5px' }}>
             Join the Team Delivering<br />
-            <span style={{ color: '#F5C100' }}>the World's Goods</span>
+            <span style={{ color: '#FF9800' }}>the World's Goods</span>
           </h1>
           <p className="mx-auto text-lg leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560 }}>
             We're a fast-growing global logistics company on a mission to make shipping simple, fast, and transparent for everyone.
           </p>
-          <a href="#openings" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all" style={{ background: '#CC1500', color: 'white', textDecoration: 'none' }}>
+          <a href="#openings" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all" style={{ background: '#1565C0', color: 'white', textDecoration: 'none' }}>
             See Open Roles
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M19 9l-7 7-7-7" style={{ transform: 'rotate(-90deg)', transformOrigin: 'center' }}/></svg>
           </a>
@@ -47,7 +47,7 @@ export default function CareersPage() {
       </section>
 
       {/* Stats */}
-      <section style={{ background: '#0D0840', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: '#1565C0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {[{ val: '200+', label: 'Team Members' }, { val: '18', label: 'Countries' }, { val: '4.8★', label: 'Glassdoor Rating' }, { val: '94%', label: 'Retention Rate' }].map((s, i) => (
             <div key={i} className="py-8 text-center" style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
@@ -82,21 +82,21 @@ export default function CareersPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="font-black text-slate-900 mb-3" style={{ fontSize: 'clamp(28px,3.5vw,42px)', letterSpacing: '-0.5px' }}>Open Positions</h2>
-            <p className="text-slate-500">Can't find the right role? Send us your CV at <a href="mailto:careers@accessiblexpress.com" style={{ color: '#CC1500' }}>careers@accessiblexpress.com</a></p>
+            <p className="text-slate-500">Can't find the right role? Send us your CV at <a href="mailto:careers@accessiblexpress.com" style={{ color: '#1565C0' }}>careers@accessiblexpress.com</a></p>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
             {OPENINGS.map(job => (
               <div key={job.title} className="flex items-center justify-between bg-white border border-slate-100 rounded-2xl px-6 py-5 shadow-sm hover:shadow-md hover:border-slate-200 transition-all group">
                 <div>
-                  <h3 className="font-bold text-slate-800 group-hover:text-[#CC1500] transition-colors">{job.title}</h3>
+                  <h3 className="font-bold text-slate-800 group-hover:text-[#1565C0] transition-colors">{job.title}</h3>
                   <div className="flex items-center gap-3 mt-1 text-sm text-slate-400">
                     <span>{job.dept}</span>
                     <span>·</span>
                     <span>{job.location}</span>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold" style={{ background: 'rgba(204,21,0,0.07)', color: '#CC1500' }}>{job.type}</span>
+                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold" style={{ background: 'rgba(21,101,192,0.07)', color: '#1565C0' }}>{job.type}</span>
                   </div>
                 </div>
-                <Link to="/contact" className="flex items-center gap-1.5 text-sm font-semibold transition-colors shrink-0 ml-4" style={{ color: '#CC1500', textDecoration: 'none' }}>
+                <Link to="/contact" className="flex items-center gap-1.5 text-sm font-semibold transition-colors shrink-0 ml-4" style={{ color: '#1565C0', textDecoration: 'none' }}>
                   Apply
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                 </Link>
@@ -107,11 +107,11 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: 'linear-gradient(135deg,#0D0840,#18106A)' }}>
+      <section className="py-16" style={{ background: 'linear-gradient(135deg,#1565C0,#1976D2)' }}>
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Don't See Your Role?</h2>
           <p className="text-white/50 mb-6 max-w-md mx-auto">We're always looking for talented people. Drop us your CV and we'll reach out when something opens up.</p>
-          <a href="mailto:careers@accessiblexpress.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
+          <a href="mailto:careers@accessiblexpress.com" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#FF9800', color: '#1F2937', textDecoration: 'none' }}>
             Send Your CV
           </a>
         </div>

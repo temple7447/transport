@@ -12,7 +12,7 @@ const STATUS_CFG: Record<ShipStatus, { label: string; color: string; bg: string 
   confirmed:        { label: 'Confirmed',          color: '#7c3aed', bg: '#f5f3ff' },
   picked_up:        { label: 'Picked Up',          color: '#0891b2', bg: '#ecfeff' },
   in_transit:       { label: 'In Transit',         color: '#2563eb', bg: '#eff6ff' },
-  out_for_delivery: { label: 'Out for Delivery',   color: '#CC1500', bg: '#fff5f5' },
+  out_for_delivery: { label: 'Out for Delivery',   color: '#1565C0', bg: '#fff5f5' },
   delivered:        { label: 'Delivered',           color: '#16a34a', bg: '#f0fdf4' },
   failed:           { label: 'Failed',              color: '#dc2626', bg: '#fef2f2' },
   cancelled:        { label: 'Cancelled',           color: '#94a3b8', bg: '#f8fafc' },
@@ -109,7 +109,7 @@ function OverviewTab({ shipments, onNavigate }: { shipments: AdminShipment[]; on
           <h3 className="font-bold text-slate-800 mb-4">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: 'Create Shipment', icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M12 4.5v15m7.5-7.5h-15"/></svg>, tab: 'create' as AdminTab, color: '#F5C100', text: '#0f0900' },
+              { label: 'Create Shipment', icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M12 4.5v15m7.5-7.5h-15"/></svg>, tab: 'create' as AdminTab, color: '#FF9800', text: '#0f0900' },
               { label: 'Track Package',   icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>, tab: 'track' as AdminTab, color: '#2563eb', text: 'white' },
               { label: 'All Shipments',   icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>, tab: 'shipments' as AdminTab, color: '#16a34a', text: 'white' },
               { label: 'Processing (' + processing + ')', icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>, tab: 'shipments' as AdminTab, color: '#7c3aed', text: 'white' },
@@ -129,7 +129,7 @@ function OverviewTab({ shipments, onNavigate }: { shipments: AdminShipment[]; on
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="font-bold text-slate-800">Recent Shipments</h3>
-          <button onClick={() => onNavigate('shipments')} className="text-sm font-semibold" style={{ color: '#CC1500' }}>
+          <button onClick={() => onNavigate('shipments')} className="text-sm font-semibold" style={{ color: '#1565C0' }}>
             View all →
           </button>
         </div>
@@ -516,7 +516,7 @@ function ShipmentsTab({
                 </button>
                 <button onClick={() => openUpdate(selected)}
                   className="flex-1 py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90"
-                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  style={{ background: '#FF9800', color: '#0f0900' }}>
                   Update Status
                 </button>
               </div>
@@ -553,7 +553,7 @@ function ShipmentsTab({
                 </button>
                 <button onClick={handleUpdateStatus}
                   className="flex-1 py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90"
-                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  style={{ background: '#FF9800', color: '#0f0900' }}>
                   Save Update
                 </button>
               </div>
@@ -603,7 +603,7 @@ function ShipmentsTab({
               {/* Sender + Recipient */}
               <div className="grid md:grid-cols-2 gap-5">
                 {[
-                  { title: 'Sender', color: '#F5C100', textColor: '#0f0900', letter: 'S', fields: [
+                  { title: 'Sender', color: '#FF9800', textColor: '#0f0900', letter: 'S', fields: [
                     { k: 'senderName', label: 'Full Name *', ph: 'John Smith' },
                     { k: 'senderPhone', label: 'Phone', ph: '+1 800 000 0000' },
                     { k: 'senderEmail', label: 'Email', ph: 'john@example.com' },
@@ -613,7 +613,7 @@ function ShipmentsTab({
                     { k: 'senderCountry', label: 'Country *', ph: 'UAE' },
                     { k: 'senderPostal', label: 'Postal Code', ph: '00000' },
                   ]},
-                  { title: 'Recipient', color: '#CC1500', textColor: 'white', letter: 'R', fields: [
+                  { title: 'Recipient', color: '#1565C0', textColor: 'white', letter: 'R', fields: [
                     { k: 'recipientName', label: 'Full Name *', ph: 'Jane Doe' },
                     { k: 'recipientPhone', label: 'Phone', ph: '+44 20 7946 0100' },
                     { k: 'recipientEmail', label: 'Email', ph: 'jane@example.com' },
@@ -692,7 +692,7 @@ function ShipmentsTab({
                 </button>
                 <button type="submit" disabled={editSubmitting}
                   className="flex-1 py-3 rounded-xl font-bold text-sm transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
-                  style={{ background: '#F5C100', color: '#0f0900' }}>
+                  style={{ background: '#FF9800', color: '#0f0900' }}>
                   {editSubmitting
                     ? <><span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0f0900', animation: 'spin 1s linear infinite' }} /> Saving…</>
                     : 'Save Changes'}
@@ -827,7 +827,7 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
           {/* Sender */}
           <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
             <h3 className="font-bold text-slate-700 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black" style={{ background: '#F5C100', color: '#0f0900' }}>S</span>
+              <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black" style={{ background: '#FF9800', color: '#0f0900' }}>S</span>
               Sender Details
             </h3>
             <div className="space-y-3">
@@ -843,7 +843,7 @@ function CreateTab({ onCreate }: { onCreate: (body: Omit<AdminShipment, 'id' | '
           {/* Recipient */}
           <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
             <h3 className="font-bold text-slate-700 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black" style={{ background: '#CC1500', color: 'white' }}>R</span>
+              <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black" style={{ background: '#1565C0', color: 'white' }}>R</span>
               Recipient Details
             </h3>
             <div className="space-y-3">
@@ -1466,22 +1466,22 @@ export default function AdminDashboard() {
             <svg width="36" height="36" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="adG" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#F5C100" />
-                  <stop offset="100%" stopColor="#CC1500" />
+                  <stop offset="0%" stopColor="#FF9800" />
+                  <stop offset="100%" stopColor="#1565C0" />
                 </linearGradient>
               </defs>
-              <rect width="96" height="96" rx="22" fill="#0D0840" />
+              <rect width="96" height="96" rx="22" fill="#1565C0" />
               <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
               <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
               <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
               <polygon points="42,10 50,10 30,84 12,84" fill="white" />
               <polygon points="46,10 54,10 84,84 66,84" fill="white" />
               <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#adG)" />
-              <polygon points="48,2 38,16 58,16" fill="#F5C100" />
-              <circle cx="48" cy="9" r="4" fill="#F5C100" />
+              <polygon points="48,2 38,16 58,16" fill="#FF9800" />
+              <circle cx="48" cy="9" r="4" fill="#FF9800" />
             </svg>
             <div>
-              <p className="font-black text-white text-sm tracking-tight">Accessible<span style={{ color: '#CC1500' }}>xpress</span></p>
+              <p className="font-black text-white text-sm tracking-tight">Accessible<span style={{ color: '#1565C0' }}>xpress</span></p>
               <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin Panel</p>
             </div>
           </div>
@@ -1497,9 +1497,9 @@ export default function AdminDashboard() {
                 onClick={() => { goTab(item.key); setSidebarOpen(false) }}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all text-left"
                 style={{
-                  background: active ? 'rgba(245,193,0,0.15)' : 'transparent',
-                  color: active ? '#F5C100' : 'rgba(255,255,255,0.55)',
-                  borderLeft: active ? '3px solid #F5C100' : '3px solid transparent',
+                  background: active ? 'rgba(255,152,0,0.15)' : 'transparent',
+                  color: active ? '#FF9800' : 'rgba(255,255,255,0.55)',
+                  borderLeft: active ? '3px solid #FF9800' : '3px solid transparent',
                 }}
               >
                 <span>{item.icon}</span>
@@ -1512,7 +1512,7 @@ export default function AdminDashboard() {
         {/* Bottom user / logout */}
         <div className="px-3 pb-5 border-t pt-4" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0" style={{ background: '#F5C100', color: '#0f0900' }}>A</div>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shrink-0" style={{ background: '#FF9800', color: '#0f0900' }}>A</div>
             <div>
               <p className="text-white text-xs font-bold">Administrator</p>
               <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)' }}>admin@accessiblexpress</p>
@@ -1521,7 +1521,7 @@ export default function AdminDashboard() {
           <button onClick={logout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all"
             style={{ color: 'rgba(255,255,255,0.4)' }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(204,21,0,0.15)'; e.currentTarget.style.color = '#ff8080' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(21,101,192,0.15)'; e.currentTarget.style.color = '#ff8080' }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -15,7 +15,7 @@ export default function HeroTrackBar() {
     <div className="flex flex-col md:flex-row">
 
       {/* Left — tracking input */}
-      <div className="flex-1" style={{ background: '#0D0840' }}>
+      <div className="flex-1" style={{ background: '#1565C0' }}>
         <form onSubmit={submit} className="flex flex-col md:flex-row items-stretch w-full">
           {/* Input — full width */}
           <div className="flex-1 relative">
@@ -39,7 +39,7 @@ export default function HeroTrackBar() {
                 background: 'transparent',
                 border: 'none',
                 color: 'white',
-                caretColor: '#F5C100',
+                caretColor: '#FF9800',
                 height: 64,
               }}
             />
@@ -48,9 +48,9 @@ export default function HeroTrackBar() {
           <button
             type="submit"
             className="flex items-center justify-center gap-2 px-8 py-4 md:py-0 text-sm font-bold transition-all duration-150 whitespace-nowrap"
-            style={{ background: '#F5C100', color: '#0D0840' }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
-            onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
+            style={{ background: '#FF9800', color: '#1F2937' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#E68900' }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#FF9800' }}
           >
             Track &amp; Trace
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>
@@ -64,7 +64,7 @@ export default function HeroTrackBar() {
       {/* Right — value props */}
       <div
         className="flex items-stretch divide-x divide-white/20 md:w-auto"
-        style={{ background: '#CC1500' }}
+        style={{ background: '#1565C0' }}
       >
         {[
           {

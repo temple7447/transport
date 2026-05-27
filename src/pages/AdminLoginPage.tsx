@@ -26,12 +26,12 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #0D0840 0%, #080530 60%, #18106A 100%)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #1565C0 0%, #0D47A1 60%, #1976D2 100%)' }}>
       {/* Background dot grid */}
       <div className="fixed inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
       {/* Glow blobs */}
-      <div className="fixed top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(245,193,0,0.12) 0%, transparent 70%)' }} />
-      <div className="fixed bottom-1/4 left-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,21,0,0.10) 0%, transparent 70%)' }} />
+      <div className="fixed top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,152,0,0.12) 0%, transparent 70%)' }} />
+      <div className="fixed bottom-1/4 left-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(21,101,192,0.10) 0%, transparent 70%)' }} />
 
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
@@ -40,22 +40,22 @@ export default function AdminLoginPage() {
             <svg width="64" height="64" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="alG" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#F5C100" />
-                  <stop offset="100%" stopColor="#CC1500" />
+                  <stop offset="0%" stopColor="#FF9800" />
+                  <stop offset="100%" stopColor="#1565C0" />
                 </linearGradient>
               </defs>
-              <rect width="96" height="96" rx="22" fill="#0D0840" />
+              <rect width="96" height="96" rx="22" fill="#1565C0" />
               <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
               <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
               <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
               <polygon points="42,10 50,10 30,84 12,84" fill="white" />
               <polygon points="46,10 54,10 84,84 66,84" fill="white" />
               <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#alG)" />
-              <polygon points="48,2 38,16 58,16" fill="#F5C100" />
-              <circle cx="48" cy="9" r="4" fill="#F5C100" />
+              <polygon points="48,2 38,16 58,16" fill="#FF9800" />
+              <circle cx="48" cy="9" r="4" fill="#FF9800" />
             </svg>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">Accessible<span style={{ color: '#CC1500' }}>xpress</span></h1>
+          <h1 className="text-2xl font-black text-white tracking-tight">Accessible<span style={{ color: '#1565C0' }}>xpress</span></h1>
           <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Admin Control Panel</p>
         </div>
 
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
           </p>
 
           {error && (
-            <div className="flex items-center gap-2 p-3 rounded-xl mb-5 text-sm" style={{ background: 'rgba(204,21,0,0.15)', border: '1px solid rgba(204,21,0,0.3)', color: '#CC1500' }}>
+            <div className="flex items-center gap-2 p-3 rounded-xl mb-5 text-sm" style={{ background: 'rgba(21,101,192,0.15)', border: '1px solid rgba(21,101,192,0.3)', color: '#1565C0' }}>
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -88,7 +88,7 @@ export default function AdminLoginPage() {
                 placeholder="you@example.com"
                 className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
                 style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
-                onFocus={e => { e.currentTarget.style.border = '1px solid #F5C100'; e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
+                onFocus={e => { e.currentTarget.style.border = '1px solid #FF9800'; e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
                 onBlur={e => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}
               />
             </div>
@@ -106,7 +106,7 @@ export default function AdminLoginPage() {
                   placeholder="••••••••"
                   className="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-all"
                   style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
-                  onFocus={e => { e.currentTarget.style.border = '1px solid #F5C100'; e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
+                  onFocus={e => { e.currentTarget.style.border = '1px solid #FF9800'; e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
                   onBlur={e => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}
                 />
                 <button
@@ -127,11 +127,11 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={loading}
               className="w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-2 transition-all"
-              style={{ background: '#F5C100', color: '#0D0840', opacity: loading ? 0.8 : 1 }}
+              style={{ background: '#FF9800', color: '#1F2937', opacity: loading ? 0.8 : 1 }}
             >
               {loading ? (
                 <>
-                  <span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#0D0840', animation: 'spin 1s linear infinite' }} />
+                  <span className="w-4 h-4 border-2 rounded-full inline-block" style={{ borderColor: 'rgba(0,0,0,0.2)', borderTopColor: '#1565C0', animation: 'spin 1s linear infinite' }} />
                   Signing in…
                 </>
               ) : (

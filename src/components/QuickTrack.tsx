@@ -12,7 +12,7 @@ export default function QuickTrack() {
   }
 
   return (
-    <section style={{ background: '#080530', borderTop: '1px solid rgba(245,193,0,0.15)' }}>
+    <section style={{ background: '#0D47A1', borderTop: '1px solid rgba(255,152,0,0.15)' }}>
       <div className="container mx-auto px-6 py-12 md:py-16">
 
         <div className="max-w-4xl mx-auto">
@@ -20,11 +20,11 @@ export default function QuickTrack() {
           {/* Heading */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-px" style={{ background: '#F5C100' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'rgba(245,193,0,0.7)' }}>
+              <div className="w-8 h-px" style={{ background: '#FF9800' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'rgba(255,152,0,0.7)' }}>
                 Real-Time Tracking
               </span>
-              <div className="w-8 h-px" style={{ background: '#F5C100' }} />
+              <div className="w-8 h-px" style={{ background: '#FF9800' }} />
             </div>
             <h2 className="font-black text-white" style={{ fontSize: 'clamp(24px,3vw,36px)', letterSpacing: '-0.5px' }}>
               Where Is Your Shipment?
@@ -56,18 +56,18 @@ export default function QuickTrack() {
                   background: 'rgba(255,255,255,0.06)',
                   border: '1px solid rgba(255,255,255,0.12)',
                   color: 'white',
-                  caretColor: '#F5C100',
+                  caretColor: '#FF9800',
                 }}
-                onFocus={e => { e.currentTarget.style.border = '1px solid rgba(245,193,0,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.09)' }}
+                onFocus={e => { e.currentTarget.style.border = '1px solid rgba(255,152,0,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.09)' }}
                 onBlur={e => { e.currentTarget.style.border = '1px solid rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
               />
             </div>
             <button
               type="submit"
               className="shrink-0 flex items-center gap-2 px-7 py-4 rounded-xl text-sm font-bold transition-all duration-150"
-              style={{ background: '#F5C100', color: '#0D0840' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#D4A800' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#F5C100' }}
+              style={{ background: '#FF9800', color: '#1F2937' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#E68900' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#FF9800' }}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}>
                 <path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
@@ -84,7 +84,7 @@ export default function QuickTrack() {
               { val: 'Live', label: 'Real-time updates' },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
-                <span className="font-black text-sm" style={{ color: '#F5C100' }}>{s.val}</span>
+                <span className="font-black text-sm" style={{ color: '#FF9800' }}>{s.val}</span>
                 <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.label}</span>
               </div>
             ))}

@@ -49,41 +49,41 @@ function ScrollToTop() {
 
 function PageLoader() {
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#080530', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#0D47A1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
 
       {/* Dot grid */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
 
       {/* Ambient glows */}
-      <div style={{ position: 'absolute', top: '15%', left: '25%', width: 480, height: 480, borderRadius: '50%', background: 'radial-gradient(circle, rgba(204,21,0,0.13) 0%, transparent 65%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '15%', right: '20%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,193,0,0.08) 0%, transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '15%', left: '25%', width: 480, height: 480, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '15%', right: '20%', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,152,0,0.08) 0%, transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Animated ring + logo */}
       <div style={{ position: 'relative', width: 96, height: 96, marginBottom: 36 }}>
         {/* Outer slow ring */}
-        <div style={{ position: 'absolute', inset: -12, borderRadius: '50%', border: '1.5px solid rgba(245,193,0,0.15)', animation: 'loaderRingOuter 8s linear infinite' }} />
+        <div style={{ position: 'absolute', inset: -12, borderRadius: '50%', border: '1.5px solid rgba(255,152,0,0.15)', animation: 'loaderRingOuter 8s linear infinite' }} />
         {/* Spinning arc */}
-        <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', border: '2px solid transparent', borderTopColor: '#F5C100', borderRightColor: 'rgba(245,193,0,0.3)', animation: 'loaderRingOuter 1.4s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', border: '2px solid transparent', borderTopColor: '#FF9800', borderRightColor: 'rgba(255,152,0,0.3)', animation: 'loaderRingOuter 1.4s ease-in-out infinite' }} />
         {/* Counter-spin inner arc */}
-        <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', border: '1.5px solid transparent', borderBottomColor: '#CC1500', animation: 'loaderRingInner 2.1s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', border: '1.5px solid transparent', borderBottomColor: '#1565C0', animation: 'loaderRingInner 2.1s ease-in-out infinite' }} />
         {/* Logo box */}
-        <div style={{ width: 96, height: 96, borderRadius: 22, boxShadow: '0 0 48px rgba(204,21,0,0.35)' }}>
+        <div style={{ width: 96, height: 96, borderRadius: 22, boxShadow: '0 0 48px rgba(21,101,192,0.35)' }}>
           <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="plG" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#F5C100" />
-                <stop offset="100%" stopColor="#CC1500" />
+                <stop offset="0%" stopColor="#FF9800" />
+                <stop offset="100%" stopColor="#1565C0" />
               </linearGradient>
             </defs>
-            <rect width="96" height="96" rx="22" fill="#0D0840" />
+            <rect width="96" height="96" rx="22" fill="#1565C0" />
             <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
             <ellipse cx="48" cy="52" rx="14" ry="28" stroke="white" strokeWidth="1" opacity="0.07" />
             <line x1="20" y1="52" x2="76" y2="52" stroke="white" strokeWidth="1" opacity="0.07" />
             <polygon points="42,10 50,10 30,84 12,84" fill="white" />
             <polygon points="46,10 54,10 84,84 66,84" fill="white" />
             <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#plG)" />
-            <polygon points="48,2 38,16 58,16" fill="#F5C100" />
-            <circle cx="48" cy="9" r="4" fill="#F5C100" />
+            <polygon points="48,2 38,16 58,16" fill="#FF9800" />
+            <circle cx="48" cy="9" r="4" fill="#FF9800" />
           </svg>
         </div>
       </div>
@@ -98,13 +98,13 @@ function PageLoader() {
 
       {/* Progress bar */}
       <div style={{ width: 200, height: 2, background: 'rgba(255,255,255,0.07)', borderRadius: 4, overflow: 'hidden', animation: 'loaderFadeSlide 0.5s ease 0.35s both' }}>
-        <div style={{ height: '100%', background: 'linear-gradient(90deg, #CC1500 0%, #F5C100 100%)', borderRadius: 4, animation: 'loadProgress 2s ease-out forwards' }} />
+        <div style={{ height: '100%', background: 'linear-gradient(90deg, #1565C0 0%, #FF9800 100%)', borderRadius: 4, animation: 'loadProgress 2s ease-out forwards' }} />
       </div>
 
       {/* Bouncing dots */}
       <div style={{ display: 'flex', gap: 7, marginTop: 22, animation: 'loaderFadeSlide 0.5s ease 0.5s both' }}>
         {[0, 1, 2].map(i => (
-          <div key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#F5C100', animation: `loadDots 1.1s ease-in-out ${i * 0.18}s infinite` }} />
+          <div key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#FF9800', animation: `loadDots 1.1s ease-in-out ${i * 0.18}s infinite` }} />
         ))}
       </div>
 
@@ -119,7 +119,7 @@ function PublicLayout() {
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:z-200 focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-bold"
-        style={{ background: '#F5C100', color: '#0D0840' }}
+        style={{ background: '#FF9800', color: '#1F2937' }}
       >
         Skip to main content
       </a>

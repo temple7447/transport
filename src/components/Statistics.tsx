@@ -69,15 +69,15 @@ export default function Statistics() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,8,64,0.92) 0%, rgba(15,36,68,0.85) 50%, rgba(22,49,102,0.88) 100%)' }} />
       </div>
       <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(245,193,0,0.12)' }} />
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl" style={{ background: 'rgba(204,21,0,0.10)' }} />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(255,152,0,0.12)' }} />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl" style={{ background: 'rgba(21,101,192,0.10)' }} />
       {/* Floating glow particles */}
       {[
-        { left: '15%', top: '20%', delay: '0s',   size: 6, color: 'rgba(245,193,0,0.6)' },
+        { left: '15%', top: '20%', delay: '0s',   size: 6, color: 'rgba(255,152,0,0.6)' },
         { left: '70%', top: '60%', delay: '1.2s', size: 4, color: 'rgba(96,165,250,0.5)' },
         { left: '45%', top: '80%', delay: '2.4s', size: 5, color: 'rgba(167,139,250,0.5)' },
         { left: '85%', top: '25%', delay: '0.8s', size: 3, color: 'rgba(74,222,128,0.6)' },
-        { left: '30%', top: '50%', delay: '1.8s', size: 4, color: 'rgba(245,193,0,0.4)' },
+        { left: '30%', top: '50%', delay: '1.8s', size: 4, color: 'rgba(255,152,0,0.4)' },
       ].map((p, i) => (
         <div
           key={i}
@@ -128,7 +128,7 @@ export default function Statistics() {
                 <div
                   className="h-full rounded-full"
                   style={{
-                    background: 'linear-gradient(to right, #F5C100, #CC1500)',
+                    background: 'linear-gradient(to right, #FF9800, #1565C0)',
                     width: active ? `${bar.pct}%` : '0%',
                     transition: 'width 1.6s cubic-bezier(0.16,1,0.3,1)',
                   }}

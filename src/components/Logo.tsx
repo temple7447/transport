@@ -6,12 +6,12 @@ export function LogoMark({ size = 40 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="axG" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#F5C100" />
-          <stop offset="100%" stopColor="#CC1500" />
+          <stop offset="0%" stopColor="#FF9800" />
+          <stop offset="100%" stopColor="#1565C0" />
         </linearGradient>
       </defs>
       {/* Badge */}
-      <rect width="96" height="96" rx="22" fill="#0D0840" />
+      <rect width="96" height="96" rx="22" fill="#1565C0" />
 
       {/* Subtle globe grid lines behind the A */}
       <circle cx="48" cy="52" r="28" stroke="white" strokeWidth="1" opacity="0.07" />
@@ -27,10 +27,10 @@ export function LogoMark({ size = 40 }: { size?: number }) {
       <rect x="21" y="45" width="54" height="13" rx="3.5" fill="url(#axG)" />
 
       {/* Gold peak cap */}
-      <polygon points="48,2 38,16 58,16" fill="#F5C100" />
+      <polygon points="48,2 38,16 58,16" fill="#FF9800" />
 
       {/* Small speed dot accent */}
-      <circle cx="48" cy="9" r="4" fill="#F5C100" />
+      <circle cx="48" cy="9" r="4" fill="#FF9800" />
     </svg>
   )
 }
@@ -44,9 +44,9 @@ interface LogoProps {
 }
 
 export default function Logo({ size = 36, theme = 'dark', linked = true, className }: LogoProps) {
-  const nameColor  = theme === 'dark' ? 'white'   : '#0D0840'
+  const nameColor  = theme === 'dark' ? 'white'   : '#1F2937'
   const subColor   = theme === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(13,8,64,0.38)'
-  const accentColor = '#CC1500'
+  const accentColor = '#1565C0'
 
   const inner = (
     <div className={`flex items-center gap-2.5 select-none ${className ?? ''}`} style={{ textDecoration: 'none' }}>

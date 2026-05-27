@@ -18,8 +18,8 @@ export default function NotFoundPage() {
       </div>
 
       {/* Glow blobs */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(245,193,0,0.12) 0%, transparent 65%)' }} />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(204,21,0,0.12) 0%, transparent 65%)' }} />
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,152,0,0.12) 0%, transparent 65%)' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(21,101,192,0.12) 0%, transparent 65%)' }} />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 animate-fadeInUp">
@@ -29,11 +29,11 @@ export default function NotFoundPage() {
             className="font-black leading-none select-none"
             style={{
               fontSize: 'clamp(100px, 20vw, 200px)',
-              background: 'linear-gradient(135deg, rgba(245,193,0,0.15) 0%, rgba(204,21,0,0.15) 100%)',
+              background: 'linear-gradient(135deg, rgba(255,152,0,0.15) 0%, rgba(21,101,192,0.15) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              filter: 'drop-shadow(0 0 60px rgba(245,193,0,0.2))',
+              filter: 'drop-shadow(0 0 60px rgba(255,152,0,0.2))',
             }}
           >
             404
@@ -41,7 +41,7 @@ export default function NotFoundPage() {
         </div>
 
         {/* Icon */}
-        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ background: 'rgba(245,193,0,0.15)', border: '1px solid rgba(245,193,0,0.3)' }}>
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={{ background: 'rgba(255,152,0,0.15)', border: '1px solid rgba(255,152,0,0.3)' }}>
           <svg className="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 10V7" />
           </svg>
@@ -59,7 +59,7 @@ export default function NotFoundPage() {
           <Link
             to="/"
             className="btn-primary w-full sm:w-auto justify-center py-4! px-8!"
-            style={{ boxShadow: '0 12px 40px rgba(245,193,0,0.3)' }}
+            style={{ boxShadow: '0 12px 40px rgba(255,152,0,0.3)' }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />

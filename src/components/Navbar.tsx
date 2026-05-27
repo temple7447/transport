@@ -76,7 +76,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50">
 
       {/* ══ Tier 1 — top contact bar ══════════════════════════════ */}
-      <div style={{ background: '#080530', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div style={{ background: '#0D47A1', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <div className="container mx-auto px-6 flex items-center justify-between" style={{ height: 42 }}>
 
           {/* Logo */}
@@ -147,9 +147,9 @@ export default function Navbar() {
       </div>
 
       {/* ══ Tier 2 — main navigation bar ═════════════════════════ */}
-      <nav style={{ background: '#0D0840', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+      <nav style={{ background: '#1565C0', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
         {/* Red underline accent */}
-        <div style={{ height: 2, background: 'linear-gradient(90deg,#CC1500 0%,#CC1500 50%,transparent 100%)' }} />
+        <div style={{ height: 2, background: 'linear-gradient(90deg,#1565C0 0%,#1565C0 50%,transparent 100%)' }} />
 
         <div className="container mx-auto px-6">
           <div className="hidden md:flex items-center" style={{ height: 54 }}>
@@ -166,19 +166,19 @@ export default function Navbar() {
                       to={item.to}
                       className="relative flex items-center px-4 text-xs font-bold tracking-widest transition-colors duration-150 whitespace-nowrap h-full"
                       style={{
-                        color: active ? '#F5C100' : 'rgba(255,255,255,0.75)',
+                        color: active ? '#FF9800' : 'rgba(255,255,255,0.75)',
                         textDecoration: 'none',
                         textTransform: 'uppercase',
                         height: 54,
                       }}
-                      onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#F5C100' }}
+                      onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#FF9800' }}
                       onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
                     >
                       {item.label}
                       {active && (
                         <span
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full"
-                          style={{ width: 28, height: 2, background: '#F5C100' }}
+                          style={{ width: 28, height: 2, background: '#FF9800' }}
                         />
                       )}
                     </Link>
@@ -197,7 +197,7 @@ export default function Navbar() {
                     <button
                       className="flex items-center gap-1 px-4 text-xs font-bold tracking-widest transition-colors duration-150 whitespace-nowrap"
                       style={{
-                        color: active || isOpen ? '#F5C100' : 'rgba(255,255,255,0.75)',
+                        color: active || isOpen ? '#FF9800' : 'rgba(255,255,255,0.75)',
                         textTransform: 'uppercase',
                         background: 'transparent',
                         height: 54,
@@ -215,7 +215,7 @@ export default function Navbar() {
                       {active && (
                         <span
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full"
-                          style={{ width: 28, height: 2, background: '#F5C100' }}
+                          style={{ width: 28, height: 2, background: '#FF9800' }}
                         />
                       )}
                     </button>
@@ -237,7 +237,7 @@ export default function Navbar() {
                         style={{ background: 'white', boxShadow: '0 12px 40px rgba(0,0,0,0.15)', border: '1px solid rgba(0,0,0,0.08)' }}
                       >
                         {/* Yellow accent line */}
-                        <div style={{ height: 2, background: '#F5C100' }} />
+                        <div style={{ height: 2, background: '#FF9800' }} />
 
                         {/* Header */}
                         <div className="px-4 py-3" style={{ borderBottom: '1px solid rgba(0,0,0,0.07)' }}>
@@ -247,7 +247,7 @@ export default function Navbar() {
                             style={{ textDecoration: 'none' }}
                           >
                             <p className="text-xs font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>{item.label}</p>
-                            <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: '#CC1500' }}>
+                            <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: '#1565C0' }}>
                               View all
                               <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                             </span>
@@ -265,7 +265,7 @@ export default function Navbar() {
                               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
                               onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
                             >
-                              <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ color: '#F5C100', background: 'rgba(245,193,0,0.1)' }}>
+                              <div className="w-7 h-7 rounded-md flex items-center justify-center shrink-0" style={{ color: '#FF9800', background: 'rgba(255,152,0,0.1)' }}>
                                 {child.icon}
                               </div>
                               <div className="min-w-0">
@@ -287,13 +287,13 @@ export default function Navbar() {
               to="/contact"
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shrink-0 transition-all duration-150"
               style={{
-                background: '#F5C100',
-                color: '#0D0840',
+                background: '#FF9800',
+                color: '#1F2937',
                 textDecoration: 'none',
-                boxShadow: '0 2px 12px rgba(245,193,0,0.3)',
+                boxShadow: '0 2px 12px rgba(255,152,0,0.3)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#D4A800'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(245,193,0,0.45)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#F5C100'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(245,193,0,0.3)' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#E68900'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(255,152,0,0.45)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#FF9800'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(255,152,0,0.3)' }}
             >
               Get a Quote
               <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
@@ -311,7 +311,7 @@ export default function Navbar() {
           transition: 'max-height 0.35s ease, opacity 0.25s ease',
         }}
       >
-        <div style={{ background: '#0D0840', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ background: '#1565C0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="px-3 py-3">
 
             {NAV.map(item => {
@@ -325,16 +325,16 @@ export default function Navbar() {
                     to={item.to}
                     className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold tracking-wider transition-colors"
                     style={{
-                      color: active ? '#F5C100' : 'rgba(255,255,255,0.75)',
-                      background: active ? 'rgba(245,193,0,0.08)' : 'transparent',
+                      color: active ? '#FF9800' : 'rgba(255,255,255,0.75)',
+                      background: active ? 'rgba(255,152,0,0.08)' : 'transparent',
                       textDecoration: 'none',
                       textTransform: 'uppercase',
                     }}
-                    onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#F5C100' }}
+                    onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#FF9800' }}
                     onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
                   >
                     {item.label}
-                    {active && <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#F5C100' }} />}
+                    {active && <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#FF9800' }} />}
                   </Link>
                 )
               }
@@ -345,8 +345,8 @@ export default function Navbar() {
                     onClick={() => toggleMobile(item.label)}
                     className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold tracking-wider transition-colors"
                     style={{
-                      color: expanded || active ? '#F5C100' : 'rgba(255,255,255,0.75)',
-                      background: expanded ? 'rgba(245,193,0,0.08)' : 'transparent',
+                      color: expanded || active ? '#FF9800' : 'rgba(255,255,255,0.75)',
+                      background: expanded ? 'rgba(255,152,0,0.08)' : 'transparent',
                       textTransform: 'uppercase',
                     }}
                   >
@@ -369,7 +369,7 @@ export default function Navbar() {
                       <Link
                         to={item.to}
                         className="flex items-center justify-between px-4 py-3 text-xs font-bold tracking-widest uppercase border-b transition-colors"
-                        style={{ color: '#CC1500', textDecoration: 'none', borderColor: 'rgba(0,0,0,0.07)' }}
+                        style={{ color: '#1565C0', textDecoration: 'none', borderColor: 'rgba(0,0,0,0.07)' }}
                       >
                         <span>{item.label} Overview</span>
                         <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
@@ -383,7 +383,7 @@ export default function Navbar() {
                           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)' }}
                           onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
                         >
-                          <span style={{ color: '#CC1500' }}>{child.icon}</span>
+                          <span style={{ color: '#1565C0' }}>{child.icon}</span>
                           <div className="min-w-0">
                             <p className="text-sm font-semibold leading-tight" style={{ color: '#1e293b' }}>{child.label}</p>
                             <p className="text-xs mt-0.5 truncate" style={{ color: '#64748b' }}>{child.desc}</p>
@@ -402,7 +402,7 @@ export default function Navbar() {
             <Link
               to="/contact"
               className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold transition-all"
-              style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none', boxShadow: '0 4px 16px rgba(245,193,0,0.3)' }}
+              style={{ background: '#FF9800', color: '#1F2937', textDecoration: 'none', boxShadow: '0 4px 16px rgba(255,152,0,0.3)' }}
             >
               Get a Quote
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>

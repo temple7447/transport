@@ -46,14 +46,14 @@ export default function SustainabilityPage() {
       <PageMeta title="Sustainability" description="Our roadmap to carbon-neutral shipping by 2026 and net-zero logistics operations by 2030." />
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '80px 0 64px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1976D2 100%)', padding: '80px 0 64px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(255,152,0,0.12)', border: '1px solid rgba(255,152,0,0.3)', color: '#FF9800' }}>
             Sustainability
           </span>
           <h1 className="font-black text-white mb-4" style={{ fontSize: 'clamp(36px,5vw,64px)', lineHeight: 1.05, letterSpacing: '-1.5px' }}>
             Shipping the World<br />
-            <span style={{ color: '#F5C100' }}>Without Wrecking It</span>
+            <span style={{ color: '#FF9800' }}>Without Wrecking It</span>
           </h1>
           <p className="mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)', fontSize: 17, maxWidth: 520 }}>
             Our mission is zero-emissions logistics by 2030. Here's what we're doing today to get there.
@@ -62,7 +62,7 @@ export default function SustainabilityPage() {
       </section>
 
       {/* Impact numbers */}
-      <section style={{ background: '#0D0840', borderBottom: '1px solid rgba(245,193,0,0.1)' }}>
+      <section style={{ background: '#1565C0', borderBottom: '1px solid rgba(255,152,0,0.1)' }}>
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4">
           {[
             { val: '18,400t', label: 'CO₂ Offset in 2025' },
@@ -70,8 +70,8 @@ export default function SustainabilityPage() {
             { val: '62%',     label: 'Renewable Facilities' },
             { val: '2030',    label: 'Net-Zero Target' },
           ].map((s, i) => (
-            <div key={i} className="py-8 text-center" style={{ borderRight: i < 3 ? '1px solid rgba(245,193,0,0.1)' : 'none' }}>
-              <div className="font-black" style={{ fontSize: 32, color: '#F5C100' }}>{s.val}</div>
+            <div key={i} className="py-8 text-center" style={{ borderRight: i < 3 ? '1px solid rgba(255,152,0,0.1)' : 'none' }}>
+              <div className="font-black" style={{ fontSize: 32, color: '#FF9800' }}>{s.val}</div>
               <div className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.38)', letterSpacing: '0.5px' }}>{s.label}</div>
             </div>
           ))}
@@ -89,15 +89,15 @@ export default function SustainabilityPage() {
             {PILLARS.map(p => (
               <div key={p.title} className="bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'rgba(204,21,0,0.07)', color: '#CC1500' }}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'rgba(21,101,192,0.07)', color: '#1565C0' }}>
                     {p.icon}
                   </div>
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#CC1500' }}>{p.label}</p>
+                    <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#1565C0' }}>{p.label}</p>
                     <h3 className="font-bold text-slate-800 mb-2 leading-snug">{p.title}</h3>
                     <p className="text-slate-500 text-sm leading-relaxed mb-4">{p.desc}</p>
-                    <div className="inline-flex items-baseline gap-1.5 px-3 py-1 rounded-full" style={{ background: 'rgba(245,193,0,0.1)' }}>
-                      <span className="font-black" style={{ fontSize: 20, color: '#0D0840' }}>{p.stat}</span>
+                    <div className="inline-flex items-baseline gap-1.5 px-3 py-1 rounded-full" style={{ background: 'rgba(255,152,0,0.1)' }}>
+                      <span className="font-black" style={{ fontSize: 20, color: '#1F2937' }}>{p.stat}</span>
                       <span className="text-xs text-slate-500">{p.statLabel}</span>
                     </div>
                   </div>
@@ -114,8 +114,8 @@ export default function SustainabilityPage() {
           <h2 className="font-black text-slate-900 mb-10 text-center" style={{ fontSize: 'clamp(28px,3.5vw,42px)', letterSpacing: '-0.5px' }}>Our Net-Zero Roadmap</h2>
           <div className="space-y-4">
             {GOALS.map((g, i) => (
-              <div key={i} className="flex items-center gap-4 p-5 rounded-2xl border" style={{ borderColor: g.done ? 'rgba(245,193,0,0.3)' : '#e2e8f0', background: g.done ? 'rgba(245,193,0,0.06)' : 'white' }}>
-                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold text-sm" style={{ background: g.done ? '#CC1500' : '#f1f5f9', color: g.done ? 'white' : '#64748b' }}>
+              <div key={i} className="flex items-center gap-4 p-5 rounded-2xl border" style={{ borderColor: g.done ? 'rgba(255,152,0,0.3)' : '#e2e8f0', background: g.done ? 'rgba(255,152,0,0.06)' : 'white' }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold text-sm" style={{ background: g.done ? '#1565C0' : '#f1f5f9', color: g.done ? 'white' : '#64748b' }}>
                   {g.done
                     ? <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M4.5 12.75l6 6 9-13.5"/></svg>
                     : g.year
@@ -125,7 +125,7 @@ export default function SustainabilityPage() {
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{g.year}</p>
                   <p className="font-semibold text-slate-700 text-sm">{g.goal}</p>
                 </div>
-                {g.done && <span className="ml-auto text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(245,193,0,0.15)', color: '#0D0840' }}>Complete</span>}
+                {g.done && <span className="ml-auto text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(255,152,0,0.15)', color: '#1F2937' }}>Complete</span>}
               </div>
             ))}
           </div>
@@ -133,11 +133,11 @@ export default function SustainabilityPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16" style={{ background: 'linear-gradient(135deg,#080530,#0D0840)' }}>
+      <section className="py-16" style={{ background: 'linear-gradient(135deg,#0D47A1,#1565C0)' }}>
         <div className="container mx-auto px-6 text-center">
           <h2 className="font-black text-white mb-3" style={{ fontSize: 'clamp(24px,3vw,36px)' }}>Ship Green With Us</h2>
           <p className="mb-6 max-w-md mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>Every shipment you make through Accessiblexpress contributes to our carbon offset programme at no extra cost.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none' }}>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold" style={{ background: '#FF9800', color: '#1F2937', textDecoration: 'none' }}>
             Get Started
           </Link>
         </div>

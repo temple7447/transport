@@ -17,7 +17,7 @@ export default function IndustriesSection() {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5" style={{ background: 'rgba(204,21,0,0.08)', color: '#CC1500', border: '1px solid rgba(204,21,0,0.15)' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5" style={{ background: 'rgba(21,101,192,0.08)', color: '#1565C0', border: '1px solid rgba(21,101,192,0.15)' }}>
             Industries We Serve
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-800 mb-5">
@@ -37,7 +37,7 @@ export default function IndustriesSection() {
               className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 group"
             >
               <span className="text-4xl block mb-4">{ind.icon}</span>
-              <h3 className="font-bold text-slate-800 mb-2 group-hover:text-[#CC1500] transition-colors">
+              <h3 className="font-bold text-slate-800 mb-2 group-hover:text-[#1565C0] transition-colors">
                 {ind.name}
               </h3>
               <p className="text-slate-500 text-sm leading-relaxed">{ind.desc}</p>
@@ -48,7 +48,7 @@ export default function IndustriesSection() {
         {/* Bottom note */}
         <p className="text-center text-slate-400 text-sm mt-10">
           Don't see your industry?{' '}
-          <Link to="/contact" className="text-slate-600 font-semibold hover:text-[#CC1500] transition-colors">
+          <Link to="/contact" className="text-slate-600 font-semibold hover:text-[#1565C0] transition-colors">
             Talk to our team →
           </Link>
         </p>

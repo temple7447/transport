@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-900: #0D0840;
-  --color-navy-800: #080530;
-  --color-navy-700: #18106A;
-  --color-brand-yellow: #F5C100;
-  --color-brand-yellow-dark: #D4A800;
-  --color-brand-red: #CC1500;
-  --color-brand-red-dark: #A81200;
+  --color-brand-blue: #1565C0;
+  --color-brand-blue-dark: #0D47A1;
+  --color-brand-blue-light: #1976D2;
+  --color-brand-orange: #FF9800;
+  --color-brand-orange-dark: #E68900;
+  --color-bg-light: #F5F7FA;
+  --color-text-primary: #1F2937;
 }
 
 html { scroll-behavior: smooth; }
@@ -28,12 +28,12 @@ body {
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #fafaf9; }
-::-webkit-scrollbar-thumb { background: #F5C100; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #FF9800; border-radius: 3px; }
 
 /* ── Custom utilities ─────────────────────────────────────── */
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, #F5C100, #CC1500);
+    background: linear-gradient(135deg, #FF9800, #1565C0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -58,8 +58,8 @@ body {
     align-items: center;
     gap: 6px;
     padding: 6px 14px;
-    background: rgba(204, 21, 0, 0.08);
-    color: #CC1500;
+    background: rgba(21, 101, 192, 0.08);
+    color: #1565C0;
     border-radius: 999px;
     font-size: 13px;
     font-weight: 600;
@@ -68,8 +68,8 @@ body {
   }
 
   .btn-primary {
-    background: #F5C100;
-    color: #0D0840;
+    background: #FF9800;
+    color: #1F2937;
     font-weight: 700;
     padding: 14px 28px;
     border-radius: 10px;
@@ -83,9 +83,9 @@ body {
     text-decoration: none;
   }
   .btn-primary:hover {
-    background: #D4A800;
+    background: #E68900;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 193, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
   }
 
   .btn-outline-white {
@@ -126,7 +126,7 @@ body {
 
   /* ── Shimmer gradient text ────────────────────────────── */
   .gradient-text-shimmer {
-    background: linear-gradient(135deg, #F5C100 0%, #CC1500 35%, #F5C100 65%, #CC1500 100%);
+    background: linear-gradient(135deg, #FF9800 0%, #1565C0 35%, #FF9800 65%, #1565C0 100%);
     background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -135,8 +135,30 @@ body {
   }
 
   /* ── Enhanced button glow ─────────────────────────────── */
-  .btn-primary:focus-visible { outline: 3px solid #F5C100; outline-offset: 3px; }
+  .btn-primary:focus-visible { outline: 3px solid #FF9800; outline-offset: 3px; }
   .btn-primary:active { transform: translateY(0) scale(0.97); }
+
+  /* ── Blue outline button (replaces old outline-white for light bg) ── */
+  .btn-outline-blue {
+    background: transparent;
+    color: #1565C0;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #1565C0;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .btn-outline-blue:hover {
+    background: #1565C0;
+    color: white;
+    transform: translateY(-2px);
+  }
 }
 
 /* ── Keyframes ────────────────────────────────────────────── */
@@ -181,8 +203,8 @@ body {
   100% { background-position: 300% center; }
 }
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 24px rgba(245,193,0,0.4); }
-  50%       { box-shadow: 0 0 52px rgba(245,193,0,0.8); }
+  0%, 100% { box-shadow: 0 0 24px rgba(255,152,0,0.4); }
+  50%       { box-shadow: 0 0 52px rgba(255,152,0,0.8); }
 }
 @keyframes iconBounce {
   0%, 100% { transform: translateY(0);   }

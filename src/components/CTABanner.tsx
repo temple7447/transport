@@ -5,7 +5,7 @@ export default function CTABanner() {
   const [ref, inView] = useScrollReveal(0.2)
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #F5C100 0%, #D4A800 40%, #CC1500 100%)' }}>
+    <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF9800 0%, #E68900 40%, #1565C0 100%)' }}>
       {/* Background pattern */}
       <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
@@ -51,7 +51,7 @@ export default function CTABanner() {
         >
           <Link to="/contact" className="bg-white font-black px-10 py-5 rounded-xl text-base flex items-center gap-2
             transition-all duration-200 hover:-translate-y-1.5 hover:shadow-2xl hover:bg-yellow-50 active:scale-95"
-            style={{ color: '#CC1500', textDecoration: 'none' }}>
+            style={{ color: '#1565C0', textDecoration: 'none' }}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 10V7"/>
             </svg>

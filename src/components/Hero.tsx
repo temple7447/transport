@@ -37,16 +37,16 @@ const SLIDES = [
 ]
 
 const LIVE_EVENTS = [
-  { city: 'New York, USA',  status: 'Delivered',       dot: '#F5C100' },
-  { city: 'London, UK',     status: 'In Transit',       dot: '#CC1500' },
-  { city: 'Dubai, UAE',     status: 'Dispatched',       dot: '#F5C100' },
-  { city: 'Tokyo, Japan',   status: 'Delivered',        dot: '#F5C100' },
-  { city: 'Accra, Ghana',   status: 'Out for Delivery', dot: '#CC1500' },
-  { city: 'Sydney, AU',     status: 'Processing',       dot: '#F5C100' },
-  { city: 'Paris, France',  status: 'Delivered',        dot: '#F5C100' },
-  { city: 'Singapore',      status: 'In Transit',       dot: '#CC1500' },
-  { city: 'Austin, TX',     status: 'Delivered',        dot: '#F5C100' },
-  { city: 'Toronto, CA',    status: 'Customs Cleared',  dot: '#F5C100' },
+  { city: 'New York, USA',  status: 'Delivered',       dot: '#FF9800' },
+  { city: 'London, UK',     status: 'In Transit',       dot: '#1565C0' },
+  { city: 'Dubai, UAE',     status: 'Dispatched',       dot: '#FF9800' },
+  { city: 'Tokyo, Japan',   status: 'Delivered',        dot: '#FF9800' },
+  { city: 'Accra, Ghana',   status: 'Out for Delivery', dot: '#1565C0' },
+  { city: 'Sydney, AU',     status: 'Processing',       dot: '#FF9800' },
+  { city: 'Paris, France',  status: 'Delivered',        dot: '#FF9800' },
+  { city: 'Singapore',      status: 'In Transit',       dot: '#1565C0' },
+  { city: 'Austin, TX',     status: 'Delivered',        dot: '#FF9800' },
+  { city: 'Toronto, CA',    status: 'Customs Cleared',  dot: '#FF9800' },
 ]
 
 const STATS = [
@@ -168,9 +168,9 @@ export default function Hero() {
         >
           <span
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase"
-            style={{ background: 'rgba(204,21,0,0.18)', border: '1px solid rgba(204,21,0,0.45)', color: '#F5C100' }}
+            style={{ background: 'rgba(21,101,192,0.18)', border: '1px solid rgba(21,101,192,0.45)', color: '#FF9800' }}
           >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#CC1500', boxShadow: '0 0 6px #CC1500' }} />
+            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#1565C0', boxShadow: '0 0 6px #1565C0' }} />
             {s.eyebrow}
           </span>
         </div>
@@ -192,7 +192,7 @@ export default function Hero() {
                   fontSize: 'clamp(36px, 5.8vw, 80px)',
                   lineHeight: 1.0,
                   letterSpacing: '-2px',
-                  color: li === 0 ? 'white' : li === 1 ? '#F5C100' : 'rgba(255,255,255,0.75)',
+                  color: li === 0 ? 'white' : li === 1 ? '#FF9800' : 'rgba(255,255,255,0.75)',
                 }}
               >
                 {line}
@@ -208,7 +208,7 @@ export default function Hero() {
             width: 64,
             height: 3,
             borderRadius: 2,
-            background: 'linear-gradient(90deg,#CC1500,#CC1500)',
+            background: 'linear-gradient(90deg,#1565C0,#1565C0)',
             marginTop: 16,
             marginBottom: 20,
             transformOrigin: 'left',
@@ -245,9 +245,9 @@ export default function Hero() {
           <Link
             to={s.cta1.to}
             className="flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all duration-200"
-            style={{ background: '#F5C100', color: '#0D0840', textDecoration: 'none', boxShadow: '0 4px 24px rgba(245,193,0,0.35)' }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(245,193,0,0.5)' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(245,193,0,0.35)' }}
+            style={{ background: '#FF9800', color: '#1F2937', textDecoration: 'none', boxShadow: '0 4px 24px rgba(255,152,0,0.35)' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,152,0,0.5)' }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(255,152,0,0.35)' }}
           >
             {s.cta1.label}
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
@@ -283,9 +283,9 @@ export default function Hero() {
             <button
               onClick={next}
               className="flex items-center justify-center rounded-full transition-all duration-200"
-              style={{ width: 42, height: 42, background: '#CC1500' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#A81200'; e.currentTarget.style.transform = 'scale(1.08)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#CC1500'; e.currentTarget.style.transform = 'none' }}
+              style={{ width: 42, height: 42, background: '#1565C0' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#0D47A1'; e.currentTarget.style.transform = 'scale(1.08)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#1565C0'; e.currentTarget.style.transform = 'none' }}
               aria-label="Next"
             >
               <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
@@ -313,7 +313,7 @@ export default function Hero() {
                 {i === slide && (
                   <span
                     className="absolute inset-y-0 left-0 rounded-full"
-                    style={{ width: `${progress}%`, background: '#F5C100', transition: 'width 0.04s linear' }}
+                    style={{ width: `${progress}%`, background: '#FF9800', transition: 'width 0.04s linear' }}
                   />
                 )}
               </button>

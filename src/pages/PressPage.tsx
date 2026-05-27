@@ -40,9 +40,9 @@ export default function PressPage() {
       <PageMeta title="Press &amp; Media" description="Latest Accessiblexpress press releases, media assets, and coverage from around the world." />
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg,#080530 0%,#0D0840 60%,#18106A 100%)', padding: '64px 0 48px' }}>
+      <section style={{ background: 'linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1976D2 100%)', padding: '64px 0 48px' }}>
         <div className="container mx-auto px-6 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(245,193,0,0.12)', border: '1px solid rgba(245,193,0,0.3)', color: '#F5C100' }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style={{ background: 'rgba(255,152,0,0.12)', border: '1px solid rgba(255,152,0,0.3)', color: '#FF9800' }}>
             Newsroom
           </span>
           <h1 className="font-black text-white mb-3" style={{ fontSize: 'clamp(32px,4.5vw,56px)', letterSpacing: '-1px' }}>
@@ -60,11 +60,11 @@ export default function PressPage() {
           <div>
             <h2 className="font-bold text-slate-800 mb-1">Media Enquiries</h2>
             <p className="text-slate-500 text-sm">Contact our communications team for interviews, quotes, and assets.</p>
-            <a href="mailto:press@accessiblexpress.com" className="text-sm font-semibold mt-1 inline-block" style={{ color: '#CC1500', textDecoration: 'none' }}>press@accessiblexpress.com</a>
+            <a href="mailto:press@accessiblexpress.com" className="text-sm font-semibold mt-1 inline-block" style={{ color: '#1565C0', textDecoration: 'none' }}>press@accessiblexpress.com</a>
           </div>
           <button
             className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all shrink-0 opacity-60 cursor-not-allowed"
-            style={{ background: '#0D0840', color: 'white' }}
+            style={{ background: '#1565C0', color: 'white' }}
             disabled
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -81,9 +81,9 @@ export default function PressPage() {
             {RELEASES.map(r => (
               <div key={r.title} className="border border-slate-100 rounded-2xl p-6 hover:shadow-md hover:border-slate-200 transition-all group cursor-pointer">
                 <p className="text-xs font-semibold text-slate-400 mb-2">{r.date}</p>
-                <h3 className="font-bold text-slate-800 mb-2 leading-snug group-hover:text-[#CC1500] transition-colors">{r.title}</h3>
+                <h3 className="font-bold text-slate-800 mb-2 leading-snug group-hover:text-[#1565C0] transition-colors">{r.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{r.excerpt}</p>
-                <span className="flex items-center gap-1 text-sm font-semibold mt-3 opacity-50 cursor-default" style={{ color: '#CC1500' }}>
+                <span className="flex items-center gap-1 text-sm font-semibold mt-3 opacity-50 cursor-default" style={{ color: '#1565C0' }}>
                   Read Full Release
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}><path d="M9 5l7 7-7 7"/></svg>
                 </span>
@@ -116,8 +116,8 @@ export default function PressPage() {
           <div className="grid sm:grid-cols-3 gap-4 max-w-2xl">
             {['Logo Pack (SVG/PNG)', 'Brand Guidelines PDF', 'Product Screenshots'].map(item => (
               <div key={item} className="flex items-center gap-3 p-4 border border-slate-100 rounded-xl opacity-60 cursor-default">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(204,21,0,0.07)' }}>
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#CC1500" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(21,101,192,0.07)' }}>
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#1565C0" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 </div>
                 <span className="text-sm font-semibold text-slate-500">{item}</span>
               </div>
